@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Zealand-electric</string>
     <string name="main_text">Zealand</string>
+    <string name="login_text">Login</string>
 </resources>

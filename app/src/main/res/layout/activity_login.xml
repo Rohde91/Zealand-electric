@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/signIn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/login_text"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_margin="50sp"
+        />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signIn"
+        android:layout_margin="10sp"
+        android:background="#30ffffff"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawablePadding="20sp"
+        android:hint="Brugernavn"
+        android:padding="20sp"
+        android:textColor="@color/zealandBlack"
+        android:textColorHint="@color/zealandBlack" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/username"
+        android:layout_margin="10sp"
+        android:backgroundTint="#30ffffff"
+        android:hint="Adgangskode"
+        android:inputType="textPassword"
+        app:startIconDrawable="@drawable/ic_baseline_lock_open_24"
+        android:textColor="@color/zealandBlack"
+        android:textColorHint="@color/zealandBlack"
+        app:passwordToggleEnabled="true"
+        android:drawablePadding="20sp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#30ffffff"
+            android:inputType="textPassword"
+
+            android:padding="20sp"
+            android:textColor="@color/zealandBlack"
+            android:textColorHint="@color/zealandBlack"
+            android:ems="15"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/loginButton"
+        android:layout_below="@id/password"
+        android:text="LOGIN"
+        android:padding="10sp"
+        android:textColor="@color/zealandYellow"
+        android:backgroundTint="@color/zealandBlack"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="30sp"
+
+        />
+    <ImageView
+        android:layout_width="200sp"
+        android:layout_height="200sp"
+        android:src="@drawable/zealand_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/loginButton"
+
+        />
+
+
+
+
+
+</RelativeLayout>
