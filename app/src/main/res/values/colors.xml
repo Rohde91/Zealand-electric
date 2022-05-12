@@ -10,4 +10,5 @@
     <color name="zealandYellow">#FFF387</color>
     <color name="zealandBlack">#1D2125</color>
     <color name="grey">#aaa788</color>
+    <color name="editText">#30ffffff</color>
 </resources>

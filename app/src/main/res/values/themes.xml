@@ -16,5 +16,8 @@
         <item name="android:windowBackground">@color/zealandYellow</item>
         <item name="colorAccent">@color/zealandBlack</item>
         <item name="android:textColor">@color/zealandBlack</item>
+        <item name="android:editTextBackground">@color/editText</item>
+        <item name="android:editTextColor">@color/zealandBlack</item>
+        <item name="android:button">@color/zealandYellow</item>
     </style>
 </resources>
