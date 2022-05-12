@@ -5,4 +5,6 @@
    <string name="login_brugernavn">Brugernavn</string>
     <string name="login_password">Adgangskode</string>
     <string name="login_Login">LOGIN</string>
+    <string name="Checklist">checklist</string>
+    <string name="Createchecklist">oret checklist</string>
 </resources>
