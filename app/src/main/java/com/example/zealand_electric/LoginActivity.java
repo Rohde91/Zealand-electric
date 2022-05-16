@@ -2,9 +2,13 @@ package com.example.zealand_electric;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class LoginActivity extends AppCompatActivity {
+    private Button loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -12,5 +16,20 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         //Hides toolbar/actionbar
         getSupportActionBar().hide();
+
+        loginButton = (Button) findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                openActivityMain();
+            }
+        });
     }
+
+    public void openActivityMain() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 }

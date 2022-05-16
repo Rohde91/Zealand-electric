@@ -62,18 +62,21 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/loginButton"
         android:layout_below="@id/password"
-        android:text="@string/login_Login"
-        android:padding="10sp"
-        android:textColor="@color/zealandYellow"
-        android:backgroundTint="@color/zealandBlack"
         android:layout_centerHorizontal="true"
-        android:layout_margin="30sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginTop="30sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginBottom="30sp"
 
-    />
+        android:backgroundTint="@color/zealandBlack"
+        android:clickable="true"
+        android:padding="10sp"
+        android:text="@string/login_Login"
+        android:textColor="@color/zealandYellow" />
     <ImageView
         android:layout_width="200sp"
         android:layout_height="200sp"
