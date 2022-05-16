@@ -10,12 +10,14 @@
         android:id="@+id/signIn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="50sp"
+        android:layout_marginTop="50sp"
+        android:layout_marginEnd="50sp"
+        android:layout_marginBottom="50sp"
         android:gravity="center"
         android:text="@string/login_text"
         android:textSize="35sp"
-        android:textStyle="bold"
-        android:layout_margin="50sp"
-        />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/username"
@@ -32,7 +34,7 @@
         android:hint="@string/login_brugernavn"
         android:padding="20sp"
         android:textColor="@color/zealandBlack"
-        android:textColorHint="@color/zealandBlack" />
+        android:textColorHint="@color/zealandBlack" android:ems="15"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password"

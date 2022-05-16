@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">Zealand-electric</string>
     <string name="main_text">Zealand</string>
     <string name="login_text">Login</string>
-   <string name="login_brugernavn">Brugernavn</string>
+    <string name="login_brugernavn">Brugernavn</string>
     <string name="login_password">Adgangskode</string>
     <string name="login_Login">LOGIN</string>
     <string name="Checklist">checklist</string>
     <string name="Createchecklist">oret checklist</string>
-    <string name="checklistAccept">Accept Checklist</string>
-    <string name="AddWorker">Opret ny arbejder</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

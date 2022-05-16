@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewCustomerFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/customerName"
+        android:layout_below="@id/logoZealand"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:hint="Kundenavn"
+        android:textColor="@color/zealandBlack"
+        android:textColorHint="@color/zealandBlack"
+        android:drawablePadding="20sp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/editText"
+            android:padding="20sp"
+            android:textColor="@color/zealandBlack"
+            android:textColorHint="@color/zealandBlack"
+            android:ems="15"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/adress"
+        android:layout_below="@id/customerName"
+        android:gravity="center"
+        android:layout_marginStart="50sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:hint="Adresse"
+        android:textColor="@color/zealandBlack"
+        android:textColorHint="@color/zealandBlack"
+        android:drawablePadding="20sp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/editText"
+            android:padding="20sp"
+            android:textColor="@color/zealandBlack"
+            android:textColorHint="@color/zealandBlack"
+            android:ems="15"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:orientation="horizontal"
+     android:layout_below="@id/adress"
+     android:id="@+id/linearLayoutForCityAndZip">
+
+     <com.google.android.material.textfield.TextInputLayout
+         android:id="@+id/city"
+         android:layout_below="@id/adress"
+         android:gravity="center"
+         android:layout_marginStart="50sp"
+         android:layout_width="0sp"
+         android:layout_weight=".50"
+         android:layout_height="wrap_content"
+         android:layout_margin="10sp"
+         android:hint="By"
+         android:textColor="@color/zealandBlack"
+         android:textColorHint="@color/zealandBlack"
+         android:drawablePadding="20sp"
+         >
+
+         <com.google.android.material.textfield.TextInputEditText
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@color/editText"
+             android:padding="20sp"
+             android:textColor="@color/zealandBlack"
+             android:textColorHint="@color/zealandBlack"
+             android:ems="15"
+             />
+
+
+     </com.google.android.material.textfield.TextInputLayout>
+     <com.google.android.material.textfield.TextInputLayout
+         android:id="@+id/zipCode"
+         android:layout_marginStart="50sp"
+         android:layout_width="0sp"
+         android:layout_weight=".50"
+         android:layout_height="wrap_content"
+         android:layout_margin="10sp"
+         android:hint="Post nr."
+         android:textColor="@color/zealandBlack"
+         android:textColorHint="@color/zealandBlack"
+         android:drawablePadding="20sp"
+         >
+
+         <com.google.android.material.textfield.TextInputEditText
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:background="@color/editText"
+             android:padding="20sp"
+             android:textColor="@color/zealandBlack"
+             android:textColorHint="@color/zealandBlack"
+             android:ems="15"
+             />
+
+     </com.google.android.material.textfield.TextInputLayout>
+
+
+ </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/orderNumber"
+        android:layout_below="@id/linearLayoutForCityAndZip"
+        android:gravity="center"
+        android:layout_marginStart="50sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:hint="Ordrenummer"
+        android:textColor="@color/zealandBlack"
+        android:textColorHint="@color/zealandBlack"
+        android:drawablePadding="20sp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/editText"
+            android:padding="20sp"
+            android:textColor="@color/zealandBlack"
+            android:textColorHint="@color/zealandBlack"
+            android:ems="15"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/installedBy"
+        android:layout_below="@id/orderNumber"
+        android:gravity="center"
+        android:layout_marginStart="50sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:hint="Installation er udført af"
+        android:textColor="@color/zealandBlack"
+        android:textColorHint="@color/zealandBlack"
+        android:drawablePadding="20sp"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/editText"
+            android:padding="20sp"
+            android:textColor="@color/zealandBlack"
+            android:textColorHint="@color/zealandBlack"
+            android:ems="15"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/installedBy"
+        android:layout_margin="40sp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:id="@+id/doneButton"
+        android:text="Gem"
+        android:backgroundTint="@color/zealandBlack"
+        android:textColor="@color/zealandYellow"/>
+
+    <ImageView
+
+        android:layout_width="match_parent"
+        android:layout_marginVertical="20sp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/zealand_icon"
+        android:id="@+id/logoZealand"
+        />
+
+
+</RelativeLayout>
