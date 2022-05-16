@@ -92,6 +92,13 @@ public class checkList extends Fragment {
         topic6.add("Er beskyttelsesmetode korrekt valgt i forhold til installationstype og systemjording?");
         topic6.add("Er RCD’er (fejlstrømsafbrydere) kontrolleret og afprøvet?");
         topic6.add("Er klasse I brugsgenstande tilsluttet til beskyttelseslederen?");
+
+        topicList.put(chapterList.get(0),topic1);
+        topicList.put(chapterList.get(1),topic2);
+        topicList.put(chapterList.get(2),topic3);
+        topicList.put(chapterList.get(3),topic4);
+        topicList.put(chapterList.get(4),topic5);
+        topicList.put(chapterList.get(5),topic6);
     }
 
 }
