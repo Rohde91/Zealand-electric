@@ -5,8 +5,10 @@
     <string name="login_brugernavn">Brugernavn</string>
     <string name="login_password">Adgangskode</string>
     <string name="login_Login">LOGIN</string>
-    <string name="Checklist">checklist</string>
-    <string name="Createchecklist">oret checklist</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="checklistbutton1">Checklist</string>
+    <string name="checklistbutton2">Checklist</string>
+    <string name="CreateChecklist">Opret Checklist</string>
+    <string name="AddWorker">Opret ny arbejder</string>
+    <string name="ConfirmChecklist">Godkend Checklist</string>
+
 </resources>
