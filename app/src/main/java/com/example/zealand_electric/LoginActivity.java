@@ -29,24 +29,23 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                username = (EditText) findViewById(R.id.username);
-                password = (TextInputLayout) findViewById(R.id.password);
+                username = findViewById(R.id.username);
+                password = findViewById(R.id.password);
 
                 username.getText();
                 password.getEditText().getText();
 
+                System.out.println(username.getText()+ " " + password.getEditText().getText());
 
                 openMainActivity();
+
+                //switchSceneTo();
+
             }
         });
     }
-
+    //switches scene to Main Activity
     public void openMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    public void openActivityMain() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
