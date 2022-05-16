@@ -24,8 +24,10 @@ public class LoginActivity extends AppCompatActivity {
         //Hides toolbar/actionbar
         getSupportActionBar().hide();
 
+
+
         //makes the login button switch scenes
-        loginButton = (Button) findViewById(R.id.loginButton);
+        loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,19 +37,12 @@ public class LoginActivity extends AppCompatActivity {
                 username.getText();
                 password.getEditText().getText();
 
-                System.out.println(username.getText()+ " " + password.getEditText().getText());
+                System.out.println(username.getText()+ "\r" + password.getEditText().getText());
 
-                openMainActivity();
-
-                //switchSceneTo();
-
+                //switches scene from this to class
+                startActivity(new Intent(LoginActivity.this,MainActivity.class ));
             }
-        });
-    }
-    //switches scene to Main Activity
-    public void openMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+        });//end of loginButton
 
+    }
 }
