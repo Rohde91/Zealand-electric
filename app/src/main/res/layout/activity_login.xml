@@ -34,35 +34,35 @@
         android:hint="@string/login_brugernavn"
         android:padding="20sp"
         android:textColor="@color/zealandBlack"
-        android:textColorHint="@color/zealandBlack"
-        android:ems="15"/>
+        android:textColorHint="@color/zealandBlack" android:ems="15"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
-        android:layout_margin="10sp"
+        android:layout_marginStart="10sp"
+        android:layout_marginTop="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp"
+        android:drawablePadding="20sp"
         android:hint="@string/login_password"
         android:inputType="textPassword"
-        app:startIconDrawable="@drawable/ic_baseline_lock_open_24"
         android:textColor="@color/zealandBlack"
         android:textColorHint="@color/zealandBlack"
         app:passwordToggleEnabled="true"
-        android:drawablePadding="20sp"
-        >
+        app:startIconDrawable="@drawable/ic_baseline_lock_open_24">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/editText"
-            android:inputType="textPassword"
+            android:ems="15"
 
+            android:inputType="textPassword"
             android:padding="20sp"
             android:textColor="@color/zealandBlack"
-            android:textColorHint="@color/zealandBlack"
-            android:ems="15"
-        />
+            android:textColorHint="@color/zealandBlack" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
