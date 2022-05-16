@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Zealand-electric</string>
+    <string name="app_name"></string>
     <string name="main_text">Zealand</string>
     <string name="login_text">Login</string>
    <string name="login_brugernavn">Brugernavn</string>
@@ -7,4 +7,6 @@
     <string name="login_Login">LOGIN</string>
     <string name="Checklist">checklist</string>
     <string name="Createchecklist">oret checklist</string>
+    <string name="checklistAccept">Accept Checklist</string>
+    <string name="AddWorker">Opret ny arbejder</string>
 </resources>
