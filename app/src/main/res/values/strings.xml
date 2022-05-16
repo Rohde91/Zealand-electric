@@ -5,8 +5,8 @@
     <string name="login_brugernavn">Brugernavn</string>
     <string name="login_password">Adgangskode</string>
     <string name="login_Login">LOGIN</string>
-    <string name="checklistbutton1">Checklist</string>
-    <string name="checklistbutton2">Checklist</string>
+    <string name="checklistbutton1">Checklist1</string>
+    <string name="checklistbutton2">Checklist2</string>
     <string name="CreateChecklist">Opret Checklist</string>
     <string name="AddWorker">Opret ny arbejder</string>
     <string name="ConfirmChecklist">Godkend Checklist</string>

@@ -12,8 +12,39 @@
         tools:layout_editor_absoluteX="130dp"
         tools:layout_editor_absoluteY="26dp">
 
+        <Button
+            android:id="@+id/ConfirmChecklistButton"
+            android:layout_width="165dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/ConfirmChecklist"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/AddWorkerButton"
+            android:layout_width="165dp"
+            android:layout_height="57dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="28dp"
+            android:text="@string/AddWorker"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/CreateChecklistButton"
+            android:layout_width="350dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="128dp"
+            android:text="@string/CreateChecklist"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ScrollView
-            android:id="@+id/scrollView3"
+            android:id="@+id/scrollView"
             android:layout_width="373dp"
             android:layout_height="380dp"
             android:layout_marginBottom="28dp"
@@ -28,49 +59,18 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button5"
+                    android:id="@+id/Checklist1Button"
                     android:layout_width="match_parent"
-                    android:layout_height="43dp"
+                    android:layout_height="wrap_content"
                     android:text="@string/checklistbutton1" />
 
                 <Button
-                    android:id="@+id/button8"
+                    android:id="@+id/Checklist2Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/checklistbutton2" />
             </LinearLayout>
         </ScrollView>
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="350dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="128dp"
-            android:text="@string/CreateChecklist"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="165dp"
-            android:layout_height="57dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/ConfirmChecklist"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button12"
-            android:layout_width="165dp"
-            android:layout_height="57dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="28dp"
-            android:text="@string/AddWorker"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
