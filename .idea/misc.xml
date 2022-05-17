@@ -3,17 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.159" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/drawable/ic_baseline_lock_open_24.xml" value="0.159" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.159" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/activity_login.xml" value="0.20208333333333334" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_new_customer.xml" value="0.17239583333333333" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/toolbar.xml" value="0.15307971014492755" />
-        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/menu/menu.xml" value="0.20364583333333333" />
-        <entry key="..\:/Users/vupet/AndroidStudioProjects/Zealand-electric/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2265" />
-        <entry key="..\:/Users/vupet/AndroidStudioProjects/Zealand-electric/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
-        <entry key="..\:/Users/vupet/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/activity_main.xml" value="0.176" />
+        <entry key="..\:/Users/zaah9/AndroidStudioProjects/Zealandelectric/app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="..\:/Users/zaah9/AndroidStudioProjects/Zealandelectric/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.22767703291298685" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/fragment_new_customer.xml" value="0.14114583333333333" />
       </map>
     </option>
   </component>
@@ -22,12 +16,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.264" />
-      </ProjectState>
-    </option>
   </component>
 </project>
