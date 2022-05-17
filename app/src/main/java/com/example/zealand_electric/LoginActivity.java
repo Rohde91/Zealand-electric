@@ -40,7 +40,8 @@ public class LoginActivity extends AppCompatActivity {
                 System.out.println(username.getText()+ "\r" + password.getEditText().getText());
 
                 //switches scene from this to class
-                startActivity(new Intent(LoginActivity.this,MainActivity.class ));
+                startActivity (new Intent(LoginActivity.this,MainActivity.class ) );
+
             }
         });//end of loginButton
 
