@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/navigation_file">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_file"
+    app:startDestination="@id/loginActivity">
+
+    <fragment
+        android:id="@+id/loginActivity"
+        android:name="com.example.zealand_electric.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" >
+        <action
+            android:id="@id/loginActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainActivity"
+        android:name="com.example.zealand_electric.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" >
+        <action
+            android:id="@id/mainActivity"/>
+        //TODO find ud af hvad man skriver for at kunne sende til flere forskellige fragmenter
+    </fragment>
 
 </navigation>
