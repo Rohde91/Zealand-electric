@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package entities;
 
 public class User {
 

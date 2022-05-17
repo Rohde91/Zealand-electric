@@ -3,25 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_file"
-    app:startDestination="@id/loginActivity">
-
+    app:startDestination="@id/loginFragment">
     <fragment
-        android:id="@+id/loginActivity"
-        android:name="com.example.zealand_electric.LoginActivity"
-        android:label="activity_login"
-        tools:layout="@layout/activity_login" >
+        android:id="@+id/loginFragment"
+        android:name="com.example.zealand_electric.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
         <action
-            android:id="@id/loginActivity"
-            app:destination="@id/mainActivity" />
+            android:id="@+id/action_loginFragment_to_mainMenu"
+            app:destination="@id/mainMenu" />
     </fragment>
     <fragment
-        android:id="@+id/mainActivity"
-        android:name="com.example.zealand_electric.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" >
+        android:id="@+id/mainMenu"
+        android:name="com.example.zealand_electric.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_main_menu" >
         <action
-            android:id="@id/mainActivity"/>
-        //TODO find ud af hvad man skriver for at kunne sende til flere forskellige fragmenter
+            android:id="@+id/action_mainMenu_to_newCustomerFragment"
+            app:destination="@id/newCustomerFragment" />
     </fragment>
-
+    <fragment
+        android:id="@+id/newCustomerFragment"
+        android:name="com.example.zealand_electric.MainMenuFragment"
+        android:label="fragment_main_menu"
+        tools:layout="@layout/fragment_new_customer" />
 </navigation>
