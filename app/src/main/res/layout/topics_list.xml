@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="4sp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topics_tv"
+        android:text="Topics TextView"
+        android:textSize="18sp"
+        android:paddingLeft="?android:attr/expandableListPreferredChildIndicatorLeft"
+        android:paddingStart="?android:attr/expandableListPreferredChildIndicatorLeft"
+    />
+
+</LinearLayout>
