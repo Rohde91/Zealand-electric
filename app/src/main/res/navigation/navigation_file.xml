@@ -24,7 +24,16 @@
     </fragment>
     <fragment
         android:id="@+id/newCustomerFragment"
-        android:name="com.example.zealand_electric.MainMenuFragment"
-        android:label="fragment_main_menu"
-        tools:layout="@layout/fragment_new_customer" />
+        android:name="com.example.zealand_electric.NewCustomerFragment"
+        android:label="fragment_new_customer"
+        tools:layout="@layout/fragment_new_customer" >
+        <action
+            android:id="@+id/action_newCustomerFragment_to_checkList"
+            app:destination="@id/checkList" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkList"
+        android:label="check_List"
+        android:name="com.example.zealand_electric.checkList"
+        tools:layout="@layout/fragment_check_list"/>
 </navigation>
