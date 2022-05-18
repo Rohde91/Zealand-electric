@@ -19,7 +19,6 @@ public class MainMenuFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
 
@@ -33,20 +32,28 @@ public class MainMenuFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button createChecklist = view.findViewById(R.id.CreateChecklistButton);
+        Button ConfirmChecklistButton = view.findViewById(R.id.ConfirmChecklistButton);
+
         createChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NavHostFragment.findNavController(MainMenuFragment.this)
                         .navigate(R.id.action_mainMenu_to_newCustomerFragment);
                  }
-
        });
 
-
-
-
+        ConfirmChecklistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(MainMenuFragment.this)
+                        .navigate(R.id.action_mainMenu_to_confirm_Checklist);
+            }
+        });
     }
 
-
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        //  binding = null;
+    }
 }

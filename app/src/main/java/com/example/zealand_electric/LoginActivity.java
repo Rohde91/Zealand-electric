@@ -1,3 +1,4 @@
+/*
 package com.example.zealand_electric;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,4 +47,4 @@ public class LoginActivity extends AppCompatActivity {
         });//end of loginButton
 
     }
-}
+}*/
