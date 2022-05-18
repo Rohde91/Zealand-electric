@@ -15,7 +15,6 @@ import entities.User;
 public class DBController {
     private static Connection connection;{
 
-        //what does this method do??
         try {
             connection = connectToMySQL();
         } catch (SQLException e) {
@@ -27,7 +26,6 @@ public class DBController {
     private DBController(){
     }
 
-    //singleton implementation
     public static DBController getInstance () {
         DBController result = instance;
         if (result == null) {
@@ -43,7 +41,7 @@ public class DBController {
 
     //---------------------------------------------------------------------------------------------------------------
 
-    //Skal denne være en Singleton klasse for sig selv?
+
     public static Connection connectToMySQL() throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -108,6 +106,9 @@ public class DBController {
                 if (rs.next()){
                     String result = rs.getString(userRole);
                     System.out.println("Velkommen " + result + ".");
+                }
+                else{
+                    System.out.println("Du er ikke tildelt nogen stilling.");
                 }
             }
             else{

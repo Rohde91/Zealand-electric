@@ -3,20 +3,16 @@ package entities;
 public class User {
 
     protected int id;
-    protected String name;
-    protected String email;
-    protected String phone;
-    protected String address;
+    protected String fullName;
+    protected String username;
     protected String password;
     protected String userRole;
     public User() {}
 
-    public User(int id, String name, String email, String phone, String address, String password, String userRole){
+    public User(int id, String fullName, String username, String password, String userRole){
         this.id = id;
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.address = address;
+        this.fullName = fullName;
+        this.username = username;
         this.password = password;
         this.userRole = userRole;
     }
@@ -25,21 +21,13 @@ public class User {
 
     public void setId(int id) { this.id = id; }
 
-    public String getName() { return name; }
+    public String getFullName() { return fullName; }
 
-    public void setName(String name) { this.name = name; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
 
-    public String getEmail() { return email; }
+    public String getUsername() { return username; }
 
-    public void setEmail(String email) { this.email = email; }
-
-    public String getPhone() { return phone; }
-
-    public void setPhone(String phone) { this.phone = phone; }
-
-    public String getAddress() { return address; }
-
-    public void setAddress(String address) { this.address = address; }
+    public void setUsername(String username) { this.username = username; }
 
     public String getPassword() { return password; }
 
