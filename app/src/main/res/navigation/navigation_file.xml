@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_mainMenu_to_newCustomerFragment"
             app:destination="@id/newCustomerFragment" />
+        <action
+            android:id="@+id/action_mainMenu_to_confirm_Checklist"
+            app:destination="@id/confirm_Checklist" />
     </fragment>
     <fragment
         android:id="@+id/newCustomerFragment"
@@ -36,4 +39,13 @@
         android:label="check_List"
         android:name="com.example.zealand_electric.checkList"
         tools:layout="@layout/fragment_check_list"/>
+    <fragment
+        android:id="@+id/confirm_Checklist"
+        android:name="com.example.zealand_electric.confirm_ChecklistFragment"
+        android:label="fragment_confirm__checklist"
+        tools:layout="@layout/fragment_confirm__checklist" >
+        <action
+            android:id="@+id/action_confirm_Checklist_to_mainMenu"
+            app:destination="@id/mainMenu" />
+    </fragment>
 </navigation>
