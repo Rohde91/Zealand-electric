@@ -1,0 +1,233 @@
+CREATE DATABASE IF NOT EXISTS `zealandelectric` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `zealandelectric`;
+
+CREATE TABLE `categori` (
+  `id` int(11) NOT NULL,
+  `catName` varchar(255) NOT NULL
+);
+
+INSERT INTO `categori` (`id`, `catName`) VALUES
+(1, 'Generelt'),
+(2, 'Tavlen'),
+(3, 'Installation'),
+(4, 'Indbygningsarmaturer'),
+(5, 'Beskyttelsesledere og udligningsforbindelser'),
+(6, 'Fejlbeskyttelse/supplerende beskyttelse');
+
+CREATE TABLE `checklist` (
+  `id` int(255) NOT NULL,
+  `fk_customerId` int(100) NOT NULL,
+  `date` date NOT NULL,
+  `caseNumber` varchar(100) NOT NULL,
+  `installationLocation` varchar(100) NOT NULL,
+  `installer` varchar(100) NOT NULL,
+  `fk_userId` int(100) NOT NULL,
+  `crossOhm` varchar(10) NOT NULL,
+  `installationNote` varchar(255) NOT NULL,
+  `checklistComplete` tinyint(1) NOT NULL,
+  `checklistConfirmed` tinyint(1) NOT NULL
+);
+
+CREATE TABLE `checklistrow` (
+  `fk_checklistId` int(255) NOT NULL,
+  `fk_questionId` int(100) NOT NULL,
+  `fk_valueId` int(100) NOT NULL,
+  `documentationImage` varchar(255) NOT NULL,
+  `notes` varchar(255) NOT NULL,
+  `fk_userId` int(100) NOT NULL
+);
+
+CREATE TABLE `curcuitdetails` (
+  `id` int(255) NOT NULL,
+  `fk_checklistId` int(100) NOT NULL,
+  `groupName` varchar(100) NOT NULL,
+  `ob` varchar(100) NOT NULL,
+  `characteristics` varchar(10) NOT NULL,
+  `crossSection` varchar(10) NOT NULL,
+  `maxOb` varchar(10) NOT NULL,
+  `zS` varchar(10) NOT NULL,
+  `rA` varchar(10) NOT NULL,
+  `ohm` varchar(10) NOT NULL,
+  `isolation` varchar(10) NOT NULL
+);
+
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL,
+  `customerName` varchar(100) NOT NULL,
+  `customerAdress` varchar(100) NOT NULL,
+  `fk_zipCode` int(11) NOT NULL
+);
+
+CREATE TABLE `powerdrop` (
+  `id` int(255) NOT NULL,
+  `fk_checklistId` int(100) NOT NULL,
+  `groupName` varchar(100) NOT NULL,
+  `uPercent` varchar(10) NOT NULL,
+  `readPoint` varchar(10) NOT NULL
+);
+
+CREATE TABLE `question` (
+  `id` int(100) NOT NULL,
+  `questionText` varchar(100) NOT NULL,
+  `fk_categoriId` int(11) NOT NULL
+);
+
+CREATE TABLE `rcdtest` (
+  `id` int(255) NOT NULL,
+  `fk_checklistId` int(100) NOT NULL,
+  `rcdRead` varchar(10) NOT NULL,
+  `sinusAZero` varchar(10) NOT NULL,
+  `sinusAoneEightZero` varchar(10) NOT NULL,
+  `sinusAcZeroFive` varchar(10) NOT NULL,
+  `sinusAcZero` varchar(10) NOT NULL,
+  `pulseZero` varchar(10) NOT NULL,
+  `pulseOneEightZero` varchar(10) NOT NULL,
+  `testButton` varchar(10) NOT NULL
+);
+
+CREATE TABLE `shortcurcuit` (
+  `id` int(100) NOT NULL,
+  `fk_checklistId` int(100) NOT NULL,
+  `groupName` varchar(100) NOT NULL,
+  `ikA` varchar(10) NOT NULL,
+  `readPoint` varchar(10) NOT NULL
+);
+
+CREATE TABLE `user` (
+  `id` int(255) NOT NULL,
+  `fullName` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `userRole` varchar(100) NOT NULL
+);
+
+INSERT INTO `user` (`id`, `fullName`, `username`, `password`, `userRole`) VALUES
+(1, 'Morten Hansen', 'moth22', '1234', 'Lærer'),
+(3, 'Dan Wu Petersen', 'danx16', '1234', 'Elev'),
+(4, 'Marcus Madsen', 'marc02m', '1234', 'Elev'),
+(5, 'Martin Rohde', 'mart3b24', '1234', 'Elev'),
+(6, 'Allan Lilleskov Hansen', 'alla2297', '1234', 'Elev'),
+(7, 'Marc Kevin Gamborg Jensen', 'marc572m', '1234', 'Elev');
+
+CREATE TABLE `value` (
+  `id` int(11) NOT NULL,
+  `valueName` varchar(100) NOT NULL
+);
+
+INSERT INTO `value` (`id`, `valueName`) VALUES
+(1, 'Ja'),
+(2, 'Nej'),
+(3, 'Ikke relevant');
+
+CREATE TABLE `zipcodetable` (
+  `zipCode` int(10) NOT NULL,
+  `city` varchar(100) NOT NULL
+);
+
+INSERT INTO `zipcodetable` (`zipCode`, `city`) VALUES
+(4700, 'Næstved'),
+(2610, 'Rødovre'),
+(4683, 'Rønnede'),
+(4720, 'Præstø');
+
+ALTER TABLE `categori`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `checklist`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `curcuitdetails`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `powerdrop`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `question`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `rcdtest`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `shortcurcuit`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `value`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `categori`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+ALTER TABLE `checklist`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `curcuitdetails`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `customer`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `powerdrop`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `question`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `rcdtest`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `shortcurcuit`
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `user`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+ALTER TABLE `value`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+INSERT INTO `question` (`id`, `questionText`, `fk_categoriId`) VALUES
+(1, 'Er der taget hensyn til ydre påvirkninger og anvendt korrekt kapslingsklasse?', 1),
+(2, 'Er der brandtætnet ved gennemføringer?', 1),
+(3, 'Er installationen isolationsprøvet?', 1),
+(4, 'Er der foretaget polaritetsprøve og kontrol af fasefølgen?', 1),
+(5, 'Er der foretaget funktionsprøver af installationen?', 1),
+(6, 'Er nul- og beskyttelsesledere korrekt identificeret?', 1),
+(7, 'Er ledere korrekt overstrømsbeskyttet og valgt efter strømværdi?', 1),
+(8, 'Er SPD’er (overspændingsbeskyttelsesudstyr) korrekt valgt og installeret?', 1),
+(9, 'Er permanent tilsluttede brugsgenstande egnet til den pågældende anvendelse?', 1),
+(10, 'Er nødvendig dokumentation til stede?', 1),
+(11, 'Er spændingsfald kontrolleret?', 1),
+(12, 'Er der foretaget foranstaltninger mod elektromagnetiske påvirkninger?', 1),
+(13, 'Er ejer/bruger informeret om funktion og betjening?', 1),
+(14, 'Er der tilstrækkelig plads til at arbejde på/adgang til tavlen?', 2),
+(15, 'Er overstrømsbeskyttelsesudstyr korrekt valgt og evt. indstillet?', 2),
+(16, 'Er der en entydig mærkning af beskyttelsesudstyr med tilhørsforhold?', 2),
+(17, 'Er der mærkning om max. mærke-/indstillingsstrøm?', 2),
+(18, 'Er mærkning med oplysninger om tekniske data for tavlen foretaget?', 2),
+(19, 'Er udgående beskyttelsesledere anbragt i separate klemmer i tavlen?', 2),
+(20, 'Er afdækning og dækplader monteret?', 2),
+(21, 'Er indføringer tilpasset/tætnet, så tavlens kapslingsklasse er som mærket?', 2),
+(22, 'Er udstyr til adskillelse og afbrydelse korrekt valgt, placeret og installeret?', 3),
+(23, 'Er stikkontakter og udtag m.m. installeret i henhold til gældende bestemmelser?', 3),
+(24, 'Er kabler/ledninger korrekt oplagt, afsluttet og forbundet?', 3),
+(25, 'Er kabler beskyttet mod mekanisk overlast ved opføringer fra gulv/jord?', 3),
+(26, 'Er tilledninger aflastet for træk og vridning ved tilslutning til installationen?', 3),
+(27, 'Er alle dæksler og afdækninger monteret, så der ikke er berøringsfare?', 3),
+(28, 'Er alle samlinger let tilgængelige?', 3),
+(29, 'Er indbygningsarmaturer korrekt valgt og monteret?', 4),
+(30, 'Er indbygningsarmaturer installeret således, at overophedning undgås?', 4),
+(31, 'Er jordingslederen korrekt valgt (minimum 6 mm2)?', 5),
+(32, 'Er der etableret beskyttende potentialudligning?', 5),
+(33, 'Er supplerende beskyttende potentialudligning etableret?', 5),
+(34, 'Er den gennemgående forbindelse i udligningsforbindelser kontrolleret?', 5),
+(35, 'Er den gennemgående forbindelse i beskyttelsesledere kontrolleret?', 5),
+(36, 'Er overgangsmodstand for jordelektroden kontrolleret?', 5),
+(37, 'Er beskyttelsesmetode korrekt valgt i forhold til installationstype og systemjording?', 6),
+(38, 'Er RCD’er (fejlstrømsafbrydere) kontrolleret og afprøvet?', 6),
+(39, 'Er klasse I brugsgenstande tilsluttet til beskyttelseslederen?', 6);
+COMMIT;
