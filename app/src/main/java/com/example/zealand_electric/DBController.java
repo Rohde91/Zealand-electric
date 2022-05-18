@@ -9,54 +9,31 @@ import java.sql.Statement;
 
 import entities.User;
 
-//TODO Avoid People entering commands directly into text fields.
-//TODO Add database parameters
-
 public class DBController {
-    private static Connection connection;{
 
+    private static Connection connection;
+
+    public static void connectToDatabase() {
+        java.lang.String url = "jdbc:mysql://10.0.2.2:3306/zealandelectric";
         try {
-            connection = connectToMySQL();
+            connection = DriverManager.getConnection(url,"root","" );
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            }
+
+    }
+
+    public static void closeConnection() {
+        try {
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private static volatile DBController instance;
-    private DBController(){
-    }
 
-    public static DBController getInstance () {
-        DBController result = instance;
-        if (result == null) {
-            synchronized (DBController.class) {
-                result = instance;
-                if (result == null) {
-                    instance = result = new DBController();
-                }
-            }
-        }
-        return result;
-    }
-
-    //---------------------------------------------------------------------------------------------------------------
-
-
-    public static Connection connectToMySQL() throws SQLException {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            String url = "INSERT URL";
-            Connection connectionInternal = DriverManager.getConnection(url, "INSERT USER", "INSERT PASSWORD");
-            return connectionInternal;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     //---------------------------------------------------------------------------------------------------------------
 
