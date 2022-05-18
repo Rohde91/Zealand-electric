@@ -1,19 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:padding="4sp"
-    android:gravity="center"
+    android:gravity="center_vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/topics_tv"
-        android:text="Topics TextView"
-        android:textSize="18sp"
-        android:paddingLeft="?android:attr/expandableListPreferredChildIndicatorLeft"
-        android:paddingStart="?android:attr/expandableListPreferredChildIndicatorLeft"
-    />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Topic 3"
+        app:layout_constraintRight_toLeftOf="@id/checkBox1_ja"
+        app:layout_constraintStart_toStartOf="@id/topics_tv"
+        android:paddingRight="130sp"
 
-</LinearLayout>
+
+
+        />
+
+    <CheckBox
+        android:id="@+id/checkBox1_ja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+
+        app:layout_constraintRight_toRightOf="@id/checkBox2_Nej"
+        android:layout_marginRight="50sp"
+        />
+
+    <CheckBox
+        android:id="@+id/checkBox2_Nej"
+        android:layout_width="31dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintRight_toRightOf="@id/checkBox3_Ikke_relevant"
+        android:layout_marginRight="50sp"
+        />
+
+    <CheckBox
+        android:id="@+id/checkBox3_Ikke_relevant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintRight_toRightOf="parent"
+
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
