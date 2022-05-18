@@ -30,6 +30,10 @@ public class NewCustomerFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button doneBtn = view.findViewById(R.id.doneButton);
+        Button backBtn = view.findViewById(R.id.backButton);
+
+
+
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +42,13 @@ public class NewCustomerFragment extends Fragment {
             }
         });
 
-
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(NewCustomerFragment.this)
+                        .navigate(R.id.action_newCustomerFragment_to_mainMenu);
+            }
+        });
 
         };
     @Override
