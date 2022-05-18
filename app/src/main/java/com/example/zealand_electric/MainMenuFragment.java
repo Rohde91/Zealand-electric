@@ -38,8 +38,11 @@ public class MainMenuFragment extends Fragment {
             public void onClick(View v) {
                 NavHostFragment.findNavController(MainMenuFragment.this)
                         .navigate(R.id.action_mainMenu_to_newCustomerFragment);
-            }
-        });
+                 }
+
+       });
+
+
 
 
     }

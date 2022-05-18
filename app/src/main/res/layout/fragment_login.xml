@@ -32,10 +32,11 @@
         android:drawableLeft="@drawable/ic_baseline_person_24"
         android:drawablePadding="20sp"
 
+        android:ems="15"
         android:hint="@string/login_brugernavn"
         android:padding="20sp"
         android:textColor="@color/zealandBlack"
-        android:textColorHint="@color/zealandBlack" android:ems="15"/>
+        android:textColorHint="@color/zealandBlack" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password"
