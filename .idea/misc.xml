@@ -13,7 +13,10 @@
         <entry key="app/src/main/res/layout/fragment_new_customer1.xml" value="0.15520833333333334" />
         <entry key="app/src/main/res/layout/fragment_test.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_testfragment.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/toolbar.xml" value="0.18614130434782608" />
+        <entry key="app/src/main/res/layout/toolbar_zealand.xml" value="0.18614130434782608" />
         <entry key="app/src/main/res/layout/topics_list.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/menu/menu.xml" value="0.3098958333333333" />
       </map>
     </option>
   </component>

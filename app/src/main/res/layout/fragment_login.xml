@@ -60,7 +60,6 @@
             android:layout_height="wrap_content"
             android:background="@color/editText"
             android:ems="15"
-
             android:inputType="textPassword"
             android:padding="20sp"
             android:textColor="@color/zealandBlack"
