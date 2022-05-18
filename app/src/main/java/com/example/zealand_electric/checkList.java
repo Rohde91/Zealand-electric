@@ -55,7 +55,6 @@ public class checkList extends Fragment {
         chapterList = new ArrayList<>();
         topicList = new HashMap<String,List<String>>();
 
-
         chapterList.add("1. Generelt:");
         chapterList.add("2. Tavlen:");
         chapterList.add("3. Installation:");
