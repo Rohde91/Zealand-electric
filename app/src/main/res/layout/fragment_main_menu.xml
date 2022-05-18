@@ -12,6 +12,7 @@
         tools:layout_editor_absoluteX="130dp"
         tools:layout_editor_absoluteY="26dp">
 
+
         <Button
             android:id="@+id/ConfirmChecklistButton"
             android:layout_width="165dp"
@@ -20,7 +21,13 @@
             android:layout_marginTop="40dp"
             android:text="@string/ConfirmChecklist"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:backgroundTint="@color/zealandBlack"
+            android:clickable="true"
+            android:padding="10sp"
+            android:textColor="@color/zealandYellow" />
+
 
         <Button
             android:id="@+id/AddWorkerButton"
@@ -30,16 +37,27 @@
             android:layout_marginEnd="28dp"
             android:text="@string/AddWorker"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:backgroundTint="@color/zealandBlack"
+            android:clickable="true"
+            android:padding="10sp"
+            android:textColor="@color/zealandYellow"
+            />
 
         <Button
             android:id="@+id/CreateChecklistButton"
-            android:layout_width="350dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="128dp"
+            android:layout_width="363dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="116dp"
+            android:backgroundTint="@color/zealandBlack"
+            android:clickable="true"
+            android:padding="10sp"
             android:text="@string/CreateChecklist"
+            android:textColor="@color/zealandYellow"
+            android:textSize="18sp"
+
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,13 +80,23 @@
                     android:id="@+id/Checklist1Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/checklistbutton1" />
+                    android:text="@string/checklistbutton1"
+
+                    android:backgroundTint="@color/zealandBlack"
+                    android:clickable="true"
+                    android:padding="10sp"
+                    android:textColor="@color/zealandYellow"/>
 
                 <Button
                     android:id="@+id/Checklist2Button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/checklistbutton2" />
+                    android:text="@string/checklistbutton2"
+
+                    android:backgroundTint="@color/zealandBlack"
+                    android:clickable="true"
+                    android:padding="10sp"
+                    android:textColor="@color/zealandYellow"/>
             </LinearLayout>
         </ScrollView>
 
