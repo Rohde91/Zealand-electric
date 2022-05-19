@@ -23,8 +23,7 @@ import entities.User;
 
 public class LoginFragment extends Fragment {
 
-    String username;
-    String password;
+    User user = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,31 +42,8 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-
-
-/*
-        username = view.findViewById(R.id.username);
-        password = view.findViewById(R.id.password);
-
-        String usernameCheck = String.valueOf(username.getText());
-        String passwordCheck = String.valueOf(password.getText());
-
-
-*/
         Button loginButton = view.findViewById(R.id.loginButton);
-       /* loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(LoginFragment.this)
-                        .navigate(R.id.action_loginFragment_to_mainMenu);
-
-            }
-        });
-
-        */
         loginButton.setOnClickListener(v -> new Thread(() -> {
-
-            System.out.println("something");
 
             DBController.connectToDatabase();
 
@@ -78,32 +54,34 @@ public class LoginFragment extends Fragment {
             String loginPassword = password.getText().toString();
 
             DBController tryLogin = new DBController();
-            User user = tryLogin.TryUserLogin(loginUsername, loginPassword);
+            user = tryLogin.TryUserLogin(loginUsername, loginPassword);
 
             System.out.println("Knap klikkes");
-            DBController.closeConnection();
-
-
-
             if (user != null){
                 if (user.getUserRole().equals("Lærer")){
-
+                    System.out.println("lærer");
                 }
                 else if (user.getUserRole().equals("Elev")){
-                    NavHostFragment.findNavController(LoginFragment.this)
-                            .navigate(R.id.action_loginFragment_to_mainMenu);
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            NavHostFragment.findNavController(LoginFragment.this)
+                                    .navigate(R.id.action_loginFragment_to_mainMenu);
+                        }
+                    });
                 }
             }
             else {
                 System.out.println("ingen bruger fundet");
-            }
+            };
+
+            DBController.closeConnection();
 
 
-        }
-        ).start());
-
+        }).start());
 
     }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
