@@ -31,7 +31,6 @@
         android:layout_marginBottom="10sp"
         android:drawableLeft="@drawable/ic_baseline_person_24"
         android:drawablePadding="20sp"
-
         android:ems="15"
         android:hint="@string/login_brugernavn"
         android:padding="20sp"
@@ -39,7 +38,7 @@
         android:textColorHint="@color/zealandBlack" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password"
+        android:id="@+id/passwordlayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
@@ -56,6 +55,7 @@
         app:startIconDrawable="@drawable/ic_baseline_lock_open_24">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/editText"
@@ -71,18 +71,18 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/password"
+        android:layout_below="@id/passwordlayout"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="30sp"
         android:layout_marginTop="30sp"
         android:layout_marginEnd="30sp"
         android:layout_marginBottom="30sp"
-
         android:backgroundTint="@color/zealandBlack"
         android:clickable="true"
         android:padding="10sp"
         android:text="@string/login_Login"
         android:textColor="@color/zealandYellow" />
+
     <ImageView
         android:layout_width="200sp"
         android:layout_height="200sp"

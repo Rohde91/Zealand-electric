@@ -1,5 +1,7 @@
 package com.example.zealand_electric;
 
+import android.widget.EditText;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -11,18 +13,20 @@ import entities.User;
 
 public class DBController {
 
+    private static String username = "root";
+    private static String password = "";
+
     private static Connection connection;
 
     public static void connectToDatabase() {
         java.lang.String url = "jdbc:mysql://10.0.2.2:3306/zealandelectric";
         try {
-            connection = DriverManager.getConnection(url,"root","" );
+            connection = DriverManager.getConnection(url, username, password );
 
         } catch (SQLException e) {
             e.printStackTrace();
 
             }
-
     }
 
     public static void closeConnection() {
@@ -41,11 +45,11 @@ public class DBController {
      * FUNCTIONS
      */
 
-    public String userRole(String email) {
+    public String userRole(String username) {
         String result = "";
         try {
             PreparedStatement userRole = connection.
-                    prepareStatement("SELECT user FROM  WHERE Email = '" + email + "'");
+                    prepareStatement("SELECT user FROM  WHERE username = '" + username + "'");
             ResultSet rs = userRole.executeQuery();
             while (rs.next()){
                 result = rs.getString("userRole");
@@ -58,44 +62,47 @@ public class DBController {
     }
 
 
-    public User TryUserLogin (String email, String password) {
+    public User TryUserLogin (String username, String password) {
         ResultSet buildUserResultset = null;
         String sql;
-        String userRole = userRole(email);
+        //String userRole = userRole(username);
+
+        User user = null;
 
         try {
             //Prøv at logge ind:
             Statement statement = connection.createStatement();
             sql = "SELECT * FROM user" +
-                    " WHERE Email='" + email +
-                    "' AND Password='" + password +
+                    " WHERE username='" + username +
+                    "' AND password='" + password +
                     "'";
+            ResultSet rs = statement.executeQuery(sql);
 
-            ResultSet checkLoginRS = statement.executeQuery(sql);
+            if (rs.next()){
+                user = new User(rs.getInt("id"), rs.getString("fullName"), rs.getString("username"), rs.getString("password"), rs.getString("userRole"));
+            }
+
+            //public User(int id, String fullName, String username, String password, String userRole){
+/*
 
             if (checkLoginRS.next()){
                 sql = "SELECT * FROM " + userRole +
-                        " WHERE Email='" + email +
+                        " WHERE username='" + username +
                         "'";
-                PreparedStatement preparedStmt = connection.prepareStatement(sql);
-                ResultSet rs = preparedStmt.executeQuery();
-
-                if (rs.next()){
-                    String result = rs.getString(userRole);
-                    System.out.println("Velkommen " + result + ".");
-                }
-                else{
-                    System.out.println("Du er ikke tildelt nogen stilling.");
-                }
+                buildUserResultset = statement.executeQuery(sql);
+                //return buildUser(buildUserResultset,username);
+                System.out.println("login complete");
             }
             else{
-                System.out.println("Forkert Email eller Password.");
+                System.out.println("wrong password or email");
                 return null;
-            }
+            }*/
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return user;
     }
+
 }
