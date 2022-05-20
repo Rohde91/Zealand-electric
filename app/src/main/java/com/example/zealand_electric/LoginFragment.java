@@ -57,31 +57,23 @@ public class LoginFragment extends Fragment {
             DBController tryLogin = new DBController();
             user = tryLogin.TryUserLogin(loginUsername, loginPassword);
             System.out.println(user.getId());
-            System.out.println("Knap klikkes");
-            if (user != null){
-                if (user.getUserRole().equals("Lærer")){
-                    System.out.println("lærer");
-                }
-                else if (user.getUserRole().equals("Elev")){
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
 
-                            NavHostFragment.findNavController(LoginFragment.this)
-                                    .navigate(R.id.action_loginFragment_to_mainMenu);
-                        }
-                    });
-                }
+
+            if (user != null){
+                getActivity().runOnUiThread(new Runnable() {
+                @Override
+                    public void run() {
+                        NavHostFragment.findNavController(LoginFragment.this)
+                            .navigate(R.id.action_loginFragment_to_mainMenu);
+                    }
+                });
             }
+
             else {
                 System.out.println("ingen bruger fundet");
-            };
-
+            }
             DBController.closeConnection();
-
-
         }).start());
-
     }
 
     @Override

@@ -15,6 +15,8 @@ import org.w3c.dom.ls.LSOutput;
 
 import entities.User;
 
+import entities.User;
+
 
 public class MainMenuFragment extends Fragment{
     User user = LoginFragment.user;
@@ -23,7 +25,6 @@ public class MainMenuFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("Welcome " + user.getUsername() + "\nRole: " + user.getUserRole());
     }
 
     @Override
@@ -38,6 +39,7 @@ public class MainMenuFragment extends Fragment{
         Button createChecklist = view.findViewById(R.id.CreateChecklistButton);
         Button ConfirmChecklistButton = view.findViewById(R.id.ConfirmChecklistButton);
 
+
         createChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +53,7 @@ public class MainMenuFragment extends Fragment{
             public void onClick(View view) {
                 NavHostFragment.findNavController(MainMenuFragment.this)
                         .navigate(R.id.action_mainMenu_to_confirm_Checklist);
+                System.out.println(user.getFullName());
             }
         });
     }
