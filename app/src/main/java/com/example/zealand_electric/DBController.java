@@ -28,6 +28,21 @@ public class DBController {
 
             }
     }
+    private static volatile DBController instance;
+
+    //singleton implementation
+    public static DBController getInstance () {
+        DBController result = instance;
+        if (result == null) {
+            synchronized (DBController.class) {
+                result = instance;
+                if (result == null) {
+                    instance = result = new DBController();
+                }
+            }
+        }
+        return result;
+    }
 
     public static void closeConnection() {
         try {
@@ -49,7 +64,7 @@ public class DBController {
         String result = "";
         try {
             PreparedStatement userRole = connection.
-                    prepareStatement("SELECT user FROM  WHERE username = '" + username + "'");
+                    prepareStatement("SELECT FROM user WHERE username = '" + username + "'");
             ResultSet rs = userRole.executeQuery();
             while (rs.next()){
                 result = rs.getString("userRole");

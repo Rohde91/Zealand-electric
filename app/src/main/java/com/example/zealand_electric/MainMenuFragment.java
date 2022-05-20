@@ -11,16 +11,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.w3c.dom.ls.LSOutput;
 
-public class MainMenuFragment extends Fragment {
+import entities.User;
 
+
+public class MainMenuFragment extends Fragment{
+    User user = LoginFragment.user;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.out.println("Welcome " + user.getUsername() + "\nRole: " + user.getUserRole());
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
