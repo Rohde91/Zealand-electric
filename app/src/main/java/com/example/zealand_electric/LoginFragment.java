@@ -19,12 +19,13 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.sql.Statement;
 
 import entities.User;
-
+//class = blue
+//local variables = green
 
 public class LoginFragment extends Fragment {
 
     public static User user = null;
-
+    Button loginButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,20 +43,20 @@ public class LoginFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button loginButton = view.findViewById(R.id.loginButton);
+        loginButton = view.findViewById(R.id.loginButton);
         loginButton.setOnClickListener(v -> new Thread(() -> {
 
             DBController.connectToDatabase();
 
             EditText username = view.findViewById(R.id.username);
-            TextInputEditText password = view.findViewById(R.id.password);
+            EditText password = view.findViewById(R.id.password);
 
             String loginUsername = username.getText().toString();
             String loginPassword = password.getText().toString();
 
             DBController tryLogin = new DBController();
             user = tryLogin.TryUserLogin(loginUsername, loginPassword);
-
+            System.out.println(user.getId());
             System.out.println("Knap klikkes");
             if (user != null){
                 if (user.getUserRole().equals("Lærer")){
@@ -65,6 +66,7 @@ public class LoginFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+
                             NavHostFragment.findNavController(LoginFragment.this)
                                     .navigate(R.id.action_loginFragment_to_mainMenu);
                         }
