@@ -53,7 +53,6 @@ public class DBController {
     }
 
 
-
     //---------------------------------------------------------------------------------------------------------------
 
     /**
@@ -94,25 +93,12 @@ public class DBController {
             ResultSet rs = statement.executeQuery(sql);
 
             if (rs.next()){
-                user = new User(rs.getInt("id"), rs.getString("fullName"), rs.getString("username"), rs.getString("password"), rs.getString("userRole"));
+                user = new User(rs.getInt("id"),
+                        rs.getString("fullName"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        rs.getString("userRole"));
             }
-
-            //public User(int id, String fullName, String username, String password, String userRole){
-/*
-
-            if (checkLoginRS.next()){
-                sql = "SELECT * FROM " + userRole +
-                        " WHERE username='" + username +
-                        "'";
-                buildUserResultset = statement.executeQuery(sql);
-                //return buildUser(buildUserResultset,username);
-                System.out.println("login complete");
-            }
-            else{
-                System.out.println("wrong password or email");
-                return null;
-            }*/
-
 
         } catch (Exception e) {
             e.printStackTrace();
