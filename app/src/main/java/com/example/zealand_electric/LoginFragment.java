@@ -23,7 +23,7 @@ import entities.User;
 
 public class LoginFragment extends Fragment {
 
-    User user = null;
+    public static User user = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
