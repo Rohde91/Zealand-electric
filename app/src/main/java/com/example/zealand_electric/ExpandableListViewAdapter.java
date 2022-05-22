@@ -20,8 +20,9 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     private List<String> chapterList; //string type List
     private HashMap<String, List<String>> topicList;   // expandable list is create on hashmap
     //This  stores the  coordinates  of checkBox's yes: fx 0,1 (group, child)
-    private final Set<Pair<Long, Long>> checkedOn_yes= new HashSet<>();
-
+    private final Set<Pair<Long, Long>> checkedItems_yes = new HashSet<Pair<Long, Long>>();
+    private final Set<Pair<Long, Long>> checkedItems_No  = new HashSet<Pair<Long, Long>>();
+    private final Set<Pair<Long, Long>> checkedItems_Not_relevant = new HashSet<Pair<Long, Long>>();
 
     public ExpandableListViewAdapter(Context context, List<String> chapterList, HashMap<String, List<String>> topicList) {
         this.context = context;
@@ -90,24 +91,88 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         TextView topicsTv = convertView.findViewById(R.id.topics_tv);
         topicsTv.setText(topicsTitle);
 //_____________________________________________________________________
-        final CheckBox cb_yes= (CheckBox) convertView.findViewById(R.id.checkBox1_ja);
+        //get answer from checkBox
+        final CheckBox cb_Yes =         (CheckBox) convertView.findViewById(R.id.checkBox1_ja);
+        final CheckBox cb_no =          (CheckBox) convertView.findViewById(R.id.checkBox2_Nej);
+        final CheckBox cb_not_relevant =(CheckBox) convertView.findViewById(R.id.checkBox3_Ikke_relevant);
         // add tag to remember groupId/childId
-        final Pair<Long, Long> tag = new Pair<Long, Long>(
+        final Pair<Long, Long> tag = new Pair<>(
                 getGroupId(groupPosition),
                 getChildId(groupPosition, childPosition));
-        cb_yes.setTag(tag);
+        // add groupId/childId to checkBox
+        cb_Yes.setTag(tag);
+        cb_no.setTag(tag);
+        cb_not_relevant.setTag(tag);
         // set checked if groupId/childId in checked items
-        cb_yes.setChecked(checkedOn_yes.contains(tag));
+        cb_Yes.setChecked(checkedItems_yes.contains(tag));
+        cb_no.setChecked(checkedItems_No.contains(tag));
+        cb_not_relevant.setChecked(checkedItems_Not_relevant.contains(tag));
         // set OnClickListener to handle checked switches
-        cb_yes.setOnClickListener(new View.OnClickListener() {
+
+        cb_Yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final CheckBox cb = (CheckBox) v;
                 final Pair<Long, Long> tag = (Pair<Long, Long>) v.getTag();
+
                 if (cb.isChecked()) {
-                        checkedOn_yes.add(tag);
+                    //add answer to list
+                    checkedItems_yes.add(tag);
+                    // set other checkBox to unCheck
+                    cb_no.setChecked(false);
+                    cb_not_relevant.setChecked(false);
+                    // delete other checkbox answer from list
+                    checkedItems_No.remove(tag);
+                    checkedItems_Not_relevant.remove(tag);
+
                 } else {
-                    checkedOn_yes.remove(tag);
+                    // if you uncheck the box delete from list
+                    checkedItems_yes.remove(tag);
+                }
+            }
+        });
+        cb_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CheckBox cb = (CheckBox) v;
+                final Pair<Long, Long> tag = (Pair<Long, Long>) v.getTag();
+
+                if (cb.isChecked()) {
+                    //add answer to list
+                    checkedItems_No.add(tag);
+                    // set other checkBox to unCheck
+                    cb_Yes.setChecked(false);
+                    cb_not_relevant.setChecked(false);
+                    // delete other checkbox answer from list
+                    checkedItems_yes.remove(tag);
+                    checkedItems_Not_relevant.remove(tag);
+
+                } else {
+                    // if you uncheck the box delete from list
+                    checkedItems_No.remove(tag);
+                }
+            }
+        });
+        cb_not_relevant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CheckBox cb = (CheckBox) v;
+                final Pair<Long, Long> tag = (Pair<Long, Long>) v.getTag();
+
+                if (cb.isChecked()) {
+                    //add answer to list
+                    checkedItems_Not_relevant.add(tag);
+                    // set other checkBox to unCheck
+                    cb_Yes.setChecked(false);
+                    cb_no.setChecked(false);
+                    // delete other checkbox answer from list
+                    checkedItems_yes.remove(tag);
+                    checkedItems_No.remove(tag);
+
+                } else {
+                    // if you uncheck the box delete from list
+                    checkedItems_Not_relevant.remove(tag);
+
                 }
             }
         });
@@ -117,7 +182,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     }
 
     public Set<Pair<Long, Long>> getCheckedItems_yes() {
-        return checkedOn_yes;
+        return checkedItems_yes;
     }
 
     @Override
