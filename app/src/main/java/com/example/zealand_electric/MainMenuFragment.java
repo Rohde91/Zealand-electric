@@ -11,9 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import org.w3c.dom.ls.LSOutput;
-
-import entities.User;
+import java.util.Objects;
 
 import entities.User;
 
@@ -38,6 +36,22 @@ public class MainMenuFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         Button createChecklist = view.findViewById(R.id.CreateChecklistButton);
         Button ConfirmChecklistButton = view.findViewById(R.id.ConfirmChecklistButton);
+        Button AddWorkerButton = view.findViewById(R.id.AddWorkerButton);
+
+        String UserRole = user.getUserRole();
+
+        /*doesn't work with ==, which is BULLSHIT
+        if (UserRole == "Elev"{
+            goes straight to else statement
+        }
+         */
+        if (Objects.equals(UserRole, "Elev")) {
+
+            ConfirmChecklistButton.setVisibility(View.GONE);
+        }
+        else {
+            System.out.println("didn't read if");
+        }
 
 
         createChecklist.setOnClickListener(new View.OnClickListener() {
