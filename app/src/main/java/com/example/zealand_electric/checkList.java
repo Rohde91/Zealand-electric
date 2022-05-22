@@ -26,13 +26,6 @@ public class checkList extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatActivity appCompatActivity = new AppCompatActivity();
-        expandableListView = appCompatActivity.findViewById(R.id.eListView);
-
-        showList();
-
-        listViewAdapter = new ExpandableListViewAdapter(getContext(),chapterList,topicList);
-        expandableListView.setAdapter(listViewAdapter);
 
 
     }
@@ -40,6 +33,13 @@ public class checkList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View rootview = inflater.inflate(R.layout.fragment_check_list, container, false);
+        expandableListView =rootview.findViewById(R.id.eListView);
+
+        showList();
+
+        listViewAdapter = new ExpandableListViewAdapter(getContext(),chapterList,topicList);
+        expandableListView.setAdapter(listViewAdapter);
 
         return inflater.inflate(R.layout.fragment_check_list, container, false);
     }
