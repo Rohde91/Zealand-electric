@@ -48,6 +48,7 @@ public class MainMenuFragment extends Fragment{
         if (Objects.equals(UserRole, "Elev")) {
 
             ConfirmChecklistButton.setVisibility(View.GONE);
+            AddWorkerButton.setVisibility(View.GONE);
         }
         else {
             System.out.println("didn't read if");
