@@ -31,11 +31,11 @@
         android:label="fragment_new_customer"
         tools:layout="@layout/fragment_new_customer" >
         <action
-            android:id="@+id/action_newCustomerFragment_to_checkList"
-            app:destination="@id/checkList" />
-        <action
             android:id="@+id/action_newCustomerFragment_to_mainMenu"
             app:destination="@id/mainMenu" />
+        <action
+            android:id="@+id/action_newCustomerFragment_to_fragment_TabelCheck"
+            app:destination="@id/fragment_TabelCheck" />
     </fragment>
     <fragment
         android:id="@+id/checkList"
@@ -51,4 +51,14 @@
             android:id="@+id/action_confirm_Checklist_to_mainMenu"
             app:destination="@id/mainMenu" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_TabelCheck"
+        android:name="com.example.zealand_electric.fragment_TabelCheck"
+        android:label="fragment__tabel_check"
+        tools:layout="@layout/fragment__tabel_check" />
+    <fragment
+        android:id="@+id/tabel_Check_1"
+        android:name="com.example.zealand_electric.Tabel_Check_1"
+        android:label="fragment_tabel__check_1"
+        tools:layout="@layout/fragment_tabel__check_1" />
 </navigation>
