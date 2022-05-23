@@ -70,6 +70,6 @@ public class fragment_TabelCheck extends Fragment {
 
         TextView OB_Value = view.findViewById(R.id.OB_Value);
         OB_Value.setText(Html.fromHtml("OB (L <sub>n</sub>)"));
-        
+
     }
 }
