@@ -20,8 +20,6 @@ import entities.User;
 public class MainMenuFragment extends Fragment{
     User user = LoginFragment.user;
 
-    //Button myButton = View.findViewById(R.id.ConfirmChecklistButton);
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
