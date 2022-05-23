@@ -35,7 +35,8 @@
         android:hint="@string/login_brugernavn"
         android:padding="20sp"
         android:textColor="@color/zealandBlack"
-        android:textColorHint="@color/zealandBlack" />
+        android:textColorHint="@color/zealandBlack"
+        android:inputType="text" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordlayout"
