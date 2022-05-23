@@ -56,7 +56,6 @@ public class LoginFragment extends Fragment {
 
             DBController tryLogin = new DBController();
             user = tryLogin.TryUserLogin(loginUsername, loginPassword);
-//            System.out.println(user.getId());
 
 
             if (user != null){
@@ -68,11 +67,10 @@ public class LoginFragment extends Fragment {
                     }
                 });
             }
-
             else {
                 System.out.println("ingen bruger fundet");
             }
-            DBController.closeConnection();
+
         }).start());
     }
 
