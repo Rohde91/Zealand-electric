@@ -57,6 +57,8 @@ public class LoginFragment extends Fragment {
             DBController tryLogin = new DBController();
             user = tryLogin.TryUserLogin(loginUsername, loginPassword);
 
+            DBController.closeConnection();
+
 
             if (user != null){
                 getActivity().runOnUiThread(new Runnable() {
