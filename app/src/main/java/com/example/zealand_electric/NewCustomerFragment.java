@@ -11,8 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.textfield.TextInputEditText;
+
+import entities.Customer;
+
 
 public class NewCustomerFragment extends Fragment {
+
+    public String customerName, customerAdress, customerZipCode;
+    public Customer customer;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,16 +38,38 @@ public class NewCustomerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         Button doneBtn = view.findViewById(R.id.doneButton);
         Button cancelBtn = view.findViewById(R.id.cancelButton);
+        TextInputEditText getcustomerName = view.findViewById(R.id.customerNameText);
+        TextInputEditText getcustomerAdress = view.findViewById(R.id.customerAdressText);
+        TextInputEditText getcustomerZipCode = view.findViewById(R.id.customerZipCodeText);
 
 
 
-        doneBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(NewCustomerFragment.this)
-                        .navigate(R.id.action_newCustomerFragment_to_checkList);
-            }
-        });
+
+        doneBtn.setOnClickListener(v -> new Thread(() -> {
+            //TextFromApp
+            customerName = getcustomerName.getText().toString();
+            customerAdress = getcustomerAdress.getText().toString();
+            customerZipCode = getcustomerZipCode.getText().toString();
+
+            //InsertData into DB
+
+
+
+            DBController.connectToDatabase();
+            DBController.insertIntoCustomerTable(customerName,customerAdress,customerZipCode);
+            DBController.closeConnection();
+
+            //ChangeScene
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    NavHostFragment.findNavController(NewCustomerFragment.this)
+                            .navigate(R.id.action_newCustomerFragment_to_checkList);
+                }
+            });
+
+
+        }).start());
 
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
