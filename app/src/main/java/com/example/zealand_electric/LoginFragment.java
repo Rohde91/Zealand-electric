@@ -59,7 +59,6 @@ public class LoginFragment extends Fragment {
 
             DBController.closeConnection();
 
-
             if (user != null){
                 getActivity().runOnUiThread(new Runnable() {
                 @Override
