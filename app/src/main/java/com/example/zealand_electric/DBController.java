@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import entities.Customer;
 import entities.User;
 
 public class DBController {
@@ -77,7 +78,6 @@ public class DBController {
 
 
     public User TryUserLogin (String username, String password) {
-        ResultSet buildUserResultset = null;
         String sql;
         //String userRole = userRole(username);
 
@@ -105,5 +105,23 @@ public class DBController {
         }
         return user;
     }
+
+    public static void insertIntoCustomerTable(String customerName, String customerAdress, String customerZipcode){
+
+        String mySQL = "INSERT INTO customer (customerName, customerAdress, fk_zipCode) VALUES ('"
+                + customerName + "','" +customerAdress + "','" + customerZipcode + "')";
+        try{
+
+            Statement statement = connection.createStatement();
+            statement.execute(mySQL);
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    public static void insertInto(){}
+
+
 
 }

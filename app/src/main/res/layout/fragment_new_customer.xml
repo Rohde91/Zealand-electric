@@ -43,6 +43,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:id="@+id/customerNameText"
                     android:layout_height="80dp"
                     android:background="@color/editText"
                     android:ems="15"
@@ -67,6 +68,7 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
+                    android:id="@+id/customerAdressText"
                     android:layout_height="wrap_content"
                     android:background="@color/editText"
                     android:ems="15"
@@ -82,30 +84,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/city"
-                    android:layout_width="0sp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10sp"
-                    android:layout_marginStart="50sp"
-                    android:layout_weight=".50"
-                    android:drawablePadding="20sp"
-                    android:gravity="center"
-                    android:hint="By"
-                    android:textColor="@color/zealandBlack"
-                    android:textColorHint="@color/zealandBlack">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/editText"
-                        android:ems="15"
-                        android:padding="20sp"
-                        android:textColor="@color/zealandBlack"
-                        android:textColorHint="@color/zealandBlack" />
-
-
-                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/zipCode"
@@ -123,7 +102,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/editText"
+                        android:id="@+id/customerZipCodeText"
                         android:ems="15"
+                        android:maxLength="4"
+                        android:inputType="number"
                         android:padding="20sp"
                         android:textColor="@color/zealandBlack"
                         android:textColorHint="@color/zealandBlack" />
@@ -151,6 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/editText"
+                    android:id="@+id/ordernNumberText"
                     android:ems="15"
                     android:padding="20sp"
                     android:textColor="@color/zealandBlack"
@@ -176,6 +159,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/editText"
+                    android:id="@+id/installedByText"
                     android:ems="15"
                     android:padding="20sp"
                     android:textColor="@color/zealandBlack"
@@ -185,7 +169,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/InstallationID"
+                android:id="@+id/installationID"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -203,6 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/editText"
+                    android:id="@+id/installationIDText"
                     android:ems="15"
                     android:padding="20sp"
                     android:textColor="@color/zealandBlack"
