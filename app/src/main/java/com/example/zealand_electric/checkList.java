@@ -47,6 +47,38 @@ public class checkList extends Fragment {
         listViewAdapter = new ExpandableListViewAdapter(getContext(),chapterList,topicList);
         expandableListView.setAdapter(listViewAdapter);
 
+
+        /** Code to set the Hashset into ArrayList when we make a button */
+     /* Button button = (Button) findViewById(R.id.button1);
+        button.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+            ArrayList<Object> checked_box_list = new ArrayList<Object>();
+            // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
+            for (Pair<Long, Long> a : listViewAdapter.getCheckedItems_yes()) {
+                checked_box_list.add(new Checked_Box(a.first.hashCode(), a.second.hashCode(), 1));
+            }
+            for (Pair<Long, Long> a : listViewAdapter.getCheckedItems_No()) {
+                checked_box_list.add(new Checked_Box(a.first.hashCode(), a.second.hashCode(), 2));
+            }
+            for (Pair<Long, Long> a : listViewAdapter.getCheckedItems_Not_relevant()) {
+                 checked_box_list.add(new Checked_Box(a.first.hashCode(), a.second.hashCode(), 3));
+            }*/
+
+
+
+
+        //Set height in ExpandableListView
+        setExpandableListViewHeight_whenNotExpandable(expandableListView,listViewAdapter.getGroupCount());
+        expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                setExpandableListViewHeight(parent, groupPosition);
+                return false;
+            }
+        });
     }
 
     private void showList() {
@@ -118,5 +150,56 @@ public class checkList extends Fragment {
         topicList.put(chapterList.get(4),topic5);
         topicList.put(chapterList.get(5),topic6);
     }
+    private void setExpandableListViewHeight_whenNotExpandable (ExpandableListView listView, int group){
+        if (!listView.isGroupExpanded(-1)){
+            int totalHeight=0;
+            // the ca.
+            int chapterHeight_ca = 100;
+            totalHeight = chapterHeight_ca*(listViewAdapter.getGroupCount());
 
+            ViewGroup.LayoutParams params = listView.getLayoutParams();
+            params.height = totalHeight;
+            listView.setLayoutParams(params);
+        }
+
+    }
+    private void setExpandableListViewHeight(ExpandableListView listView, int group) {
+        listViewAdapter = (ExpandableListViewAdapter) listView.getExpandableListAdapter();
+
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.EXACTLY);
+
+
+        for (int i = 0; i < listViewAdapter.getGroupCount(); i++) {
+            View groupItem = listViewAdapter.getGroupView(i, false, null, listView);
+            groupItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+
+            totalHeight += groupItem.getMeasuredHeight();
+
+            if (((listView.isGroupExpanded(i)) && (i != group))
+                    || ((!listView.isGroupExpanded(i)) && (i == group))) {
+                for (int j = 0; j < listViewAdapter.getChildrenCount(i); j++) {
+                    View listItem = listViewAdapter.getChildView(i, j, false, null,
+                            listView);
+                    listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+
+                    totalHeight += listItem.getMeasuredHeight();
+
+                }
+                //Add Divider Height
+                totalHeight += listView.getDividerHeight() * (listViewAdapter.getChildrenCount(i) - 1);
+            }
+        }
+        //Add Divider Height
+        totalHeight += listView.getDividerHeight() * (listViewAdapter.getGroupCount() - 1);
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        int height = totalHeight
+                + (listView.getDividerHeight() * (listViewAdapter.getGroupCount() - 1));
+        if (height < 10)
+            height = 200;
+        params.height = height;
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
 }
