@@ -14,6 +14,8 @@ public class User {
         this.password = password;
     }
 
+
+    //constructor to create a new user
     public User(int id, String fullName, String username, String password, String userRole){
         this.id = id;
         this.fullName = fullName;
@@ -21,6 +23,14 @@ public class User {
         this.password = password;
         this.userRole = userRole;
     }
+
+
+
+
+
+
+
+
 
     public int getId() { return id; }
 
