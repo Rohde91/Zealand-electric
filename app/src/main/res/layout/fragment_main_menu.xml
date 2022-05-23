@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,33 +18,27 @@
             android:id="@+id/ConfirmChecklistButton"
             android:layout_width="165dp"
             android:layout_height="57dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            android:text="@string/ConfirmChecklist"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
             android:backgroundTint="@color/zealandBlack"
             android:clickable="true"
-            android:padding="10sp"
-            android:textColor="@color/zealandYellow" />
+            android:text="@string/ConfirmChecklist"
+            android:textColor="@color/zealandYellow"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <Button
             android:id="@+id/AddWorkerButton"
             android:layout_width="165dp"
             android:layout_height="57dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="28dp"
-            android:text="@string/AddWorker"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-
             android:backgroundTint="@color/zealandBlack"
             android:clickable="true"
-            android:padding="10sp"
+            android:text="@string/AddWorker"
             android:textColor="@color/zealandYellow"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/ConfirmChecklistButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/CreateChecklistButton"

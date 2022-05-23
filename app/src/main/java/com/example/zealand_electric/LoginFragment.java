@@ -1,5 +1,6 @@
 package com.example.zealand_electric;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import android.text.Editable;
+import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +21,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.sql.Statement;
 
 import entities.User;
-//class = blue
-//local variables = green
 
 public class LoginFragment extends Fragment {
 
@@ -63,14 +63,22 @@ public class LoginFragment extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                 @Override
                     public void run() {
+                    Toast.makeText(getActivity(), "Logger ind", Toast.LENGTH_SHORT).show();
+
                         NavHostFragment.findNavController(LoginFragment.this)
                             .navigate(R.id.action_loginFragment_to_mainMenu);
                     }
                 });
             }
             else {
-                System.out.println("ingen bruger fundet");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "Forkert brugernavn eller password", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
+
 
         }).start());
     }

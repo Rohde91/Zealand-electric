@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 import java.util.Objects;
 
@@ -19,10 +20,12 @@ import entities.User;
 public class MainMenuFragment extends Fragment{
     User user = LoginFragment.user;
 
+    //Button myButton = View.findViewById(R.id.ConfirmChecklistButton);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -30,6 +33,7 @@ public class MainMenuFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
+
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -40,20 +44,17 @@ public class MainMenuFragment extends Fragment{
 
         String UserRole = user.getUserRole();
 
-        /*doesn't work with ==, which is BULLSHIT
-        if (UserRole == "Elev"{
-            goes straight to else statement
-        }
-         */
-        if (Objects.equals(UserRole, "Elev")) {
 
-            ConfirmChecklistButton.setVisibility(View.GONE);
-            AddWorkerButton.setVisibility(View.GONE);
+        if (Objects.equals(UserRole, "Lærer")) {
+
+            ConfirmChecklistButton.setVisibility(View.VISIBLE);
+            AddWorkerButton.setVisibility(View.VISIBLE);
         }
         else {
+            ConfirmChecklistButton.setVisibility(View.GONE);
+            AddWorkerButton.setVisibility(View.GONE);
             System.out.println("didn't read if");
         }
-
 
         createChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
