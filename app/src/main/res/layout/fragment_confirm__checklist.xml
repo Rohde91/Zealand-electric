@@ -8,45 +8,70 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <ImageView
-        android:id="@+id/confirmToMain"
-        android:layout_width="62dp"
-        android:layout_height="39dp"
-        android:contentDescription="TODO"
-        android:src="?attr/actionModeCloseDrawable" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="26dp">
 
-        <ScrollView
-            android:layout_width="372dp"
-            android:layout_height="516dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ImageView
+            android:id="@+id/confirmToMain"
+            android:layout_width="62dp"
+            android:layout_height="57dp"
+            android:contentDescription="TODO"
+            android:src="?attr/actionModeCloseDrawable"
+            app:layout_constraintEnd_toStartOf="@+id/logoZealand"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+
+            android:id="@+id/logoZealand"
+            android:layout_width="0dp"
+            android:layout_height="57dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/zealand_icon"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.863">
+            app:layout_constraintWidth_percent="0.3" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="0dp"
+            android:layout_height="516dp"
+            android:layout_marginTop="100dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.79"
+            app:layout_constraintWidth_percent="0.95">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <Button
                     android:id="@+id/finishedChecklist1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Button"
+                    app:layout_constraintWidth_percent="0.95" />
 
                 <Button
                     android:id="@+id/finishedChecklist2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Button" />
+                    android:text="Button"
+                    app:layout_constraintWidth_percent="0.95" />
             </LinearLayout>
         </ScrollView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

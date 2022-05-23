@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddUserFragment">
+
+   <ImageView
+       android:id="@+id/logo"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:src="@drawable/zealand_icon"
+       android:layout_marginTop="20sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70sp"
+        android:id="@+id/addUserText"
+        android:text="Tilføj Bruger"
+        android:layout_centerHorizontal="true"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fullNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/addUserText"
+        android:layout_marginTop="30sp"
+        android:drawablePadding="20sp"
+        android:hint="Fulde navn"
+        android:inputType="text"
+        android:textColor="@color/zealandBlack"
+        android:textColorHint="@color/zealandBlack"
+        >
+
+        <EditText
+            android:id="@+id/fullNameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/editText"
+            android:ems="15"
+            android:inputType="text"
+            android:padding="20sp"
+            android:textColor="@color/zealandBlack"
+            android:textColorHint="@color/zealandBlack" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newUserLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fullNameLayout"
+        android:layout_marginTop="30sp"
+        android:drawablePadding="20sp"
+        android:hint="Brugernavn"
+        android:inputType="text"
+        android:textColor="@color/zealandBlack"
+        android:textColorHint="@color/zealandBlack"
+        >
+
+        <EditText
+            android:id="@+id/newUserInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/editText"
+            android:ems="15"
+            android:inputType="text"
+            android:padding="20sp"
+            android:textColor="@color/zealandBlack"
+            android:textColorHint="@color/zealandBlack" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/newUserPassLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/newUserLayout"
+        android:layout_marginTop="30sp"
+        android:drawablePadding="20sp"
+        android:hint="Adgangskode"
+        android:inputType="textPassword"
+        android:textColor="@color/zealandBlack"
+        android:textColorHint="@color/zealandBlack"
+
+        >
+
+        <EditText
+            android:id="@+id/newUserPassInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/editText"
+            android:ems="15"
+            android:inputType="textPassword"
+            android:padding="20sp"
+            android:textColor="@color/zealandBlack"
+            android:textColorHint="@color/zealandBlack" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Spinner
+        android:id="@+id/roleSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/newUserPassLayout"/>
+
+    <Button
+        android:id="@+id/addUserBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opret bruger"
+        android:backgroundTint="@color/zealandBlack"
+        android:textColor="@color/zealandYellow"
+        android:layout_marginTop="50sp"
+        android:layout_below="@id/roleSpinner"
+        android:layout_centerHorizontal="true"/>
+
+
+
+
+</RelativeLayout>
