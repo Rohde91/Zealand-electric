@@ -38,7 +38,7 @@ public class MainMenuFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
         Button createChecklist = view.findViewById(R.id.CreateChecklistButton);
         Button ConfirmChecklistButton = view.findViewById(R.id.ConfirmChecklistButton);
-        Button AddWorkerButton = view.findViewById(R.id.AddWorkerButton);
+        Button addWorkerButton = view.findViewById(R.id.AddWorkerButton);
 
         String UserRole = user.getUserRole();
 
@@ -46,13 +46,20 @@ public class MainMenuFragment extends Fragment{
         if (Objects.equals(UserRole, "Lærer")) {
 
             ConfirmChecklistButton.setVisibility(View.VISIBLE);
-            AddWorkerButton.setVisibility(View.VISIBLE);
+            addWorkerButton.setVisibility(View.VISIBLE);
         }
         else {
             ConfirmChecklistButton.setVisibility(View.GONE);
-            AddWorkerButton.setVisibility(View.GONE);
+            addWorkerButton.setVisibility(View.GONE);
             System.out.println("didn't read if");
         }
+        addWorkerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(MainMenuFragment.this)
+                        .navigate(R.id.action_mainMenu_to_addUserFragment);
+            }
+        });
 
         createChecklist.setOnClickListener(new View.OnClickListener() {
             @Override

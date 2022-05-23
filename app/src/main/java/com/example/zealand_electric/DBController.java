@@ -120,7 +120,20 @@ public class DBController {
             e.printStackTrace();
         }
     }
-    public static void insertInto(){}
+    public static void insertIntoUser(String fullName, String username, String password, String userRole){
+
+        String mySQL = "INSERT INTO user (fullName, username, password, userRole) VALUES ('"
+                + fullName + "','" + username + "','" + password +"','" + userRole + "')";
+        try{
+
+            Statement statement = connection.createStatement();
+            statement.execute(mySQL);
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
 
 
 
