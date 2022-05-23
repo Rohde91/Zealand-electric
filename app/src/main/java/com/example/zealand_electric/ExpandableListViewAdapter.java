@@ -185,6 +185,14 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         return checkedItems_yes;
     }
 
+    public Set<Pair<Long, Long>> getCheckedItems_No() {
+        return checkedItems_No;
+    }
+
+    public Set<Pair<Long, Long>> getCheckedItems_Not_relevant() {
+        return checkedItems_Not_relevant;
+    }
+
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
