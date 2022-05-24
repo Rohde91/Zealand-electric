@@ -18,7 +18,7 @@ import entities.User;
 
 
 public class MainMenuFragment extends Fragment{
-    User user = LoginFragment.user;
+    public User user = LoginFragment.user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

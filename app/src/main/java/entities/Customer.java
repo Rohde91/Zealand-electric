@@ -13,6 +13,12 @@ public class Customer {
         this.customerAdress = customerAdress;
         this.fk_zipCode = fk_zipCode;
     }
+    public Customer(String customerName, String customerAdress, String fk_zipCode) {
+        this.id = id;
+        this.customerName = customerName;
+        this.customerAdress = customerAdress;
+        this.fk_zipCode = fk_zipCode;
+    }
 
     public int getId() {
         return id;

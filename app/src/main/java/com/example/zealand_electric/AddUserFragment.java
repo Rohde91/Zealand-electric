@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.Locale;
+
 
 public class AddUserFragment extends Fragment {
 
@@ -22,7 +24,6 @@ public class AddUserFragment extends Fragment {
     public EditText fullName, username, password;
     public String fullNametxt, usernametxt,passwordtxt, roletxt;
     public Button createUserbtn;
-
 
 
     @Override
@@ -49,11 +50,12 @@ public class AddUserFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, roles);
         role.setAdapter(adapter);
 
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        //TextEdits, rolespinner and button
         fullName = view.findViewById(R.id.fullNameText);
         username = view.findViewById(R.id.newUserInput);
         password = view.findViewById(R.id.newUserPassInput);
@@ -72,7 +74,7 @@ public class AddUserFragment extends Fragment {
 
             DBController.connectToDatabase();
 
-            DBController.insertIntoUser(fullNametxt,usernametxt,passwordtxt,roletxt);
+            DBController.insertIntoUser(fullNametxt,usernametxt.toLowerCase(Locale.ROOT),passwordtxt,roletxt);
 
             DBController.closeConnection();
 

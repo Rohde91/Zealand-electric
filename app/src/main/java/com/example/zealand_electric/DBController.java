@@ -3,11 +3,13 @@ package com.example.zealand_electric;
 import android.widget.EditText;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 
 import entities.Customer;
 import entities.User;
@@ -106,20 +108,28 @@ public class DBController {
         return user;
     }
 
-    public static void insertIntoCustomerTable(String customerName, String customerAdress, String customerZipcode){
 
+    public static int insertIntoCustomerTableAndReturnID(Customer customer){
+        int result = -1;
         String mySQL = "INSERT INTO customer (customerName, customerAdress, fk_zipCode) VALUES ('"
-                + customerName + "','" +customerAdress + "','" + customerZipcode + "')";
+                + customer.getCustomerName() + "','" + customer.getCustomerAdress() + "','" + customer.getFk_zipCode() + "')";
         try{
 
             Statement statement = connection.createStatement();
-            statement.execute(mySQL);
-
+            statement.execute(mySQL,Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = statement.getGeneratedKeys();
+            if(rs.next()){
+                result=rs.getInt(1);
+            }
+            rs.close();
+            statement.close();
 
         } catch (SQLException e){
             e.printStackTrace();
         }
+        return result;
     }
+
     public static void insertIntoUser(String fullName, String username, String password, String userRole){
 
         String mySQL = "INSERT INTO user (fullName, username, password, userRole) VALUES ('"
@@ -127,6 +137,8 @@ public class DBController {
         try{
 
             Statement statement = connection.createStatement();
+
+
             statement.execute(mySQL);
 
 
@@ -135,6 +147,55 @@ public class DBController {
         }
     }
 
+    public Customer customerGet(Customer customer){
+
+        try{
+            Statement statement = connection.createStatement();
+        String mySQL = "SELECT * FROM customer" +
+                " WHERE customerName='" + customer.getCustomerName() +
+                "' AND customerAdress='" + customer.getCustomerAdress() +
+                "'";
+
+        ResultSet rs = statement.executeQuery(mySQL);
+
+        if (rs.next()){
+            customer = new Customer(rs.getInt("id"),
+                    rs.getString("customerName"),
+                    rs.getString("customerAdress"),
+                    rs.getString("fk_zipCode"));
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return customer;
+
+    }
+
+    public static void insertIntoCheckList(int fk_customerId, LocalDate date, String caseNumber, String installationLocation, String installer, int fk_userId,boolean checklistComplete, boolean checklistConfirmed){
+
+        String mySQL = "INSERT INTO checklist (fk_customerId, date, caseNumber, installationLocation, installer, fk_userId, crossOhm, installationNote, checklistComplete,checklistConfirmed)" +
+                "VALUES ('" + fk_customerId +
+                "','" + date +
+                "','" + caseNumber +
+                "','" + installationLocation +
+                "','" + installer +
+                "','" + fk_userId +
+                "','" + "0" +
+                "','" + "0" +
+        "','" + checklistComplete + "','" + checklistConfirmed + "')";
+
+        try{
+
+            Statement statement = connection.createStatement();
+
+            statement.execute(mySQL);
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
 
 
 }
