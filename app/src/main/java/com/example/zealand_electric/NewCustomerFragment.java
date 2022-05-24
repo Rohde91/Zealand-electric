@@ -28,8 +28,6 @@ public class NewCustomerFragment extends Fragment {
     public Customer customer;
     public int customerId;
     public User user = LoginFragment.user;
-    boolean checklistComplete = false;
-    boolean checklistConfirmed = false;
     @SuppressLint("NewApi")
     public static LocalDate date = LocalDate.now();
 
@@ -75,7 +73,7 @@ public class NewCustomerFragment extends Fragment {
             // String installer, int fk_userId,boolean checklistComplete, boolean checklistConfirmed
             customerId = DBController.insertIntoCustomerTableAndReturnID(customer);
             DBController.insertIntoCheckList(customerId, date , orderNumber,
-                    installationLocation, installer, user.getId(), checklistComplete, checklistConfirmed);
+                    installationLocation, installer, user.getId(), 0, 0);
             DBController.closeConnection();
 
             //ChangeScene
