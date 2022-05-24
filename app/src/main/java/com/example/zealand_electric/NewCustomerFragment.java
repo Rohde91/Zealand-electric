@@ -19,7 +19,7 @@ import entities.Customer;
 public class NewCustomerFragment extends Fragment {
 
     public String customerName, customerAdress, customerZipCode;
-    public Customer customer;
+    public static Customer customer= null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,20 +51,26 @@ public class NewCustomerFragment extends Fragment {
             customerAdress = getcustomerAdress.getText().toString();
             customerZipCode = getcustomerZipCode.getText().toString();
 
+            Customer customer = new Customer(customerName,customerAdress,customerZipCode);
+            Customer customer1 = new Customer("TestMarcus","TestAdress","555");
+
             //InsertData into DB
 
 
 
-            DBController.connectToDatabase();
+           /* DBController.connectToDatabase();
             DBController.insertIntoCustomerTable(customerName,customerAdress,customerZipCode);
-            DBController.closeConnection();
+            DBController.closeConnection();*/
 
-            //ChangeScene
+            //ChangeScene to checklist
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     NavHostFragment.findNavController(NewCustomerFragment.this)
-                            .navigate(R.id.action_newCustomerFragment_to_checkList);
+                            .navigate(R.id.action_newCustomerFragment_to_resultTabs);
+                    System.out.println("udskriv customer");
+
+
                 }
             });
 

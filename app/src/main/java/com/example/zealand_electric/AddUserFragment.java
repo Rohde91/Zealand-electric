@@ -15,8 +15,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import entities.User;
 
-public class AddUserFragment extends Fragment {
+
+public class AddUserFragment extends Fragment  {
 
     public Spinner role;
     public EditText fullName, username, password;
@@ -70,11 +72,11 @@ public class AddUserFragment extends Fragment {
             //InsertData into DB / add user
 
 
-            DBController.connectToDatabase();
+            /*DBController.connectToDatabase();
 
             DBController.insertIntoUser(fullNametxt,usernametxt,passwordtxt,roletxt);
 
-            DBController.closeConnection();
+            DBController.closeConnection();*/
 
             //ChangeScene and make Toast
 

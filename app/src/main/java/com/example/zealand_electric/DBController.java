@@ -76,7 +76,7 @@ public class DBController {
         return result;
     }
 
-
+    //---------------------------------------------------------------------------------------------------------------
     public User TryUserLogin (String username, String password) {
         String sql;
         //String userRole = userRole(username);
@@ -105,6 +105,7 @@ public class DBController {
         }
         return user;
     }
+    //---------------------------------------------------------------------------------------------------------------
 
     public static void insertIntoCustomerTable(String customerName, String customerAdress, String customerZipcode){
 
@@ -120,6 +121,8 @@ public class DBController {
             e.printStackTrace();
         }
     }
+    //---------------------------------------------------------------------------------------------------------------
+
     public static void insertIntoUser(String fullName, String username, String password, String userRole){
 
         String mySQL = "INSERT INTO user (fullName, username, password, userRole) VALUES ('"

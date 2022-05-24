@@ -37,8 +37,8 @@
             android:id="@+id/action_newCustomerFragment_to_mainMenu"
             app:destination="@id/mainMenu" />
         <action
-            android:id="@+id/action_newCustomerFragment_to_checkList"
-            app:destination="@id/checkList" />
+            android:id="@+id/action_newCustomerFragment_to_resultTabs"
+            app:destination="@id/resultTabs" />
     </fragment>
     <fragment
         android:id="@+id/checkList"
@@ -68,4 +68,9 @@
         android:name="com.example.zealand_electric.fragment_TabelCheck"
         android:label="fragment__tabel_check"
         tools:layout="@layout/fragment__tabel_check" />
+    <activity
+        android:id="@+id/resultTabs"
+        android:name="com.example.zealand_electric.TabLayout.ResultTabs"
+        android:label="fragment_result_tabs"
+        tools:layout="@layout/fragment_result_tabs" />
 </navigation>
