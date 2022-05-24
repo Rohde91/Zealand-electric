@@ -193,6 +193,12 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         return checkedItems_Not_relevant;
     }
 
+    public void setCheckedItems_clear (){
+        checkedItems_yes.clear();
+        checkedItems_No.clear();
+        checkedItems_Not_relevant.clear();
+    }
+
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;

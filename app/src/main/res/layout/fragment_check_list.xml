@@ -27,17 +27,52 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
 
-               <Button
-                   android:id="@+id/button1"
+
+               <com.google.android.material.button.MaterialButton
+                   android:id="@+id/button_Annuller"
+                   android:textSize= "11dp"
+                   android:width="0dp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
-                   android:background="@color/cardview_light_background"
-                   android:text="button"
-                   android:textColor="@color/black"
+                   android:backgroundTint="@color/zealandBlack"
+                   android:text="@string/Anuller_text"
+                   android:textColor="@color/zealandYellow"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintStart_toStartOf="parent"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintVertical_bias="0.0"
+                   app:layout_constraintWidth_percent="0.3"/>
+
+               <com.google.android.material.button.MaterialButton
+                   android:id="@+id/button_Gem"
+                   android:textSize= "11dp"
+                   android:width="0dp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:paddingStart="10dp"
+                   android:paddingEnd="10dp"
+                   android:backgroundTint="@color/zealandBlack"
+                   android:text="@string/Gem_text"
+                   android:textColor="@color/zealandYellow"
+                   app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toStartOf="@+id/button_Gem_Afslut"
+                   app:layout_constraintStart_toEndOf="@+id/button_Annuller"
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintVertical_bias="0.0"
+                   app:layout_constraintWidth_percent="0.3"/>
+
+               <com.google.android.material.button.MaterialButton
+                   android:id="@+id/button_Gem_Afslut"
+                   android:width="0dp"
+                   android:textSize= "11dp"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:backgroundTint="@color/zealandBlack"
+                   android:text="@string/Gem_afslut"
+                   android:textColor="@color/zealandYellow"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintHorizontal_bias="0.498"
-                   app:layout_constraintStart_toStartOf="parent" />
+                   app:layout_constraintWidth_percent="0.3"/>
           </androidx.constraintlayout.widget.ConstraintLayout>
 
      </LinearLayout>
