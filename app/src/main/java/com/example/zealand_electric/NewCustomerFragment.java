@@ -9,10 +9,12 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -66,25 +68,35 @@ public class NewCustomerFragment extends Fragment {
             installer = getInstaller.getText().toString();
 
             //InsertData into DB
-            customer = new Customer(customerName,customerAdress,customerZipCode);
 
-            DBController.connectToDatabase();
-            //int fk_customerId, LocalDate date, String caseNumber, String installationLocation,
-            // String installer, int fk_userId,boolean checklistComplete, boolean checklistConfirmed
-            customerId = DBController.insertIntoCustomerTableAndReturnID(customer);
-            DBController.insertIntoCheckList(customerId, date , orderNumber,
-                    installationLocation, installer, user.getId(), 0, 0);
-            DBController.closeConnection();
+            if(TextUtils.isEmpty(customerName)|| TextUtils.isEmpty(customerAdress)
+                    || TextUtils.isEmpty(customerZipCode) || TextUtils.isEmpty(orderNumber) ||
+                    TextUtils.isEmpty(installationLocation) || TextUtils.isEmpty(installer)){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "Du mangler at udfylde felterne", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else {
 
-            //ChangeScene
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    NavHostFragment.findNavController(NewCustomerFragment.this)
-                            .navigate(R.id.action_newCustomerFragment_to_checkList);
-                }
-            });
+                customer = new Customer(customerName, customerAdress, customerZipCode);
 
+                DBController.connectToDatabase();
+                customerId = DBController.insertIntoCustomerTableAndReturnID(customer);
+                DBController.insertIntoCheckList(customerId, date, orderNumber,
+                        installationLocation, installer, user.getId(), 0, 0);
+                DBController.closeConnection();
+
+                //ChangeScene
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        NavHostFragment.findNavController(NewCustomerFragment.this)
+                                .navigate(R.id.action_newCustomerFragment_to_checkList);
+                    }
+                });
+            }
 
         }).start());
 
