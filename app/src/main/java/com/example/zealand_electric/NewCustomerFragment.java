@@ -67,7 +67,7 @@ public class NewCustomerFragment extends Fragment {
                 @Override
                 public void run() {
                     NavHostFragment.findNavController(NewCustomerFragment.this)
-                            .navigate(R.id.action_newCustomerFragment_to_resultTabs);
+                            .navigate(R.id.action_newCustomerFragment_to_restultTabs2);
                     System.out.println("udskriv customer");
 
 
