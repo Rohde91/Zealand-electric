@@ -171,7 +171,7 @@ public class DBController {
 
     }
 
-    public static void insertIntoCheckList(int fk_customerId, LocalDate date, String caseNumber, String installationLocation, String installer, int fk_userId,boolean checklistComplete, boolean checklistConfirmed){
+    public static void insertIntoCheckList(int fk_customerId, LocalDate date, String caseNumber, String installationLocation, String installer, int fk_userId, Integer checklistComplete, Integer checklistConfirmed){
 
         String mySQL = "INSERT INTO checklist (fk_customerId, date, caseNumber, installationLocation, installer, fk_userId, crossOhm, installationNote, checklistComplete,checklistConfirmed)" +
                 "VALUES ('" + fk_customerId +
