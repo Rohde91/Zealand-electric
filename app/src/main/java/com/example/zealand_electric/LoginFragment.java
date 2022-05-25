@@ -46,7 +46,7 @@ public class LoginFragment extends Fragment {
         loginButton = view.findViewById(R.id.loginButton);
         loginButton.setOnClickListener(v -> new Thread(() -> {
 
-            DBController.connectToDatabase();
+
 
             EditText username = view.findViewById(R.id.username);
             EditText password = view.findViewById(R.id.password);
@@ -57,7 +57,6 @@ public class LoginFragment extends Fragment {
             DBController tryLogin = new DBController();
             user = tryLogin.TryUserLogin(loginUsername, loginPassword);
 
-            DBController.closeConnection();
 
             if (user != null){
                 getActivity().runOnUiThread(new Runnable() {
@@ -81,6 +80,11 @@ public class LoginFragment extends Fragment {
 
 
         }).start());
+    }
+
+    int sum(int a, int b){
+        return a+b;
+
     }
 
     @Override

@@ -20,16 +20,20 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.time.LocalDate;
 
+import entities.CheckList;
 import entities.Customer;
 import entities.User;
 
 
 public class NewCustomerFragment extends Fragment {
+    public static CheckList checkList;
 
     public String customerName, customerAdress, customerZipCode, orderNumber, installationLocation, installer;
     public Customer customer;
     public int customerId;
     public User user = LoginFragment.user;
+    public String ohm = "";
+    public String note = "";
     @SuppressLint("NewApi")
     public static LocalDate date = LocalDate.now();
 
@@ -84,8 +88,11 @@ public class NewCustomerFragment extends Fragment {
 
                 DBController.connectToDatabase();
                 customerId = DBController.insertIntoCustomerTableAndReturnID(customer);
-                DBController.insertIntoCheckList(customerId, date, orderNumber,
-                        installationLocation, installer, user.getId(), 0, 0);
+
+                checkList = new CheckList(customerId, date, orderNumber,
+                        installationLocation, installer, user.getId(), ohm, note,0, 0);
+                customer.setId(customerId);
+                DBController.insertIntoCheckList(checkList);
                 DBController.closeConnection();
 
                 //ChangeScene
