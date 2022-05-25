@@ -185,6 +185,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
             }
         });
 //____________________________________________________________
+//      POpUP Funktion to Note's
         final ImageButton note_button = (ImageButton) convertView.findViewById(R.id.button_note);
         // set the position
         note_button.setTag(tag);
