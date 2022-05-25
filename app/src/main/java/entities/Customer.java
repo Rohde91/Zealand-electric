@@ -1,11 +1,22 @@
 package entities;
 
+import java.util.ArrayList;
+
 public class Customer {
 
     protected int id;
     protected String customerName;
     protected String customerAdress;
     protected String fk_zipCode;
+    protected ArrayList<CheckList> checklistTabel;
+
+    public ArrayList<CheckList> getChecklistTabel() {
+        return checklistTabel;
+    }
+
+    public void setChecklistTabel(ArrayList<CheckList> checklistTabel) {
+        this.checklistTabel = checklistTabel;
+    }
 
     public Customer(int id, String customerName, String customerAdress, String fk_zipCode) {
         this.id = id;

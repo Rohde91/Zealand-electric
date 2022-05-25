@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
+import entities.CheckList;
 import entities.Customer;
 import entities.User;
 
@@ -18,11 +19,11 @@ public class DBController {
 
     private static String username = "root";
     private static String password = "";
-
+    public static java.lang.String url;
     private static Connection connection;
 
     public static void connectToDatabase() {
-        java.lang.String url = "jdbc:mysql://10.0.2.2:3306/zealandelectric";
+         url = "jdbc:mysql://10.0.2.2:3306/zealandelectric";
         try {
             connection = DriverManager.getConnection(url, username, password );
 
@@ -82,6 +83,7 @@ public class DBController {
     public User TryUserLogin (String username, String password) {
         String sql;
         //String userRole = userRole(username);
+        connectToDatabase();
 
         User user = null;
 
@@ -105,12 +107,14 @@ public class DBController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        closeConnection();
         return user;
     }
 
 
     public static int insertIntoCustomerTableAndReturnID(Customer customer){
         int result = -1;
+
         String mySQL = "INSERT INTO customer (customerName, customerAdress, fk_zipCode) VALUES ('"
                 + customer.getCustomerName() + "','" + customer.getCustomerAdress() + "','" + customer.getFk_zipCode() + "')";
         try{
@@ -171,18 +175,18 @@ public class DBController {
 
     }
 
-    public static void insertIntoCheckList(int fk_customerId, LocalDate date, String caseNumber, String installationLocation, String installer, int fk_userId, Integer checklistComplete, Integer checklistConfirmed){
+    public static void insertIntoCheckList(CheckList checkList){
 
         String mySQL = "INSERT INTO checklist (fk_customerId, date, caseNumber, installationLocation, installer, fk_userId, crossOhm, installationNote, checklistComplete,checklistConfirmed)" +
-                "VALUES ('" + fk_customerId +
-                "','" + date +
-                "','" + caseNumber +
-                "','" + installationLocation +
-                "','" + installer +
-                "','" + fk_userId +
-                "','" + "0" +
-                "','" + "0" +
-        "','" + checklistComplete + "','" + checklistConfirmed + "')";
+                "VALUES ('" + checkList.getFk_customerId() +
+                "','" + checkList.getDate() +
+                "','" + checkList.getCaseNumber() +
+                "','" + checkList.getInstallationLocation() +
+                "','" + checkList.getInstaller() +
+                "','" + checkList.getFk_userId() +
+                "','" + checkList.getCrossOhm() +
+                "','" + checkList.getCrossOhm() +
+        "','" + checkList.getChecklistComplete() + "','" + checkList.getChecklistConfirmed() + "')";
 
         try{
 
