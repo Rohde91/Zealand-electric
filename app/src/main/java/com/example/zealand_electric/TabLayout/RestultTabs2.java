@@ -35,7 +35,7 @@ public class RestultTabs2 extends Fragment {
 
         ResultTabAdapter resultTabAdapter = new ResultTabAdapter(requireActivity().getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         resultTabAdapter.addFragment(new WireDetails(), "Kredsdetaljer");
-        resultTabAdapter.addFragment(new rcd_Test(), "RCD test123");
+        resultTabAdapter.addFragment(new rcd_Test(), "RCD Test");
         resultTabAdapter.addFragment(new ShortCircuit_Current(), "Kortslutning strøm");
         viewPager.setAdapter(resultTabAdapter);
 

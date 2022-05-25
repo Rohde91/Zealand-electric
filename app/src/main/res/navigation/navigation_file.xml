@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_newCustomerFragment_to_restultTabs2"
             app:destination="@id/restultTabs2" />
+        <action
+            android:id="@+id/action_newCustomerFragment_to_fragment_TabelCheck"
+            app:destination="@id/fragment_TabelCheck" />
     </fragment>
     <fragment
         android:id="@+id/checkList"
