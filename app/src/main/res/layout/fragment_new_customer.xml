@@ -212,7 +212,7 @@
         android:layout_marginEnd="10sp"
         android:layout_marginBottom="10sp"
         android:backgroundTint="@color/zealandBlack"
-        android:text="Anuller"
+        android:text="@string/Anuller_text"
         android:textColor="@color/zealandYellow"
         android:textSize="20sp" />
     <Button

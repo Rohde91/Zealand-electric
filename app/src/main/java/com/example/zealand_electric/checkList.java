@@ -2,9 +2,11 @@ package com.example.zealand_electric;
 
 
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ExpandableListView;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,9 @@ public class checkList extends Fragment {
     ExpandableListView expandableListView;
     List<String> chapterList;
     HashMap<String,List<String>> topicList;
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,24 +53,69 @@ public class checkList extends Fragment {
         expandableListView.setAdapter(listViewAdapter);
 
 
-        /** Code to set the Hashset into ArrayList when we make a button */
-     /* Button button = (Button) findViewById(R.id.button1);
-        button.setOnClickListener(new View.OnClickListener() {
+        // Button Cancel
+        Button button_cancel=(Button) view.findViewById(R.id.button_Annuller);
+        button_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)  {
+                //clear all check Checkbox
+                listViewAdapter.setCheckedItems_clear();
+
+                /** need to send it to DataBase an go to MainMenuFragment.java (and delete the customer there is made)*/
+            }
+        });
+        //Button save
+
+        Button button_save =(Button) view.findViewById(R.id.button_Gem);
+     //     onClickListener
+        button_save.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
             ArrayList<Object> checked_box_list = new ArrayList<Object>();
-            // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
-            for (Pair<Long, Long> a : listViewAdapter.getCheckedItems_yes()) {
-                checked_box_list.add(new Checked_Box(a.first.hashCode(), a.second.hashCode(), 1));
-            }
-            for (Pair<Long, Long> a : listViewAdapter.getCheckedItems_No()) {
-                checked_box_list.add(new Checked_Box(a.first.hashCode(), a.second.hashCode(), 2));
-            }
-            for (Pair<Long, Long> a : listViewAdapter.getCheckedItems_Not_relevant()) {
-                 checked_box_list.add(new Checked_Box(a.first.hashCode(), a.second.hashCode(), 3));
-            }*/
 
+            //forLoop get the Hashset's and send it to array  in objekt
+            // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
+            for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_yes()) {
+                //make a Ojekt and add it to arraylist
+                checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1));
+            }
+            for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_No()) {
+                //make a Ojekt and add it to arraylist
+                checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2));
+            }
+            for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_Not_relevant()) {
+                //make a Ojekt and add it to arraylist
+                checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
+            }
+
+            /** need to send it to DataBase an go to MainMenuFragment.java*/
+        }});
+//      Button buttonsave_finish
+        Button buttonsave_finish = (Button) view.findViewById(R.id.button_Gem_Afslut);
+        //     onClickListener
+        buttonsave_finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<Object> checked_box_list = new ArrayList<Object>();
+
+                //forLoop get the Hashset's and send it to array  in objekt
+                // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
+                for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_yes()) {
+                    //make a Ojekt and add it to arraylist
+                    checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1));
+                }
+                for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_No()) {
+                    //make a Ojekt and add it to arraylist
+                    checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2));
+                }
+                for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_Not_relevant()) {
+                    //make a Ojekt and add it to arraylist
+                    checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
+                }
+                /** need to send it to DataBase and go to Next side */
+            }
+        });
 
 
 
