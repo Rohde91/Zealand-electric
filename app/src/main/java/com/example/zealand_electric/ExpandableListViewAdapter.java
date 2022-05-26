@@ -30,6 +30,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     private final Set<Pair<Long, Long>> checkedItems_yes = new HashSet<Pair<Long, Long>>();
     private final Set<Pair<Long, Long>> checkedItems_No  = new HashSet<Pair<Long, Long>>();
     private final Set<Pair<Long, Long>> checkedItems_Not_relevant = new HashSet<Pair<Long, Long>>();
+    //note object arrayList
     private final ArrayList<Check_box_Object> Note =new ArrayList<Check_box_Object>();
 
     public ExpandableListViewAdapter(Context context, List<String> chapterList, HashMap<String, List<String>> topicList) {

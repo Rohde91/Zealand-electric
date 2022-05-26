@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import entities.CheckList;
 import entities.Customer;
@@ -198,6 +199,10 @@ public class DBController {
         } catch (SQLException e){
             e.printStackTrace();
         }
+
+    }
+
+    public static void insertIntoCheckListRow (ArrayList<Check_box_Object> list ,int fk_customerId,int checkList_Id){
 
     }
 
