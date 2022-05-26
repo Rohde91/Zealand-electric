@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,8 +61,15 @@ public class checkList extends Fragment {
             public void onClick(View v)  {
                 //clear all check Checkbox
                 listViewAdapter.setCheckedItems_clear();
-
-                /** need to send it to DataBase an go to MainMenuFragment.java (and delete the customer there is made)*/
+                //ChangeScene
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        NavHostFragment.findNavController(checkList.this)
+                                .navigate(R.id.action_checkList_to_mainMenu);
+                    }
+                });
+                /** need to send it to DataBase.java (and delete the customer there is made)*/
             }
         });
         //Button save
@@ -113,6 +121,14 @@ public class checkList extends Fragment {
                     }
                 }
             }
+            //ChangeScene
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    NavHostFragment.findNavController(checkList.this)
+                            .navigate(R.id.action_checkList_to_mainMenu);
+                }
+            });
 
             /** need to send it to DataBase an go to MainMenuFragment.java*/
         }});
@@ -138,7 +154,15 @@ public class checkList extends Fragment {
                     //make a Ojekt and add it to arraylist
                     checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
                 }
-                /** need to send it to DataBase and go to Next side */
+                //ChangeScene
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        NavHostFragment.findNavController(checkList.this)
+                                .navigate(R.id.action_checkList_to_fragment_TabelCheck);
+                    }
+                });
+                /** need to send it to DataBase */
             }
         });
 
