@@ -72,21 +72,46 @@ public class checkList extends Fragment {
         @Override
         public void onClick(View v) {
 
-            ArrayList<Object> checked_box_list = new ArrayList<Object>();
+            ArrayList<Check_box_Object> checked_box_list = new ArrayList<Check_box_Object>();
 
             //forLoop get the Hashset's and send it to array  in objekt
             // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_yes()) {
-                //make a Ojekt and add it to arraylist
-                checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1));
-            }
+                for (int i = 0; i <listViewAdapter.getNote().size() ; i++) {
+                    // make a Ojekt and add it to arraylist with note
+                    if (it.first.intValue()==listViewAdapter.getNote().get(i).getCategory_position()&&it.second.intValue()==listViewAdapter.getNote().get(i).getQuestion_position()){
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1,listViewAdapter.getNote().get(i).getNote()));
+                    } else{
+                        //make a Ojekt and add it to arraylist without note
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1));
+                    }
+                }
+
+            }//forLoop get the Hashset's and send it to array  in objekt
+            // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_No()) {
-                //make a Ojekt and add it to arraylist
-                checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2));
-            }
+                for (int i = 0; i <listViewAdapter.getNote().size() ; i++) {
+                    // make a Ojekt and add it to arraylist with note
+                    if (it.first.intValue()==listViewAdapter.getNote().get(i).getCategory_position()&&it.second.intValue()==listViewAdapter.getNote().get(i).getQuestion_position()){
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2,listViewAdapter.getNote().get(i).getNote()));
+                    }else {
+                        //make a Ojekt and add it to arraylist without note
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2));
+                    }
+                }
+
+            }//forLoop get the Hashset's and send it to array  in objekt
+            // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_Not_relevant()) {
-                //make a Ojekt and add it to arraylist
-                checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
+                for (int i = 0; i <listViewAdapter.getNote().size() ; i++) {
+                    // make a Ojekt and add it to arraylist with note
+                    if (it.first.intValue()==listViewAdapter.getNote().get(i).getCategory_position()&&it.second.intValue()==listViewAdapter.getNote().get(i).getQuestion_position()){
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,listViewAdapter.getNote().get(i).getNote()));
+                    }else{
+                        //make a Ojekt and add it to arraylist without note
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
+                    }
+                }
             }
 
             /** need to send it to DataBase an go to MainMenuFragment.java*/
