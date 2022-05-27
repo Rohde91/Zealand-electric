@@ -71,11 +71,6 @@
         android:name="com.example.zealand_electric.fragment_TabelCheck"
         android:label="fragment__tabel_check"
         tools:layout="@layout/fragment__tabel_check" />
-    <activity
-        android:id="@+id/resultTabs"
-        android:name="com.example.zealand_electric.TabLayout.ResultTabs"
-        android:label="fragment_result_tabs"
-        tools:layout="@layout/fragment_result_tabs" />
     <fragment
         android:id="@+id/restultTabs2"
         android:name="com.example.zealand_electric.TabLayout.RestultTabs2"
