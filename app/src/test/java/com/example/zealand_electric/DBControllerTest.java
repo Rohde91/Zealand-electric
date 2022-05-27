@@ -7,7 +7,7 @@ public class DBControllerTest extends TestCase {
     public void testTryUserLogin() {
         DBController trylogin = new DBController();
         DBController.connectToDatabase();
-        assertEquals((null), trylogin.TryUserLogin("marc572m","1234"));
+        assertEquals((null), trylogin.tryUserLogin("marc572m","1234"));
         DBController.closeConnection();
     }
 

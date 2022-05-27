@@ -3,6 +3,7 @@ package entities;
 import java.time.LocalDate;
 
 public class CheckList {
+    int id;
     int fk_customerId;
     LocalDate date;
     String caseNumber;
@@ -13,6 +14,20 @@ public class CheckList {
     String installationNote;
     Integer checklistComplete;
     Integer checklistConfirmed;
+
+    public CheckList(int id, int fk_customerId, LocalDate date, String caseNumber, String installationLocation, String installer, int fk_userId, String crossOhm, String installationNote, Integer checklistComplete, Integer checklistConfirmed) {
+        this.id = id;
+        this.fk_customerId = fk_customerId;
+        this.date = date;
+        this.caseNumber = caseNumber;
+        this.installationLocation = installationLocation;
+        this.installer = installer;
+        this.fk_userId = fk_userId;
+        this.crossOhm = crossOhm;
+        this.installationNote = installationNote;
+        this.checklistComplete = checklistComplete;
+        this.checklistConfirmed = checklistConfirmed;
+    }
 
     public CheckList(int fk_customerId, LocalDate date, String caseNumber, String installationLocation, String installer, int fk_userId, String crossOhm, String installationNote, Integer checklistComplete, Integer checklistConfirmed) {
         this.fk_customerId = fk_customerId;
@@ -81,6 +96,14 @@ public class CheckList {
 
     public void setCrossOhm(String crossOhm) {
         this.crossOhm = crossOhm;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getInstallationNote() {

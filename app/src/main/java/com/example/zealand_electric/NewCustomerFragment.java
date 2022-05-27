@@ -1,11 +1,9 @@
 package com.example.zealand_electric;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -30,7 +28,7 @@ public class NewCustomerFragment extends Fragment {
 
     public String customerName, customerAdress, customerZipCode, orderNumber, installationLocation, installer;
     public Customer customer;
-    public int customerId;
+    public int customerId, checklistId;
     public User user = LoginFragment.user;
     public String ohm = "";
     public String note = "";
@@ -92,7 +90,10 @@ public class NewCustomerFragment extends Fragment {
                 checkList = new CheckList(customerId, date, orderNumber,
                         installationLocation, installer, user.getId(), ohm, note,0, 0);
                 customer.setId(customerId);
-                DBController.insertIntoCheckList(checkList);
+
+                checklistId = DBController.insertIntoCheckListAndReturnId(checkList);
+                checkList.setId(checklistId);
+
                 DBController.closeConnection();
 
                 //ChangeScene

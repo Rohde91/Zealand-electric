@@ -19,7 +19,7 @@ public class LoginFragmentTest extends TestCase {
         User user = new User("marc572m","1234");
         DBController trylogin = new DBController();
         DBController.connectToDatabase();
-        User rs = trylogin.TryUserLogin("marc572m","1234");
+        User rs = trylogin.tryUserLogin("marc572m","1234");
         assertEquals(rs,user);
         DBController.closeConnection();
     }

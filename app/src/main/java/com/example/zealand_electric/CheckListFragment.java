@@ -11,7 +11,6 @@ import android.widget.ExpandableListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -19,7 +18,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class checkList extends Fragment {
+import entities.Check_box_Object;
+
+public class CheckListFragment extends Fragment {
 
     ExpandableListViewAdapter listViewAdapter;
     ExpandableListView expandableListView;
@@ -65,7 +66,7 @@ public class checkList extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        NavHostFragment.findNavController(checkList.this)
+                        NavHostFragment.findNavController(CheckListFragment.this)
                                 .navigate(R.id.action_checkList_to_mainMenu);
                     }
                 });
@@ -125,7 +126,7 @@ public class checkList extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    NavHostFragment.findNavController(checkList.this)
+                    NavHostFragment.findNavController(CheckListFragment.this)
                             .navigate(R.id.action_checkList_to_mainMenu);
                 }
             });
@@ -158,7 +159,7 @@ public class checkList extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        NavHostFragment.findNavController(checkList.this)
+                        NavHostFragment.findNavController(CheckListFragment.this)
                                 .navigate(R.id.action_checkList_to_fragment_TabelCheck);
                     }
                 });
