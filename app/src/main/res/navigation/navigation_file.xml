@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/checkList"
         android:label="check_List"
-        android:name="com.example.zealand_electric.checkList"
+        android:name="com.example.zealand_electric.CheckListFragment"
         tools:layout="@layout/fragment_check_list">
         <action
             android:id="@+id/action_checkList_to_fragment_TabelCheck"

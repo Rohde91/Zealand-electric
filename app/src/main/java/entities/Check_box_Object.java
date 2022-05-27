@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package entities;
 
 public class Check_box_Object {
     private int category_position;

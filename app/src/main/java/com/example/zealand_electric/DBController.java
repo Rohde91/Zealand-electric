@@ -1,18 +1,15 @@
 package com.example.zealand_electric;
 
-import android.widget.EditText;
-
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import entities.CheckList;
+import entities.Check_box_Object;
 import entities.Customer;
 import entities.User;
 
@@ -81,7 +78,7 @@ public class DBController {
     }
 
 
-    public User TryUserLogin (String username, String password) {
+    public User tryUserLogin(String username, String password) {
         String sql;
         //String userRole = userRole(username);
         connectToDatabase();
@@ -176,7 +173,8 @@ public class DBController {
 
     }
 
-    public static void insertIntoCheckList(CheckList checkList){
+    public static int insertIntoCheckListAndReturnId(CheckList checkList){
+        int result = -1;
 
         String mySQL = "INSERT INTO checklist (fk_customerId, date, caseNumber, installationLocation, installer, fk_userId, crossOhm, installationNote, checklistComplete,checklistConfirmed)" +
                 "VALUES ('" + checkList.getFk_customerId() +
@@ -192,6 +190,30 @@ public class DBController {
         try{
 
             Statement statement = connection.createStatement();
+            statement.execute(mySQL,Statement.RETURN_GENERATED_KEYS);
+            ResultSet rs = statement.getGeneratedKeys();
+            if(rs.next()){
+                result=rs.getInt(1);
+            }
+            rs.close();
+            statement.close();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static void insertIntoCheckListRow (int checklistId, int fk_questionId, int fk_valueId,String documentationImage, String notes, int fk_userid){
+
+        String mySQL = "INSERT INTO checklistrow (fk_checklistId, fk_questionId, fk_valueId, documentationImage, notes, fk_userId) " +
+                "VALUES ('" + checklistId + "','" + fk_questionId +
+                "','"  + fk_valueId + "','" + documentationImage + "','"+
+                notes + "','"  + fk_userid + "')" ;
+
+        try{
+
+            Statement statement = connection.createStatement();
 
             statement.execute(mySQL);
 
@@ -202,9 +224,76 @@ public class DBController {
 
     }
 
-    public static void insertIntoCheckListRow (ArrayList<Check_box_Object> list ,int fk_customerId,int checkList_Id){
+    public static void insertIntoCircuitDetails(int fk_checklist, String groupName, String ob,
+                                                String characteristics, String crossSection, String maxOb, String zS, String rA, String ohm, String isolation){
+        String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, ob, characteristics, crossSection, maxOb, zS, rA, ohm, isolation) " +
+                "VALUES ('" + fk_checklist + "','" + groupName +
+                "','"  + ob + "','" + characteristics + "','"+
+                crossSection + "','"  + maxOb + "','" + zS + "','" + rA + "','" + ohm + "','" + isolation + "')" ;
+
+        try{
+
+            Statement statement = connection.createStatement();
+
+            statement.execute(mySQL);
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
 
     }
 
+    public static void insertIntoPowerDrop(int fk_checklistId, String groupName, String uPercent, String readPoint){
+        String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, uPercent, readPoint) " +
+                "VALUES ('" + fk_checklistId + "','" + groupName + "','" + uPercent + "','" + readPoint + "')" ;
+
+        try{
+
+            Statement statement = connection.createStatement();
+
+            statement.execute(mySQL);
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void insertIntoRCDTest(int fk_checklistId, String rcdRead, String sinusAoneEightZero, String sinusAcZeroFive, String pulseZero, String pulseOneEightZero, String testButton){
+        String mySQL = "INSERT INTO checklistrow (fk_checklistId, rcdRead, sinusAoneEightZero, sinusAcZeroFive, sinusAcZero, pulseZero, pulseOneEightZero, testButton) " +
+                "VALUES ('" + fk_checklistId + "','" + rcdRead + "','" + sinusAoneEightZero + "','" + sinusAcZeroFive + "','" + pulseZero + "','" + pulseOneEightZero + "','" + testButton + "')" ;
+
+        try{
+
+            Statement statement = connection.createStatement();
+
+            statement.execute(mySQL);
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void insertIntoShortCircuit(int fk_checklistId, String groupName, String ikA, String readPoint){
+        String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, ikA, readPoint) " +
+                "VALUES ('" + fk_checklistId + "','" + groupName + "','" + ikA + "','" + readPoint + "')" ;
+
+        try{
+
+            Statement statement = connection.createStatement();
+
+            statement.execute(mySQL);
+
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
 
 }
