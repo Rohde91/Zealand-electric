@@ -47,12 +47,15 @@ public class CheckListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        expandableListView =view.findViewById(R.id.eListView);
+        expandableListView = view.findViewById(R.id.eListView);
+
 
         showList();
 
+
         listViewAdapter = new ExpandableListViewAdapter(getContext(),chapterList,topicList);
         expandableListView.setAdapter(listViewAdapter);
+
 
 
         // Button Cancel
@@ -160,7 +163,7 @@ public class CheckListFragment extends Fragment {
                     @Override
                     public void run() {
                         NavHostFragment.findNavController(CheckListFragment.this)
-                                .navigate(R.id.action_checkList_to_fragment_TabelCheck);
+                                .navigate(R.id.action_checkList_to_restultTabs22);
                     }
                 });
                 /** need to send it to DataBase */
@@ -176,6 +179,7 @@ public class CheckListFragment extends Fragment {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 setExpandableListViewHeight(parent, groupPosition);
+                System.out.println(groupPosition);
                 return false;
             }
         });

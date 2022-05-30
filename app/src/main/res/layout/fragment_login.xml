@@ -33,10 +33,10 @@
         android:drawablePadding="20sp"
         android:ems="15"
         android:hint="@string/login_brugernavn"
+        android:inputType="text"
         android:padding="20sp"
         android:textColor="@color/zealandBlack"
-        android:textColorHint="@color/zealandBlack"
-        android:inputType="text" />
+        android:textColorHint="@color/zealandBlack" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordlayout"

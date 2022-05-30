@@ -46,11 +46,11 @@
         android:name="com.example.zealand_electric.CheckListFragment"
         tools:layout="@layout/fragment_check_list">
         <action
-            android:id="@+id/action_checkList_to_fragment_TabelCheck"
-            app:destination="@id/fragment_TabelCheck" />
-        <action
             android:id="@+id/action_checkList_to_mainMenu"
             app:destination="@id/mainMenu" />
+        <action
+            android:id="@+id/action_checkList_to_restultTabs22"
+            app:destination="@id/restultTabs2" />
     </fragment>
     <fragment
         android:id="@+id/confirm_Checklist"
@@ -71,12 +71,12 @@
             app:destination="@id/mainMenu" />
     </fragment>
     <fragment
-        android:id="@+id/fragment_TabelCheck"
-        android:name="com.example.zealand_electric.fragment_TabelCheck"
-        android:label="fragment__tabel_check"
-        tools:layout="@layout/fragment__tabel_check" >
+        android:id="@+id/restultTabs2"
+        android:name="com.example.zealand_electric.TabLayout.RestultTabs2"
+        android:label="fragment_restult_tabs2"
+        tools:layout="@layout/fragment_restult_tabs2" >
         <action
-            android:id="@+id/action_fragment_TabelCheck_to_checkList"
+            android:id="@+id/action_restultTabs2_to_checkList"
             app:destination="@id/checkList" />
     </fragment>
 </navigation>

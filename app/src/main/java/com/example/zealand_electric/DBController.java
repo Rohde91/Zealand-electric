@@ -77,7 +77,7 @@ public class DBController {
         return result;
     }
 
-
+    //---------------------------------------------------------------------------------------------------------------
     public User tryUserLogin(String username, String password) {
         String sql;
         //String userRole = userRole(username);
@@ -108,6 +108,7 @@ public class DBController {
         closeConnection();
         return user;
     }
+    //---------------------------------------------------------------------------------------------------------------
 
 
     public static int insertIntoCustomerTableAndReturnID(Customer customer){
@@ -131,6 +132,7 @@ public class DBController {
         }
         return result;
     }
+    //---------------------------------------------------------------------------------------------------------------
 
     public static void insertIntoUser(String fullName, String username, String password, String userRole){
 

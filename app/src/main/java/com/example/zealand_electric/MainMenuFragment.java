@@ -75,6 +75,8 @@ public class MainMenuFragment extends Fragment{
                 NavHostFragment.findNavController(MainMenuFragment.this)
                         .navigate(R.id.action_mainMenu_to_confirm_Checklist);
                 System.out.println(user.getFullName());
+                user.setId(10);
+                System.out.println(user.getId());
             }
         });
     }

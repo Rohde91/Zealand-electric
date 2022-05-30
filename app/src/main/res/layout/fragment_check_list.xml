@@ -18,14 +18,14 @@
           <ExpandableListView
               android:id="@+id/eListView"
               android:layout_width="match_parent"
-              android:layout_height="53dp"
+              android:layout_height="wrap_content"
               android:layoutDirection="rtl"
 
               />
 
           <androidx.constraintlayout.widget.ConstraintLayout
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="302dp">
 
 
                <com.google.android.material.button.MaterialButton
