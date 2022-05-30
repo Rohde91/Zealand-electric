@@ -11,14 +11,16 @@ import android.widget.ExpandableListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class checkList extends Fragment {
+import entities.Check_box_Object;
+
+public class CheckListFragment extends Fragment {
 
     ExpandableListViewAdapter listViewAdapter;
     ExpandableListView expandableListView;
@@ -60,8 +62,15 @@ public class checkList extends Fragment {
             public void onClick(View v)  {
                 //clear all check Checkbox
                 listViewAdapter.setCheckedItems_clear();
-
-                /** need to send it to DataBase an go to MainMenuFragment.java (and delete the customer there is made)*/
+                //ChangeScene
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        NavHostFragment.findNavController(CheckListFragment.this)
+                                .navigate(R.id.action_checkList_to_mainMenu);
+                    }
+                });
+                /** need to send it to DataBase.java (and delete the customer there is made)*/
             }
         });
         //Button save
@@ -72,22 +81,55 @@ public class checkList extends Fragment {
         @Override
         public void onClick(View v) {
 
-            ArrayList<Object> checked_box_list = new ArrayList<Object>();
+            ArrayList<Check_box_Object> checked_box_list = new ArrayList<Check_box_Object>();
 
             //forLoop get the Hashset's and send it to array  in objekt
             // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_yes()) {
-                //make a Ojekt and add it to arraylist
-                checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1));
-            }
+                for (int i = 0; i <listViewAdapter.getNote().size() ; i++) {
+                    // make a Ojekt and add it to arraylist with note
+                    if (it.first.intValue()==listViewAdapter.getNote().get(i).getCategory_position()&&it.second.intValue()==listViewAdapter.getNote().get(i).getQuestion_position()){
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1,listViewAdapter.getNote().get(i).getNote()));
+                    } else{
+                        //make a Ojekt and add it to arraylist without note
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1));
+                    }
+                }
+
+            }//forLoop get the Hashset's and send it to array  in objekt
+            // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_No()) {
-                //make a Ojekt and add it to arraylist
-                checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2));
-            }
+                for (int i = 0; i <listViewAdapter.getNote().size() ; i++) {
+                    // make a Ojekt and add it to arraylist with note
+                    if (it.first.intValue()==listViewAdapter.getNote().get(i).getCategory_position()&&it.second.intValue()==listViewAdapter.getNote().get(i).getQuestion_position()){
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2,listViewAdapter.getNote().get(i).getNote()));
+                    }else {
+                        //make a Ojekt and add it to arraylist without note
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2));
+                    }
+                }
+
+            }//forLoop get the Hashset's and send it to array  in objekt
+            // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_Not_relevant()) {
-                //make a Ojekt and add it to arraylist
-                checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
+                for (int i = 0; i <listViewAdapter.getNote().size() ; i++) {
+                    // make a Ojekt and add it to arraylist with note
+                    if (it.first.intValue()==listViewAdapter.getNote().get(i).getCategory_position()&&it.second.intValue()==listViewAdapter.getNote().get(i).getQuestion_position()){
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,listViewAdapter.getNote().get(i).getNote()));
+                    }else{
+                        //make a Ojekt and add it to arraylist without note
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
+                    }
+                }
             }
+            //ChangeScene
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    NavHostFragment.findNavController(CheckListFragment.this)
+                            .navigate(R.id.action_checkList_to_mainMenu);
+                }
+            });
 
             /** need to send it to DataBase an go to MainMenuFragment.java*/
         }});
@@ -113,7 +155,15 @@ public class checkList extends Fragment {
                     //make a Ojekt and add it to arraylist
                     checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
                 }
-                /** need to send it to DataBase and go to Next side */
+                //ChangeScene
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        NavHostFragment.findNavController(CheckListFragment.this)
+                                .navigate(R.id.action_checkList_to_fragment_TabelCheck);
+                    }
+                });
+                /** need to send it to DataBase */
             }
         });
 

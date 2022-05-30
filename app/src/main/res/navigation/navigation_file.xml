@@ -43,8 +43,15 @@
     <fragment
         android:id="@+id/checkList"
         android:label="check_List"
-        android:name="com.example.zealand_electric.checkList"
-        tools:layout="@layout/fragment_check_list"/>
+        android:name="com.example.zealand_electric.CheckListFragment"
+        tools:layout="@layout/fragment_check_list">
+        <action
+            android:id="@+id/action_checkList_to_fragment_TabelCheck"
+            app:destination="@id/fragment_TabelCheck" />
+        <action
+            android:id="@+id/action_checkList_to_mainMenu"
+            app:destination="@id/mainMenu" />
+    </fragment>
     <fragment
         android:id="@+id/confirm_Checklist"
         android:name="com.example.zealand_electric.confirm_ChecklistFragment"
@@ -67,5 +74,9 @@
         android:id="@+id/fragment_TabelCheck"
         android:name="com.example.zealand_electric.fragment_TabelCheck"
         android:label="fragment__tabel_check"
-        tools:layout="@layout/fragment__tabel_check" />
+        tools:layout="@layout/fragment__tabel_check" >
+        <action
+            android:id="@+id/action_fragment_TabelCheck_to_checkList"
+            app:destination="@id/checkList" />
+    </fragment>
 </navigation>

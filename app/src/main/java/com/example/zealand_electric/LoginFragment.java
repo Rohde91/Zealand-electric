@@ -1,24 +1,17 @@
 package com.example.zealand_electric;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.text.Editable;
-import android.text.style.BackgroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.android.material.textfield.TextInputEditText;
-
-import java.sql.Statement;
 
 import entities.User;
 
@@ -46,7 +39,7 @@ public class LoginFragment extends Fragment {
         loginButton = view.findViewById(R.id.loginButton);
         loginButton.setOnClickListener(v -> new Thread(() -> {
 
-            DBController.connectToDatabase();
+
 
             EditText username = view.findViewById(R.id.username);
             EditText password = view.findViewById(R.id.password);
@@ -55,9 +48,8 @@ public class LoginFragment extends Fragment {
             String loginPassword = password.getText().toString();
 
             DBController tryLogin = new DBController();
-            user = tryLogin.TryUserLogin(loginUsername, loginPassword);
+            user = tryLogin.tryUserLogin(loginUsername, loginPassword);
 
-            DBController.closeConnection();
 
             if (user != null){
                 getActivity().runOnUiThread(new Runnable() {
@@ -81,6 +73,11 @@ public class LoginFragment extends Fragment {
 
 
         }).start());
+    }
+
+    int sum(int a, int b){
+        return a+b;
+
     }
 
     @Override

@@ -1,11 +1,9 @@
 package com.example.zealand_electric;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -20,16 +18,20 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.time.LocalDate;
 
+import entities.CheckList;
 import entities.Customer;
 import entities.User;
 
 
 public class NewCustomerFragment extends Fragment {
+    public static CheckList checkList;
 
     public String customerName, customerAdress, customerZipCode, orderNumber, installationLocation, installer;
     public Customer customer;
-    public int customerId;
+    public int customerId, checklistId;
     public User user = LoginFragment.user;
+    public String ohm = "";
+    public String note = "";
     @SuppressLint("NewApi")
     public static LocalDate date = LocalDate.now();
 
@@ -84,8 +86,14 @@ public class NewCustomerFragment extends Fragment {
 
                 DBController.connectToDatabase();
                 customerId = DBController.insertIntoCustomerTableAndReturnID(customer);
-                DBController.insertIntoCheckList(customerId, date, orderNumber,
-                        installationLocation, installer, user.getId(), 0, 0);
+
+                checkList = new CheckList(customerId, date, orderNumber,
+                        installationLocation, installer, user.getId(), ohm, note,0, 0);
+                customer.setId(customerId);
+
+                checklistId = DBController.insertIntoCheckListAndReturnId(checkList);
+                checkList.setId(checklistId);
+
                 DBController.closeConnection();
 
                 //ChangeScene

@@ -1,18 +1,26 @@
 package com.example.zealand_electric;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.text.InputType;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import entities.Check_box_Object;
 
 public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
 
@@ -23,6 +31,8 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     private final Set<Pair<Long, Long>> checkedItems_yes = new HashSet<Pair<Long, Long>>();
     private final Set<Pair<Long, Long>> checkedItems_No  = new HashSet<Pair<Long, Long>>();
     private final Set<Pair<Long, Long>> checkedItems_Not_relevant = new HashSet<Pair<Long, Long>>();
+    //note object arrayList
+    private final ArrayList<Check_box_Object> Note =new ArrayList<Check_box_Object>();
 
     public ExpandableListViewAdapter(Context context, List<String> chapterList, HashMap<String, List<String>> topicList) {
         this.context = context;
@@ -177,7 +187,75 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
             }
         });
 //____________________________________________________________
+//      POpUP Funktion to Note's
+        final ImageButton note_button = (ImageButton) convertView.findViewById(R.id.button_note);
+        // set the position
+        note_button.setTag(tag);
 
+        //button click
+        note_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                final ImageButton b_note =(ImageButton) v;
+                final Pair<Long, Long> tag = (Pair<Long, Long>) v.getTag();
+                // create popUp
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                // skriv title
+                builder.setTitle("Skriv note her");
+                // Set up the input felt (EditeText)
+                final EditText input = new EditText(v.getContext());
+               // set text in if has text
+                for (int i = 0; i <Note.size() ; i++) {
+                    if (tag.first.intValue()==Note.get(i).getCategory_position()&& tag.second.intValue()==Note.get(i).getQuestion_position()){
+                        input.setText(Note.get(i).getNote());
+                    }
+                }
+// Specify the type of input expected; this, for example, sets the input as a NormalText insteds of mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+
+                builder.setView(input);
+// Set up the buttons for ok
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+
+                    public void onClick(DialogInterface dialog, int which) {
+                        //get text from input
+                        String note_Text = input.getText().toString();
+                        //remove old Objebt
+                        for (int i = 0; i <Note.size() ; i++) {
+                            if (tag.first.intValue()==Note.get(i).getCategory_position()&&tag.second.intValue()==Note.get(i).getQuestion_position()){
+                                Note.remove(i);
+
+                            }
+                        }
+                        // don't make an Object of nothing
+                        if (note_Text.equals("")){
+
+                        }else {
+                            //new Object with Position and Text
+                            Check_box_Object button_note = new Check_box_Object(tag.first.intValue(), tag.second.intValue(), note_Text);
+                            //add to an arraylist
+                            Note.add(button_note);
+                        }
+                        System.out.println(Note);
+                    }
+
+                });
+// Set up the buttons for cancel
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // cancel note
+                        dialog.cancel();
+
+                    }
+                });
+                //show popUP
+                builder.show();
+            }});
+//____________________________________________________________
         return convertView;
     }
 
@@ -197,10 +275,15 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         checkedItems_yes.clear();
         checkedItems_No.clear();
         checkedItems_Not_relevant.clear();
+        Note.clear();
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
+    }
+
+    public ArrayList<Check_box_Object> getNote() {
+        return Note;
     }
 }
