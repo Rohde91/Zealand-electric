@@ -24,6 +24,7 @@ public class Customer {
         this.customerAdress = customerAdress;
         this.fk_zipCode = fk_zipCode;
     }
+    public Customer(String customerName, String customerAdress, String fk_zipCode) {
 
 
     //used in newCstomerFragment to create a new customer, doesn't need id because it will auto increment

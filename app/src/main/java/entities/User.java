@@ -7,13 +7,11 @@ public class User {
     protected String username;
     protected String password;
     protected String userRole;
-    public User() {}
 
     public User(String username, String password){
         this.username = username;
         this.password = password;
     }
-
 
     //constructor to create a new user
     public User(int id, String fullName, String username, String password, String userRole){
@@ -23,13 +21,6 @@ public class User {
         this.password = password;
         this.userRole = userRole;
     }
-
-
-
-
-
-
-
 
 
     public int getId() { return id; }

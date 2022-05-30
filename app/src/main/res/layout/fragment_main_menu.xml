@@ -88,26 +88,15 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/Checklist1Button"
+                    android:id="@+id/openCaseButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/zealandBlack"
 
                     android:clickable="true"
                     android:padding="10sp"
-                    android:text="@string/checklistbutton1"
                     android:textColor="@color/zealandYellow" />
 
-                <Button
-                    android:id="@+id/Checklist2Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/zealandBlack"
-
-                    android:clickable="true"
-                    android:padding="10sp"
-                    android:text="@string/checklistbutton2"
-                    android:textColor="@color/zealandYellow" />
             </LinearLayout>
         </ScrollView>
 

@@ -29,6 +29,13 @@ public class CheckList {
         this.checklistConfirmed = checklistConfirmed;
     }
 
+    public CheckList(int id, int fk_customerId, int fk_userId, Integer checklistComplete){
+        this.id = id;
+        this.fk_customerId = fk_customerId;
+        this.fk_userId = fk_userId;
+        this.checklistComplete = checklistComplete;
+    }
+
     public CheckList(int fk_customerId, LocalDate date, String caseNumber, String installationLocation, String installer, int fk_userId, String crossOhm, String installationNote, Integer checklistComplete, Integer checklistConfirmed) {
         this.fk_customerId = fk_customerId;
         this.date = date;
@@ -40,6 +47,10 @@ public class CheckList {
         this.installationNote = installationNote;
         this.checklistComplete = checklistComplete;
         this.checklistConfirmed = checklistConfirmed;
+    }
+
+    public CheckList() {
+
     }
 
     public int getFk_customerId() {
