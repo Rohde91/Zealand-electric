@@ -188,6 +188,7 @@ public static ArrayList<CheckList> openChecklist(){
         closeConnection();
         return user;
     }
+    //---------------------------------------------------------------------------------------------------------------
 
 
     public void openCheckilsts(){
@@ -215,6 +216,7 @@ public static ArrayList<CheckList> openChecklist(){
         }
         return result;
     }
+    //---------------------------------------------------------------------------------------------------------------
 
     public static void insertIntoUser(String fullName, String username, String password, String userRole){
 
@@ -288,12 +290,12 @@ public static ArrayList<CheckList> openChecklist(){
         return result;
     }
 
-    public static void insertIntoCheckListRow (int checklistId, int fk_questionId, int fk_valueId,String documentationImage, String notes, int fk_userid){
+    public static void insertIntoCheckListRow (int checklistId, int fk_questionId, int fk_valueId,String documentationImage, String notes, int fk_userid,int category_position){
 
-        String mySQL = "INSERT INTO checklistrow (fk_checklistId, fk_questionId, fk_valueId, documentationImage, notes, fk_userId) " +
+        String mySQL = "INSERT INTO checklistrow (fk_checklistId, fk_questionId, fk_valueId, documentationImage, notes, fk_userId, category_position) " +
                 "VALUES ('" + checklistId + "','" + fk_questionId +
                 "','"  + fk_valueId + "','" + documentationImage + "','"+
-                notes + "','"  + fk_userid + "')" ;
+                notes + "','"  + fk_userid +"','"+ category_position + "')" ;
 
         try{
 

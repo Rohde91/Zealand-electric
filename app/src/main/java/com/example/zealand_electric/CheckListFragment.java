@@ -47,12 +47,15 @@ public class CheckListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        expandableListView =view.findViewById(R.id.eListView);
+        expandableListView = view.findViewById(R.id.eListView);
+
 
         showList();
 
+
         listViewAdapter = new ExpandableListViewAdapter(getContext(),chapterList,topicList);
         expandableListView.setAdapter(listViewAdapter);
+
 
 
         // Button Cancel
@@ -77,51 +80,103 @@ public class CheckListFragment extends Fragment {
 
         Button button_save =(Button) view.findViewById(R.id.button_Gem);
      //     onClickListener
-        button_save.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
+        button_save.setOnClickListener(v -> new Thread(() -> {
+
 
             ArrayList<Check_box_Object> checked_box_list = new ArrayList<Check_box_Object>();
 
             //forLoop get the Hashset's and send it to array  in objekt
             // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_yes()) {
-                for (int i = 0; i <listViewAdapter.getNote().size() ; i++) {
+                for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
                     // make a Ojekt and add it to arraylist with note
-                    if (it.first.intValue()==listViewAdapter.getNote().get(i).getCategory_position()&&it.second.intValue()==listViewAdapter.getNote().get(i).getQuestion_position()){
-                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1,listViewAdapter.getNote().get(i).getNote()));
-                    } else{
+                    if (it.first.intValue() == listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                        it.second.intValue() == listViewAdapter.getNote_List_Object().get(i).getQuestion_position() ){
+
+                        checked_box_list.add(new Check_box_Object(
+                                it.first.hashCode(),
+                                it.second.hashCode(),
+                                1,
+                                listViewAdapter.getNote_List_Object().get(i).getNote())
+                        );
+
+                    }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                            it.first.intValue()!=listViewAdapter.getNote_List_Object().get(i).getCategory_position() &&
+                            it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position() ){
+
                         //make a Ojekt and add it to arraylist without note
-                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1));
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1,null));
+                    }else{
+
                     }
                 }
+
 
             }//forLoop get the Hashset's and send it to array  in objekt
             // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_No()) {
-                for (int i = 0; i <listViewAdapter.getNote().size() ; i++) {
+                for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
                     // make a Ojekt and add it to arraylist with note
-                    if (it.first.intValue()==listViewAdapter.getNote().get(i).getCategory_position()&&it.second.intValue()==listViewAdapter.getNote().get(i).getQuestion_position()){
-                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2,listViewAdapter.getNote().get(i).getNote()));
-                    }else {
+                    if (
+                            it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                            it.second.intValue()==listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+
+                        checked_box_list.add(new Check_box_Object(
+                                it.first.hashCode(),
+                                it.second.hashCode(),
+                                2,
+                                listViewAdapter.getNote_List_Object().get(i).getNote()));
+
+                    }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                            it.first.intValue()!=listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                            it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
                         //make a Ojekt and add it to arraylist without note
-                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2));
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2,null));
+                    }else{
+
                     }
                 }
 
             }//forLoop get the Hashset's and send it to array  in objekt
             // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_Not_relevant()) {
-                for (int i = 0; i <listViewAdapter.getNote().size() ; i++) {
+                for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
                     // make a Ojekt and add it to arraylist with note
-                    if (it.first.intValue()==listViewAdapter.getNote().get(i).getCategory_position()&&it.second.intValue()==listViewAdapter.getNote().get(i).getQuestion_position()){
-                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,listViewAdapter.getNote().get(i).getNote()));
-                    }else{
+                    if (    it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                            it.second.intValue()==listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+
+                        checked_box_list.add(new Check_box_Object(
+                                it.first.hashCode(),
+                                it.second.hashCode(),
+                                3,
+                                listViewAdapter.getNote_List_Object().get(i).getNote()));
+
+                    }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                            it.first.intValue()!=listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                            it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
                         //make a Ojekt and add it to arraylist without note
-                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,null));
+                    }else{
+
                     }
                 }
             }
+            DBController.connectToDatabase();
+            System.out.println("liste "+ checked_box_list.toString());
+            // Insert to DatabaseController
+            for (int i = 0; i <checked_box_list.size() ; i++) {
+
+                DBController.insertIntoCheckListRow(
+                                                    NewCustomerFragment.checkList.getId(),
+                                                    checked_box_list.get(i).getQuestion_position(),
+                                                    checked_box_list.get(i).getAnswerOnCheckBox(),
+                                    null,checked_box_list.get(i).getNote(),
+                                                    LoginFragment.user.getId(),
+                                                    checked_box_list.get(i).getCategory_position());
+
+            }
+            DBController.closeConnection();
+
             //ChangeScene
             getActivity().runOnUiThread(new Runnable() {
                 @Override
@@ -131,41 +186,116 @@ public class CheckListFragment extends Fragment {
                 }
             });
 
-            /** need to send it to DataBase an go to MainMenuFragment.java*/
-        }});
+            /** need image picker */
+        }).start());
+
 //      Button buttonsave_finish
         Button buttonsave_finish = (Button) view.findViewById(R.id.button_Gem_Afslut);
         //     onClickListener
-        buttonsave_finish.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayList<Object> checked_box_list = new ArrayList<Object>();
+        buttonsave_finish.setOnClickListener(v -> new Thread(() ->{
+                ArrayList<Check_box_Object> checked_box_list = new ArrayList<Check_box_Object>();
 
                 //forLoop get the Hashset's and send it to array  in objekt
                 // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
                 for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_yes()) {
-                    //make a Ojekt and add it to arraylist
-                    checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1));
-                }
+                    for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
+                        // make a Ojekt and add it to arraylist with note
+                        if (it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                                it.second.intValue()==listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+
+                            checked_box_list.add(new Check_box_Object(
+                                    it.first.hashCode(),
+                                    it.second.hashCode(),
+                                    1,
+                                    listViewAdapter.getNote_List_Object().get(i).getNote()));
+
+                        }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                                it.first.intValue()!=listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                                it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+
+                            //make a Ojekt and add it to arraylist without note
+                            checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1,null));
+                        }else{
+
+                        }
+                    }
+
+
+                }//forLoop get the Hashset's and send it to array  in objekt
+                // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
                 for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_No()) {
-                    //make a Ojekt and add it to arraylist
-                    checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2));
-                }
+                    for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
+                        // make a Ojekt and add it to arraylist with note
+                        if (it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                                it.second.intValue()==listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+
+                            checked_box_list.add(new Check_box_Object(it.first.hashCode(),
+                                    it.second.hashCode(),
+                                    2,
+                                    listViewAdapter.getNote_List_Object().get(i).getNote()));
+
+                        }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                                it.first.intValue() != listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                                it.second.intValue() != listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+
+                            //make a Ojekt and add it to arraylist without note
+                            checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2,null));
+                        }else{
+
+                        }
+                    }
+
+                }//forLoop get the Hashset's and send it to array  in objekt
+                // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
                 for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_Not_relevant()) {
-                    //make a Ojekt and add it to arraylist
-                    checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3));
+                    for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
+                        // make a Ojekt and add it to arraylist with note
+                        if (it.first.intValue() == listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                            it.second.intValue() == listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+
+                            checked_box_list.add(new Check_box_Object(
+                                    it.first.hashCode(),
+                                    it.second.hashCode(),
+                                    3,
+                                    listViewAdapter.getNote_List_Object().get(i).getNote()));
+
+                        }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                                it.first.intValue() != listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                                it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+                            //make a Ojekt and add it to arraylist without note
+                            checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,null));
+                        }else{
+
+                        }
+                    }
                 }
+                DBController.connectToDatabase();
+                System.out.println("liste "+ checked_box_list.toString());
+                // Insert to DatabaseController
+                for (int i = 0; i <checked_box_list.size() ; i++) {
+
+                    DBController.insertIntoCheckListRow(
+                            NewCustomerFragment.checkList.getId(),
+                            checked_box_list.get(i).getQuestion_position(),
+                            checked_box_list.get(i).getAnswerOnCheckBox(),
+                            null,checked_box_list.get(i).getNote(),
+                            LoginFragment.user.getId(),
+                            checked_box_list.get(i).getCategory_position());
+
+                }
+                DBController.closeConnection();
+
                 //ChangeScene
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         NavHostFragment.findNavController(CheckListFragment.this)
-                                .navigate(R.id.action_checkList_to_fragment_TabelCheck);
+                                .navigate(R.id.action_checkList_to_restultTabs22);
                     }
                 });
-                /** need to send it to DataBase */
-            }
-        });
+                /** ned image picker */
+
+        }).start());
 
 
 
@@ -176,6 +306,7 @@ public class CheckListFragment extends Fragment {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 setExpandableListViewHeight(parent, groupPosition);
+                System.out.println(groupPosition);
                 return false;
             }
         });

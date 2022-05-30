@@ -32,7 +32,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     private final Set<Pair<Long, Long>> checkedItems_No  = new HashSet<Pair<Long, Long>>();
     private final Set<Pair<Long, Long>> checkedItems_Not_relevant = new HashSet<Pair<Long, Long>>();
     //note object arrayList
-    private final ArrayList<Check_box_Object> Note =new ArrayList<Check_box_Object>();
+    private final ArrayList<Check_box_Object> Note_List_Object =new ArrayList<Check_box_Object>();
 
     public ExpandableListViewAdapter(Context context, List<String> chapterList, HashMap<String, List<String>> topicList) {
         this.context = context;
@@ -206,9 +206,9 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
                 // Set up the input felt (EditeText)
                 final EditText input = new EditText(v.getContext());
                // set text in if has text
-                for (int i = 0; i <Note.size() ; i++) {
-                    if (tag.first.intValue()==Note.get(i).getCategory_position()&& tag.second.intValue()==Note.get(i).getQuestion_position()){
-                        input.setText(Note.get(i).getNote());
+                for (int i = 0; i < Note_List_Object.size() ; i++) {
+                    if (tag.first.intValue()== Note_List_Object.get(i).getCategory_position()&& tag.second.intValue()== Note_List_Object.get(i).getQuestion_position()){
+                        input.setText(Note_List_Object.get(i).getNote());
                     }
                 }
 // Specify the type of input expected; this, for example, sets the input as a NormalText insteds of mask the text
@@ -224,9 +224,9 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
                         //get text from input
                         String note_Text = input.getText().toString();
                         //remove old Objebt
-                        for (int i = 0; i <Note.size() ; i++) {
-                            if (tag.first.intValue()==Note.get(i).getCategory_position()&&tag.second.intValue()==Note.get(i).getQuestion_position()){
-                                Note.remove(i);
+                        for (int i = 0; i < Note_List_Object.size() ; i++) {
+                            if (tag.first.intValue()== Note_List_Object.get(i).getCategory_position()&&tag.second.intValue()== Note_List_Object.get(i).getQuestion_position()){
+                                Note_List_Object.remove(i);
 
                             }
                         }
@@ -237,9 +237,9 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
                             //new Object with Position and Text
                             Check_box_Object button_note = new Check_box_Object(tag.first.intValue(), tag.second.intValue(), note_Text);
                             //add to an arraylist
-                            Note.add(button_note);
+                            Note_List_Object.add(button_note);
                         }
-                        System.out.println(Note);
+
                     }
 
                 });
@@ -275,7 +275,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         checkedItems_yes.clear();
         checkedItems_No.clear();
         checkedItems_Not_relevant.clear();
-        Note.clear();
+        Note_List_Object.clear();
     }
 
     @Override
@@ -283,7 +283,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         return true;
     }
 
-    public ArrayList<Check_box_Object> getNote() {
-        return Note;
+    public ArrayList<Check_box_Object> getNote_List_Object() {
+        return Note_List_Object;
     }
 }
