@@ -163,7 +163,7 @@ public class CheckListFragment extends Fragment {
                     @Override
                     public void run() {
                         NavHostFragment.findNavController(CheckListFragment.this)
-                                .navigate(R.id.action_checkList_to_fragment_TabelCheck);
+                                .navigate(R.id.action_checkList_to_restultTabs22);
                     }
                 });
                 /** need to send it to DataBase */
