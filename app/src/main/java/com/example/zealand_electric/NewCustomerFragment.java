@@ -27,14 +27,13 @@ public class NewCustomerFragment extends Fragment {
     public static CheckList checkList;
 
     public String customerName, customerAdress, customerZipCode, orderNumber, installationLocation, installer;
-    public Customer customer;
+    public static Customer customer= null;
     public int customerId, checklistId;
     public User user = LoginFragment.user;
     public String ohm = "";
     public String note = "";
     @SuppressLint("NewApi")
     public static LocalDate date = LocalDate.now();
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +68,9 @@ public class NewCustomerFragment extends Fragment {
             installationLocation = getInstallationlocation.getText().toString();
             installer = getInstaller.getText().toString();
 
+            Customer customer = new Customer(customerName,customerAdress,customerZipCode);
+            Customer customer1 = new Customer("TestMarcus","TestAdress","555");
+
             //InsertData into DB
 
             if(TextUtils.isEmpty(customerName)|| TextUtils.isEmpty(customerAdress)
@@ -84,7 +86,7 @@ public class NewCustomerFragment extends Fragment {
 
                 customer = new Customer(customerName, customerAdress, customerZipCode);
 
-                DBController.connectToDatabase();
+               /* DBController.connectToDatabase();
                 customerId = DBController.insertIntoCustomerTableAndReturnID(customer);
 
                 checkList = new CheckList(customerId, date, orderNumber,
@@ -94,14 +96,17 @@ public class NewCustomerFragment extends Fragment {
                 checklistId = DBController.insertIntoCheckListAndReturnId(checkList);
                 checkList.setId(checklistId);
 
-                DBController.closeConnection();
+                DBController.closeConnection();*/
 
-                //ChangeScene
+                //ChangeScene to checklist
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         NavHostFragment.findNavController(NewCustomerFragment.this)
-                                .navigate(R.id.action_newCustomerFragment_to_checkList);
+                                .navigate(R.id.action_newCustomerFragment_to_restultTabs2);
+                    System.out.println("udskriv customer");
+
+
                     }
                 });
             }
