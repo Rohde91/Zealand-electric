@@ -10,10 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
+import java.sql.SQLException;
 import java.util.Objects;
 
+import entities.CheckList;
 import entities.User;
 
 
@@ -39,8 +40,10 @@ public class MainMenuFragment extends Fragment{
         Button createChecklist = view.findViewById(R.id.CreateChecklistButton);
         Button ConfirmChecklistButton = view.findViewById(R.id.ConfirmChecklistButton);
         Button addWorkerButton = view.findViewById(R.id.AddWorkerButton);
+        Button openChecklist = view.findViewById(R.id.openCaseButton);
 
         String UserRole = user.getUserRole();
+
 
 
         if (Objects.equals(UserRole, "Lærer")) {
@@ -51,8 +54,8 @@ public class MainMenuFragment extends Fragment{
         else {
             ConfirmChecklistButton.setVisibility(View.GONE);
             addWorkerButton.setVisibility(View.GONE);
-            System.out.println("didn't read if");
         }
+
         addWorkerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,14 +63,6 @@ public class MainMenuFragment extends Fragment{
                         .navigate(R.id.action_mainMenu_to_addUserFragment);
             }
         });
-
-        createChecklist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NavHostFragment.findNavController(MainMenuFragment.this)
-                        .navigate(R.id.action_mainMenu_to_newCustomerFragment);
-                 }
-       });
 
         ConfirmChecklistButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,11 +72,42 @@ public class MainMenuFragment extends Fragment{
                 System.out.println(user.getFullName());
             }
         });
+
+        createChecklist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavHostFragment.findNavController(MainMenuFragment.this)
+                        .navigate(R.id.action_mainMenu_to_newCustomerFragment);
+                //newCustomerFragment leads to checklist creation
+                 }
+       });
+
+        openChecklist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //TODO sæt navigation
+                /*NavHostFragment.findNavController(MainMenuFragment.this)
+                        .navigate(R.id.);*/
+                //DBController.openChecklist();
+                System.out.println("Knap klikkes");
+
+            }
+        });
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         //  binding = null;
+    }
+
+    CheckList checkList = new CheckList(1, 1, 1,0);
+    // int id, int fk_customerId, int fk_userId, Integer checklistComplete
+
+    public static void getOpenCaseList() throws ClassNotFoundException, SQLException{
+
+
+
+        DBController.closeConnection();
     }
 }

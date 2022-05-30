@@ -9,7 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import entities.CheckList;
-import entities.Check_box_Object;
 import entities.Customer;
 import entities.User;
 
@@ -19,17 +18,23 @@ public class DBController {
     private static String password = "";
     public static java.lang.String url;
     private static Connection connection;
+    private CheckList CheckList;
 
-    public static void connectToDatabase() {
+    //method
+
+    public static Connection connectToDatabase() {
          url = "jdbc:mysql://10.0.2.2:3306/zealandelectric";
         try {
             connection = DriverManager.getConnection(url, username, password );
+            return connection;
 
         } catch (SQLException e) {
             e.printStackTrace();
 
             }
+        return null;
     }
+
     private static volatile DBController instance;
 
     //singleton implementation
@@ -77,6 +82,81 @@ public class DBController {
         return result;
     }
 
+    public CheckList BuildCheckListObject (ResultSet rs) throws SQLException{
+
+        CheckList = null;
+
+        CheckList checklist = new CheckList();
+        while (rs.next()){
+            checklist.setId(rs.getInt("id"));
+            checklist.setFk_customerId(rs.getInt("fk_customerId"));
+            checklist.setFk_userId(rs.getInt("fk_userId"));
+            checklist.setChecklistComplete(rs.getInt("checklistComplete"));
+        }
+
+        return CheckList;
+    }
+/*
+    public static ArrayList<CheckList> openChecklist(){
+
+        ArrayList<CheckList> openCases = new ArrayList<CheckList>();
+
+        //int id, int fk_customerId, int fk_userId, Integer checklistComplete
+
+        try {
+            //String sql = "Select * From checklist WHERE fk_userid = 'user' && checklistComplete = 0";
+
+            PreparedStatement openCaseLists = connection.
+                    prepareStatement("Select * From checklist WHERE fk_userid = 'user' && checklistComplete = 0");
+            ResultSet rs = openCaseLists.executeQuery();
+            while (rs.next()){
+
+                CheckList openCaseList = new CheckList(
+                        rs.getInt("id"),
+                        rs.getInt("fk_customerId"),
+                        rs.getInt("fk_userId"),
+                        rs.getInt("checklistComplete"));
+                openCases.add(openCaseList);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return openCases;
+
+        //String sql = "Select * From checklist WHERE fk_userid = 'user' && checklistComplete = 0";
+    }
+
+ */
+
+public static ArrayList<CheckList> openChecklist(){
+
+    ArrayList<CheckList> openCases = new ArrayList<CheckList>();
+
+    try {
+        String sql = "Select * From checklist WHERE fk_userid = 'user' && checklistComplete = 0";
+
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(sql);
+
+        while (rs.next()){
+
+            CheckList openCaseList = new CheckList();
+
+                    openCaseList.setId(rs.getInt("id"));
+                    openCaseList.setFk_customerId(rs.getInt("fk_customerId"));
+                    openCaseList.setFk_userId(rs.getInt("fk_userId"));
+                    openCaseList.setChecklistComplete(rs.getInt("checklistComplete"));
+
+            openCases.add(openCaseList);
+        }
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+    return openCases;
+}
+
 
     public User tryUserLogin(String username, String password) {
         String sql;
@@ -109,6 +189,10 @@ public class DBController {
         return user;
     }
 
+
+    public void openCheckilsts(){
+
+    }
 
     public static int insertIntoCustomerTableAndReturnID(Customer customer){
         int result = -1;

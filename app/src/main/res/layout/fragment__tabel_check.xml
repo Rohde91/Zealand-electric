@@ -73,13 +73,13 @@
             android:id="@+id/Kredsdetalje_Tabel_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.202">
+            app:layout_constraintVertical_bias="0.202"
+            app:layout_constraintWidth_percent="0.9">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -204,13 +204,13 @@
             android:id="@+id/Kredsdetalje_Tabel2_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.526">
+            app:layout_constraintVertical_bias="0.526"
+            app:layout_constraintWidth_percent="0.9">
 
             <TableRow
                 android:layout_width="match_parent"
