@@ -17,7 +17,6 @@ import com.example.zealand_electric.R;
  */
 public class ShortCircuit_Current extends Fragment {
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -22,7 +22,7 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kredsdetajer" />
+                android:text="Kreds detajer" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -32,7 +32,13 @@
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kortslutning strøm" />
+                android:text="short circuit!!!!" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tabItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="spændings fald" />
         </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager.widget.ViewPager

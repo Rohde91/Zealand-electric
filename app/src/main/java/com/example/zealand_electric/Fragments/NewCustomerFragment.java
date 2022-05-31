@@ -50,6 +50,7 @@ public class NewCustomerFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_new_customer, container, false);
     }
 
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button doneBtn = view.findViewById(R.id.doneButton);
@@ -76,9 +77,13 @@ public class NewCustomerFragment extends Fragment {
 
             //InsertData into DB
 
-            if(TextUtils.isEmpty(customerName)|| TextUtils.isEmpty(customerAdress)
-                    || TextUtils.isEmpty(customerZipCode) || TextUtils.isEmpty(orderNumber) ||
-                    TextUtils.isEmpty(installationLocation) || TextUtils.isEmpty(installer)){
+            if(     TextUtils.isEmpty(customerName)||
+                    TextUtils.isEmpty(customerAdress) ||
+                    TextUtils.isEmpty(customerZipCode) ||
+                    TextUtils.isEmpty(orderNumber) ||
+                    TextUtils.isEmpty(installationLocation) ||
+                    TextUtils.isEmpty(installer))
+            {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -108,14 +113,12 @@ public class NewCustomerFragment extends Fragment {
                         NavHostFragment.findNavController(NewCustomerFragment.this)
                                 .navigate(R.id.action_newCustomerFragment_to_checkList);
                     System.out.println("udskriv customer");
-
-
                     }
                 });
             }
-
         }).start());
 
+        //anuller
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,8 +126,8 @@ public class NewCustomerFragment extends Fragment {
                         .navigate(R.id.action_newCustomerFragment_to_mainMenu);
             }
         });
+    }
 
-        }
     @Override
     public void onDestroyView() {
         super.onDestroyView();

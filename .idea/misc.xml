@@ -4,7 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/chapter_list.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment__tabel_check.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_add_user.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_check_list.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_restult_tabs2.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Marcus/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_wire_details.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/allil/StudioProjects/Zealand-electric/app/src/main/res/layout/chapter_list.xml" value="0.1" />
         <entry key="..\:/Users/allil/StudioProjects/Zealand-electric/app/src/main/res/layout/fragment__tabel_check.xml" value="0.4" />
         <entry key="..\:/Users/allil/StudioProjects/Zealand-electric/app/src/main/res/layout/fragment_add_user.xml" value="0.25416666666666665" />
@@ -13,12 +17,6 @@
         <entry key="..\:/Users/allil/StudioProjects/Zealand-electric/app/src/main/res/layout/fragment_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/allil/StudioProjects/Zealand-electric/app/src/main/res/layout/fragment_new_customer.xml" value="0.13405797101449277" />
         <entry key="..\:/Users/allil/StudioProjects/Zealand-electric/app/src/main/res/layout/topics_list.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/vupet/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment__tabel_check.xml" value="0.1248396750748183" />
-        <entry key="..\:/Users/vupet/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_add_user.xml" value="0.1248396750748183" />
-        <entry key="..\:/Users/vupet/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_check_list.xml" value="0.1248396750748183" />
-        <entry key="..\:/Users/vupet/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_confirm__checklist.xml" value="0.1248396750748183" />
-        <entry key="..\:/Users/vupet/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_login.xml" value="0.1248396750748183" />
-        <entry key="..\:/Users/vupet/AndroidStudioProjects/Zealand-electric/app/src/main/res/layout/fragment_new_customer.xml" value="0.1248396750748183" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22767703291298685" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
         <entry key="app/src/main/res/layout/chapter_list.xml" value="0.19610507246376813" />

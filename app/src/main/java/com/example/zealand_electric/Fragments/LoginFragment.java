@@ -71,14 +71,11 @@ public class LoginFragment extends Fragment {
                     }
                 });
             }
-
-
         }).start());
     }
-
+    //usertest
     int sum(int a, int b){
         return a+b;
-
     }
 
     @Override

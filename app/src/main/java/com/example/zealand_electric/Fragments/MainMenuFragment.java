@@ -28,7 +28,6 @@ public class MainMenuFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -36,7 +35,6 @@ public class MainMenuFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -49,17 +47,17 @@ public class MainMenuFragment extends Fragment{
         String UserRole = user.getUserRole();
 
 
-
         if (Objects.equals(UserRole, "Lærer")) {
 
             ConfirmChecklistButton.setVisibility(View.VISIBLE);
             addWorkerButton.setVisibility(View.VISIBLE);
         }
+
         else {
             ConfirmChecklistButton.setVisibility(View.GONE);
             addWorkerButton.setVisibility(View.GONE);
         }
-
+        //oret ny arbejder knap
         addWorkerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +66,7 @@ public class MainMenuFragment extends Fragment{
             }
         });
 
+        //godkend checklist
         ConfirmChecklistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,6 +76,7 @@ public class MainMenuFragment extends Fragment{
             }
         });
 
+        //opret checklist
         createChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +86,7 @@ public class MainMenuFragment extends Fragment{
                  }
        });
 
+        //checklister
         openChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
