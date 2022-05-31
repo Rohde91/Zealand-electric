@@ -2,6 +2,8 @@ package com.example.zealand_electric;
 
 import android.os.Environment;
 
+import com.example.zealand_electric.Controllers.DBController;
+import com.example.zealand_electric.Fragments.LoginFragment;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;

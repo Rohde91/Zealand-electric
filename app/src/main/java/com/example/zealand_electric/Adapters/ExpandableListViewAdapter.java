@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package com.example.zealand_electric.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -13,6 +13,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.example.zealand_electric.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

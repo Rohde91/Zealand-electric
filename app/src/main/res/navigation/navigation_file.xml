@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.zealand_electric.LoginFragment"
+        android:name="com.example.zealand_electric.Fragments.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainMenu"
-        android:name="com.example.zealand_electric.MainMenuFragment"
+        android:name="com.example.zealand_electric.Fragments.MainMenuFragment"
         android:label="fragment_main_menu"
         tools:layout="@layout/fragment_main_menu" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/newCustomerFragment"
-        android:name="com.example.zealand_electric.NewCustomerFragment"
+        android:name="com.example.zealand_electric.Fragments.NewCustomerFragment"
         android:label="fragment_new_customer"
         tools:layout="@layout/fragment_new_customer" >
         <action
@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/checkList"
         android:label="check_List"
-        android:name="com.example.zealand_electric.CheckListFragment"
+        android:name="com.example.zealand_electric.Fragments.CheckListFragment"
         tools:layout="@layout/fragment_check_list">
         <action
             android:id="@+id/action_checkList_to_mainMenu"
@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/confirm_Checklist"
-        android:name="com.example.zealand_electric.confirm_ChecklistFragment"
+        android:name="com.example.zealand_electric.Fragments.CheckListConfrimFragment"
         android:label="fragment_confirm__checklist"
         tools:layout="@layout/fragment_confirm__checklist" >
         <action
@@ -63,7 +63,7 @@
     </fragment>
     <fragment
         android:id="@+id/addUserFragment"
-        android:name="com.example.zealand_electric.AddUserFragment"
+        android:name="com.example.zealand_electric.Fragments.AddUserFragment"
         android:label="fragment_add_user"
         tools:layout="@layout/fragment_add_user" >
         <action

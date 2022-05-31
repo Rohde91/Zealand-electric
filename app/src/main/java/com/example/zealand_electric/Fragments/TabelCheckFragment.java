@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package com.example.zealand_electric.Fragments;
 
 import android.os.Bundle;
 
@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.zealand_electric.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link fragment_TabelCheck#newInstance} factory method to
+ * Use the {@link TabelCheckFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragment_TabelCheck extends Fragment {
+public class TabelCheckFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +29,7 @@ public class fragment_TabelCheck extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public fragment_TabelCheck() {
+    public TabelCheckFragment() {
         // Required empty public constructor
     }
 
@@ -40,8 +42,8 @@ public class fragment_TabelCheck extends Fragment {
      * @return A new instance of fragment fragment_TabelCheck.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragment_TabelCheck newInstance(String param1, String param2) {
-        fragment_TabelCheck fragment = new fragment_TabelCheck();
+    public static TabelCheckFragment newInstance(String param1, String param2) {
+        TabelCheckFragment fragment = new TabelCheckFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

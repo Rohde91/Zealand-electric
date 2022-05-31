@@ -1,5 +1,7 @@
 package com.example.zealand_electric;
 
+import com.example.zealand_electric.Controllers.DBController;
+
 import junit.framework.TestCase;
 
 public class DBControllerTest extends TestCase {
