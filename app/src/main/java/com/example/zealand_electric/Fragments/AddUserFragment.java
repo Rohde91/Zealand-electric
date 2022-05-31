@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package com.example.zealand_electric.Fragments;
 
 import android.os.Bundle;
 
@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.Locale;
+import com.example.zealand_electric.Controllers.DBController;
+import com.example.zealand_electric.R;
 
-import entities.User;
+import java.util.Locale;
 
 
 public class AddUserFragment extends Fragment  {
@@ -71,25 +73,37 @@ public class AddUserFragment extends Fragment  {
             passwordtxt = password.getText().toString();
             roletxt = role.getSelectedItem().toString();
 
-            //InsertData into DB / add user
+            //Check if the edittext is empty if empty make toast else insert data to db and change scene
+            if(TextUtils.isEmpty(fullNametxt)|| TextUtils.isEmpty(usernametxt) || TextUtils.isEmpty(passwordtxt)){
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "Du mangler at udfylde felterne", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
 
 
-            /*DBController.connectToDatabase();
+            }else{
+                //InsertData into DB / add user
+                DBController.connectToDatabase();
 
-            DBController.insertIntoUser(fullNametxt,usernametxt.toLowerCase(Locale.ROOT),passwordtxt,roletxt);
+                DBController.insertIntoUser(fullNametxt, usernametxt.toLowerCase(Locale.ROOT), passwordtxt, roletxt);
 
-            DBController.closeConnection();*/
+                DBController.closeConnection();
 
-            //ChangeScene and make Toast
+                //Change scene and make Toast
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getActivity(), "Ny bruger oprettet", Toast.LENGTH_SHORT).show();
+                        NavHostFragment.findNavController(AddUserFragment.this)
+                                .navigate(R.id.action_addUserFragment_to_mainMenu);
+                    }
+                });
 
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(getActivity(), "Ny bruger oprettet", Toast.LENGTH_SHORT).show();
-                    NavHostFragment.findNavController(AddUserFragment.this)
-                            .navigate(R.id.action_addUserFragment_to_mainMenu);
-                }
-            });
+            }
+
 
 
 

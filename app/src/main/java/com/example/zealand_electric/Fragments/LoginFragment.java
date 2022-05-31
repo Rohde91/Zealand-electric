@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package com.example.zealand_electric.Fragments;
 
 import android.os.Bundle;
 
@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.zealand_electric.Controllers.DBController;
+import com.example.zealand_electric.R;
 
 import entities.User;
 

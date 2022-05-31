@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package com.example.zealand_electric.Fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.zealand_electric.Controllers.DBController;
+import com.example.zealand_electric.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.time.LocalDate;
@@ -86,7 +88,7 @@ public class NewCustomerFragment extends Fragment {
 
                 customer = new Customer(customerName, customerAdress, customerZipCode);
 
-               /* DBController.connectToDatabase();
+                DBController.connectToDatabase();
                 customerId = DBController.insertIntoCustomerTableAndReturnID(customer);
 
                 checkList = new CheckList(customerId, date, orderNumber,
@@ -96,7 +98,7 @@ public class NewCustomerFragment extends Fragment {
                 checklistId = DBController.insertIntoCheckListAndReturnId(checkList);
                 checkList.setId(checklistId);
 
-                DBController.closeConnection();*/
+                DBController.closeConnection();
 
                 //ChangeScene to checklist
                 getActivity().runOnUiThread(new Runnable() {

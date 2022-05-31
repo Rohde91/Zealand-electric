@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package com.example.zealand_electric.Fragments;
 
 import android.os.Bundle;
 
@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.zealand_electric.Controllers.DBController;
+import com.example.zealand_electric.R;
 
 import java.sql.SQLException;
 import java.util.Objects;

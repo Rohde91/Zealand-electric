@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package com.example.zealand_electric.Fragments;
 
 import android.os.Bundle;
 
@@ -11,12 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.zealand_electric.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link confirm_ChecklistFragment#newInstance} factory method to
+ * Use the {@link CheckListConfrimFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class confirm_ChecklistFragment extends Fragment {
+public class CheckListConfrimFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +29,7 @@ public class confirm_ChecklistFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public confirm_ChecklistFragment() {
+    public CheckListConfrimFragment() {
         // Required empty public constructor
     }
 
@@ -40,8 +42,8 @@ public class confirm_ChecklistFragment extends Fragment {
      * @return A new instance of fragment confirm_Checklist.
      */
     // TODO: Rename and change types and number of parameters
-    public static confirm_ChecklistFragment newInstance(String param1, String param2) {
-        confirm_ChecklistFragment fragment = new confirm_ChecklistFragment();
+    public static CheckListConfrimFragment newInstance(String param1, String param2) {
+        CheckListConfrimFragment fragment = new CheckListConfrimFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -73,7 +75,7 @@ public class confirm_ChecklistFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-                NavHostFragment.findNavController(confirm_ChecklistFragment.this)
+                NavHostFragment.findNavController(CheckListConfrimFragment.this)
                         .navigate(R.id.action_confirm_Checklist_to_mainMenu);
             }
         });

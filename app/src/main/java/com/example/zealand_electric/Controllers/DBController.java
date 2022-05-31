@@ -1,4 +1,4 @@
-package com.example.zealand_electric;
+package com.example.zealand_electric.Controllers;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -293,9 +293,12 @@ public static ArrayList<CheckList> openChecklist(){
     public static void insertIntoCheckListRow (int checklistId, int fk_questionId, int fk_valueId,String documentationImage, String notes, int fk_userid,int category_position){
 
         String mySQL = "INSERT INTO checklistrow (fk_checklistId, fk_questionId, fk_valueId, documentationImage, notes, fk_userId, category_position) " +
-                "VALUES ('" + checklistId + "','" + fk_questionId +
-                "','"  + fk_valueId + "','" + documentationImage + "','"+
-                notes + "','"  + fk_userid +"','"+ category_position + "')" ;
+                "VALUES ('" + checklistId +
+                "','" + fk_questionId +
+                "','"  + fk_valueId +
+                "','" + documentationImage +
+                "','"+ notes +
+                "','"  + fk_userid +"','"+ category_position + "')" ;
 
         try{
 

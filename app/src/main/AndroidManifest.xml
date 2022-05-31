@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Zealandelectric">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true"
        >
 
