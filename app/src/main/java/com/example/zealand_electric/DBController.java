@@ -117,6 +117,10 @@ public static ArrayList<CheckList> openChecklist(){
                     openCaseList.setChecklistComplete(rs.getInt("checklistComplete"));
 
             openCases.add(openCaseList);
+
+            for (int i = 0; i < openCases.size(); i++) {
+                
+            }
         }
 
     } catch (Exception e) {
