@@ -15,38 +15,44 @@
         android:text="Topic 3"
         app:layout_constraintRight_toLeftOf="@id/checkBox1_ja"
         app:layout_constraintStart_toStartOf="@id/topics_tv"
-        android:paddingRight="130sp"
+        android:paddingRight="180sp"
 
 
         tools:ignore="MissingConstraints" />
 
     <CheckBox
         android:id="@+id/checkBox1_ja"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-
+        android:layout_width="50dp"
+        android:layout_height="33dp"
+        android:layout_marginRight="48dp"
+        android:text="Ja"
+        android:textSize="12sp"
         app:layout_constraintRight_toRightOf="@id/checkBox2_Nej"
-        android:layout_marginRight="50sp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="-5dp" />
 
     <CheckBox
         android:id="@+id/checkBox2_Nej"
-        android:layout_width="31dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:layout_marginRight="75dp"
+        android:text="Nej"
+        android:textSize="12sp"
         app:layout_constraintRight_toRightOf="@id/checkBox3_Ikke_relevant"
-        android:layout_marginRight="50sp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="-4dp" />
 
     <CheckBox
         android:id="@+id/checkBox3_Ikke_relevant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
+        android:layout_width="70dp"
+        android:layout_height="31dp"
+        android:elegantTextHeight="true"
+        android:inputType="textMultiLine"
+        android:text="Ikke relevant"
+        android:textSize="10sp"
         app:layout_constraintRight_toRightOf="parent"
-
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="4dp" />
 
     <ImageButton
         android:id="@+id/button_note"
