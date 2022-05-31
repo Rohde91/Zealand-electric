@@ -2,17 +2,16 @@ package com.example.zealand_electric;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -67,6 +66,7 @@ public class NewCustomerFragment extends Fragment {
             orderNumber = getOrdernumber.getText().toString();
             installationLocation = getInstallationlocation.getText().toString();
             installer = getInstaller.getText().toString();
+            CreationOfPDF.CreatePDF(orderNumber);
 
             Customer customer = new Customer(customerName,customerAdress,customerZipCode);
             Customer customer1 = new Customer("TestMarcus","TestAdress","555");
@@ -121,7 +121,7 @@ public class NewCustomerFragment extends Fragment {
             }
         });
 
-        };
+        }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
