@@ -96,38 +96,6 @@ public class DBController {
 
         return CheckList;
     }
-/*
-    public static ArrayList<CheckList> openChecklist(){
-
-        ArrayList<CheckList> openCases = new ArrayList<CheckList>();
-
-        //int id, int fk_customerId, int fk_userId, Integer checklistComplete
-
-        try {
-            //String sql = "Select * From checklist WHERE fk_userid = 'user' && checklistComplete = 0";
-
-            PreparedStatement openCaseLists = connection.
-                    prepareStatement("Select * From checklist WHERE fk_userid = 'user' && checklistComplete = 0");
-            ResultSet rs = openCaseLists.executeQuery();
-            while (rs.next()){
-
-                CheckList openCaseList = new CheckList(
-                        rs.getInt("id"),
-                        rs.getInt("fk_customerId"),
-                        rs.getInt("fk_userId"),
-                        rs.getInt("checklistComplete"));
-                openCases.add(openCaseList);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return openCases;
-
-        //String sql = "Select * From checklist WHERE fk_userid = 'user' && checklistComplete = 0";
-    }
-
- */
 
 public static ArrayList<CheckList> openChecklist(){
 
