@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.io.ByteArrayOutputStream;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -85,6 +86,12 @@ public class MainMenuFragment extends Fragment{
         openChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                DBController.connectToDatabase();
+                DBController.openChecklist();
+
+                DBController.closeConnection();
+
                 //TODO sæt navigation
                 /*NavHostFragment.findNavController(MainMenuFragment.this)
                         .navigate(R.id.);*/
