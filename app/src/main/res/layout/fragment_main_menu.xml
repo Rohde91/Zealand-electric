@@ -18,10 +18,10 @@
             android:id="@+id/logoZealand"
             android:layout_width="0dp"
             android:layout_height="57dp"
-            android:layout_marginVertical="20sp"
             android:src="@drawable/zealand_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/AddWorkerButton"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_percent="0.3" />
 
 

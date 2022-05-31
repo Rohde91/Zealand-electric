@@ -30,7 +30,7 @@ public class Customer {
     public Customer(String customerName, String customerAdress, String customerZipCode) {
         this.customerName = customerName;
         this.customerAdress = customerAdress;
-        fk_zipCode = customerZipCode;
+        this.fk_zipCode = customerZipCode;
 
     }
 
