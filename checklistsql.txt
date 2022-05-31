@@ -31,10 +31,11 @@ CREATE TABLE `checklist` (
 CREATE TABLE `checklistrow` (
   `fk_checklistId` int(255) NOT NULL,
   `fk_questionId` int(100) NOT NULL,
-  `fk_valueId` int(100) NOT NULL,
-  `documentationImage` varchar(255) NOT NULL,
-  `notes` varchar(255) NOT NULL,
-  `fk_userId` int(100) NOT NULL
+  `fk_valueId` int(100) DEFAULT NULL,
+  `documentationImage` varchar(255) DEFAULT NULL,
+  `notes` varchar(255) DEFAULT NULL,
+  `fk_userId` int(100) NOT NULL,
+  `category_position` int(30) NOT NULL
 );
 
 CREATE TABLE `curcuitdetails` (
