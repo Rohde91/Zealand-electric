@@ -129,7 +129,27 @@ INSERT INTO `zipcodetable` (`zipCode`, `city`) VALUES
 (4700, 'Næstved'),
 (2610, 'Rødovre'),
 (4683, 'Rønnede'),
-(4720, 'Præstø');
+(4720, 'Præstø'),
+(800, 'Høje Taastrup'),
+(900, 'København C'),
+(1000, 'København K'),
+(1500, 'København V'),
+(1835, 'Frederiksberg C'),
+(2000, 'Frederiksberg'),
+(2100, 'København Ø'),
+(2150, 'Nordhavn'),
+(2200, 'København N'),
+(2300, 'København S'),
+(2400, 'København NV'),
+(2450, 'København SV'),
+(2500, 'Valby'),
+(2600, 'Glostrup'),
+(2605, 'Brøndby'),
+(2620, 'Albertslund'),
+(2625, 'Vallensbæk'),
+(2630, 'Taastrup'),
+(2635, 'Ishøj'),
+(2640, 'Hedehusene');
 
 ALTER TABLE `categori`
   ADD PRIMARY KEY (`id`);
