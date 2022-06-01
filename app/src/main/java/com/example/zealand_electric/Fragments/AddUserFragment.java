@@ -1,11 +1,6 @@
 package com.example.zealand_electric.Fragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.zealand_electric.Controllers.DBController;
 import com.example.zealand_electric.R;
@@ -42,7 +41,6 @@ public class AddUserFragment extends Fragment  {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_add_user, container, false);
         role = rootView.findViewById(R.id.roleSpinner);
-
         roleSpinner();
 
         return rootView;
@@ -53,7 +51,6 @@ public class AddUserFragment extends Fragment  {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, roles);
         role.setAdapter(adapter);
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -79,10 +76,8 @@ public class AddUserFragment extends Fragment  {
                     @Override
                     public void run() {
                         Toast.makeText(getActivity(), "Du mangler at udfylde felterne", Toast.LENGTH_SHORT).show();
-
                     }
                 });
-
 
             }else{
                 //InsertData into DB / add user
@@ -101,16 +96,7 @@ public class AddUserFragment extends Fragment  {
                                 .navigate(R.id.action_addUserFragment_to_mainMenu);
                     }
                 });
-
             }
-
-
-
-
         }).start());
-
-
-
-
     }
 }

@@ -226,7 +226,7 @@
         </TableLayout>
 
         <TableLayout
-            android:id="@+id/Kredsdetalje_Tabel_value"
+            android:id="@+id/Kredsdetalje_Tabel1_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

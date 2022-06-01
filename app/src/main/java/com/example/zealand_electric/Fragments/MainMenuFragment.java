@@ -1,20 +1,18 @@
 package com.example.zealand_electric.Fragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+
 import com.example.zealand_electric.Controllers.DBController;
 import com.example.zealand_electric.R;
 
-import java.io.ByteArrayOutputStream;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -28,7 +26,6 @@ public class MainMenuFragment extends Fragment{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -36,7 +33,6 @@ public class MainMenuFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main_menu, container, false);
-
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -47,6 +43,30 @@ public class MainMenuFragment extends Fragment{
         Button openChecklist = view.findViewById(R.id.openCaseButton);
 
         String UserRole = user.getUserRole();
+
+        System.out.println("new thread");
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try  {
+
+                    System.out.println("main menu conn to db");
+                    DBController.openChecklist();
+                    System.out.println("main menu conn to db over");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        thread.start();
+
+
+
+
+        System.out.println("open checklist was run");
 
 
 
@@ -80,6 +100,7 @@ public class MainMenuFragment extends Fragment{
         createChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                System.out.println("going to new Customer");
                 NavHostFragment.findNavController(MainMenuFragment.this)
                         .navigate(R.id.action_mainMenu_to_newCustomerFragment);
                 //newCustomerFragment leads to checklist creation
@@ -90,10 +111,7 @@ public class MainMenuFragment extends Fragment{
             @Override
             public void onClick(View view) {
 
-                DBController.connectToDatabase();
-                DBController.openChecklist();
 
-                DBController.closeConnection();
 
                 //TODO sæt navigation
                 /*NavHostFragment.findNavController(MainMenuFragment.this)
@@ -103,6 +121,7 @@ public class MainMenuFragment extends Fragment{
 
             }
         });
+
     }
 
     @Override
@@ -116,8 +135,5 @@ public class MainMenuFragment extends Fragment{
 
     public static void getOpenCaseList() throws ClassNotFoundException, SQLException{
 
-
-
-        DBController.closeConnection();
     }
 }
