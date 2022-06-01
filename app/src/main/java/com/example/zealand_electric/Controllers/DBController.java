@@ -1,5 +1,7 @@
 package com.example.zealand_electric.Controllers;
 
+import com.example.zealand_electric.Fragments.LoginFragment;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,25 +16,33 @@ import entities.User;
 
 public class DBController {
 
+    public static java.lang.String url;
     private static String username = "root";
     private static String password = "";
-    public static java.lang.String url;
-    private static Connection connection;
+    private static int i;
     private CheckList CheckList;
 
-    //method
 
+
+    //variable
+    private static Connection connection;
+
+    //method
     public static Connection connectToDatabase() {
-         url = "jdbc:mysql://10.0.2.2:3306/zealandelectric";
-        try {
+        System.out.println("i was = " + i + " i is now " + i + "+1");
+        i++;
+           try {
+            url = "jdbc:mysql://10.0.2.2:3306/zealandelectric";
+
             connection = DriverManager.getConnection(url, username, password );
+            System.out.println("connection linked");
             return connection;
 
         } catch (SQLException e) {
             e.printStackTrace();
-
+            System.out.println("connection failed");
+            return null;
             }
-        return null;
     }
 
     private static volatile DBController instance;
@@ -53,6 +63,9 @@ public class DBController {
 
     public static void closeConnection() {
         try {
+
+            System.out.println( "i was = " + i + " i is now " + i + "-1");
+            i--;
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,42 +110,55 @@ public class DBController {
         return CheckList;
     }
 
-public static ArrayList<CheckList> openChecklist(){
+    public static ArrayList<CheckList> openChecklist(){
 
-    ArrayList<CheckList> openCases = new ArrayList<CheckList>();
+        System.out.println("open checklist conn to db");
+        connectToDatabase();
 
-    try {
-        String sql = "Select * From checklist WHERE fk_userid = 'user' && checklistComplete = 0";
+        ArrayList<CheckList> openCases = new ArrayList<CheckList>();
+        System.out.println("new arraylist");
+        try {
+            String sql = "Select * From checklist " +
+                    "WHERE fk_userId = '" + LoginFragment.user.getId() + "' " +
+                    "AND checklistComplete = '0'";
+            System.out.println(sql);
 
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery(sql);
+            Statement statement =  connection.createStatement();
+            System.out.println("test 1.5");
 
-        while (rs.next()){
+            ResultSet rs = statement.executeQuery(sql);
+            System.out.println("test 2");
 
-            CheckList openCaseList = new CheckList();
+            while (rs.next()){
 
-                    openCaseList.setId(rs.getInt("id"));
-                    openCaseList.setFk_customerId(rs.getInt("fk_customerId"));
-                    openCaseList.setFk_userId(rs.getInt("fk_userId"));
-                    openCaseList.setChecklistComplete(rs.getInt("checklistComplete"));
+                CheckList openCaseList = new CheckList();
 
-            openCases.add(openCaseList);
+                        openCaseList.setId(rs.getInt("id"));
+                        openCaseList.setFk_customerId(rs.getInt("fk_customerId"));
+                        openCaseList.setFk_userId(rs.getInt("fk_userId"));
+                        openCaseList.setChecklistComplete(rs.getInt("checklistComplete"));
 
-            for (int i = 0; i < openCases.size(); i++) {
-                
+                openCases.add(openCaseList);
+
+                for (int i = 0; i < openCases.size(); i++) {
+                    System.out.println(i);
+                }
             }
-        }
+            closeConnection();
+            return openCases;
 
-    } catch (Exception e) {
-        e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            closeConnection();
+            return null;
+        }
     }
-    return openCases;
-}
 
 
     public User tryUserLogin(String username, String password) {
         String sql;
         //String userRole = userRole(username);
+        System.out.println("tryuserlogin conn to DB");
         connectToDatabase();
 
         User user = null;
@@ -230,6 +256,11 @@ public static ArrayList<CheckList> openChecklist(){
         return customer;
 
     }
+
+
+
+    //everything below is insert into
+    //---------------------------------------------------------------------------------------------------------------
 
     public static int insertIntoCheckListAndReturnId(CheckList checkList){
         int result = -1;

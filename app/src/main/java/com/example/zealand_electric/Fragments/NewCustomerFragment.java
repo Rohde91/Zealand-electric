@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.zealand_electric.Controllers.DBController;
-import com.example.zealand_electric.CreationOfPDF;
-import com.example.zealand_electric.R;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.zealand_electric.Controllers.DBController;
+import com.example.zealand_electric.R;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.time.LocalDate;
@@ -40,13 +39,13 @@ public class NewCustomerFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_new_customer, container, false);
     }
 
@@ -69,7 +68,7 @@ public class NewCustomerFragment extends Fragment {
             orderNumber = getOrdernumber.getText().toString();
             installationLocation = getInstallationlocation.getText().toString();
             installer = getInstaller.getText().toString();
-            CreationOfPDF.CreatePDF(orderNumber);
+            //CreationOfPDF.CreatePDF(orderNumber);
 
             Customer customer = new Customer(customerName,customerAdress,customerZipCode);
             Customer customer1 = new Customer("TestMarcus","TestAdress","555");
@@ -108,8 +107,6 @@ public class NewCustomerFragment extends Fragment {
                         NavHostFragment.findNavController(NewCustomerFragment.this)
                                 .navigate(R.id.action_newCustomerFragment_to_checkList);
                     System.out.println("udskriv customer");
-
-
                     }
                 });
             }
@@ -131,3 +128,4 @@ public class NewCustomerFragment extends Fragment {
         //  binding = null;
     }
 }
+
