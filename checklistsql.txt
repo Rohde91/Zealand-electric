@@ -131,7 +131,7 @@ INSERT INTO `zipcodetable` (`zipCode`, `city`) VALUES
 (2610, 'Rødovre'),
 (4683, 'Rønnede'),
 (4720, 'Præstø'),
-(800, 'Høje Taastrup'),
+(2640, 'Hedehusene'),
 (900, 'København C'),
 (1000, 'København K'),
 (1500, 'København V'),
@@ -150,7 +150,6 @@ INSERT INTO `zipcodetable` (`zipCode`, `city`) VALUES
 (2625, 'Vallensbæk'),
 (2630, 'Taastrup'),
 (2635, 'Ishøj'),
-(2640, 'Hedehusene');
 
 ALTER TABLE `categori`
   ADD PRIMARY KEY (`id`);
