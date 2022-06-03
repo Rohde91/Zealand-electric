@@ -108,7 +108,8 @@ INSERT INTO `user` (`id`, `fullName`, `username`, `password`, `userRole`) VALUES
 (4, 'Marcus Madsen', 'marc02m', '1234', 'Elev'),
 (5, 'Martin Rohde', 'mart3b24', '1234', 'Elev'),
 (6, 'Allan Lilleskov Hansen', 'alla2297', '1234', 'Elev'),
-(7, 'Marc Kevin Gamborg Jensen', 'marc572m', '1234', 'Elev');
+(7, 'Marc Kevin Gamborg Jensen', 'marc572m', '1234', 'Elev'),
+(8, 'Thomas Henrik Johnsen', 'thjo', '1234', 'Lærer');
 
 CREATE TABLE `value` (
   `id` int(11) NOT NULL,
