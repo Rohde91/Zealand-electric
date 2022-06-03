@@ -39,7 +39,6 @@ public class MainMenuFragment extends Fragment{
         super.onViewCreated(view, savedInstanceState);
 
 
-
         Button createChecklist = view.findViewById(R.id.CreateChecklistButton);
         Button ConfirmChecklistButton = view.findViewById(R.id.ConfirmChecklistButton);
         Button addWorkerButton = view.findViewById(R.id.AddWorkerButton);

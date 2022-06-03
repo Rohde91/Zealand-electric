@@ -103,12 +103,12 @@ public class WireDetails extends Fragment {
 
 
 
-
-
-
-
-
         Button deleteRow = v.findViewById(R.id.DeleteRowID);
+        deleteRow.setOnClickListener((View view) -> new Thread(() -> {
+
+        }).start());
+
+
 
         Button backButton = v.findViewById(R.id.tabelBackButton);
         backButton.setOnClickListener(view -> new Thread(() -> {
@@ -142,7 +142,7 @@ public class WireDetails extends Fragment {
     private void addRow(){
         //final View aa = getLayoutInflater().inflate(fragment_add_row,null,false);
         final View aa = getLayoutInflater().inflate(R.layout.fragment_add_row,null,false);
-        Button cross = aa.findViewById(R.id.cross2);
+//        Button cross = aa.findViewById(R.id.cross2);
        /* cross.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
