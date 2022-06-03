@@ -1,11 +1,6 @@
 package com.example.zealand_electric.Fragments;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.zealand_electric.Controllers.DBController;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
+
 import com.example.zealand_electric.R;
 
 import entities.User;
@@ -38,18 +36,14 @@ public class LoginFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         loginButton = view.findViewById(R.id.loginButton);
-        loginButton.setOnClickListener(v -> new Thread(() -> {
-
+        loginButton.setOnClickListener((View v) -> new Thread(() -> {
 
 
             EditText username = view.findViewById(R.id.username);
             EditText password = view.findViewById(R.id.password);
 
-            String loginUsername = username.getText().toString();
-            String loginPassword = password.getText().toString();
-
-            DBController tryLogin = new DBController();
-            user = tryLogin.tryUserLogin(loginUsername, loginPassword);
+            UIcontroller obj = new UIcontroller();
+            user = obj.tryLogin(username,password);
 
 
             if (user != null){
