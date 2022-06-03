@@ -149,7 +149,7 @@ INSERT INTO `zipcodetable` (`zipCode`, `city`) VALUES
 (2620, 'Albertslund'),
 (2625, 'Vallensbæk'),
 (2630, 'Taastrup'),
-(2635, 'Ishøj'),
+(2635, 'Ishøj');
 
 ALTER TABLE `categori`
   ADD PRIMARY KEY (`id`);
