@@ -1,16 +1,15 @@
 package com.example.zealand_electric.TabLayout;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.zealand_electric.R;
 import com.google.android.material.tabs.TabLayout;
@@ -33,6 +32,9 @@ public class RestultTabs2 extends Fragment {
         viewPager = v.findViewById(R.id.ViewPager);
         tabLayout.setupWithViewPager(viewPager);
 
+        // change it from new fragment to newinstance
+        // - guide -
+        // https://stackoverflow.com/questions/9245408/best-practice-for-instantiating-a-new-android-fragment
         ResultTabAdapter resultTabAdapter = new ResultTabAdapter(requireActivity().getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         resultTabAdapter.addFragment(new WireDetails(), "Kredsdetaljer");
         resultTabAdapter.addFragment(new rcd_Test(), "RCD Test");
@@ -45,5 +47,6 @@ public class RestultTabs2 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 }

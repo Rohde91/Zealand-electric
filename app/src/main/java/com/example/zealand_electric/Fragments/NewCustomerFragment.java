@@ -75,9 +75,11 @@ public class NewCustomerFragment extends Fragment {
 
             //InsertData into DB
 
-            if(TextUtils.isEmpty(customerName)|| TextUtils.isEmpty(customerAdress)
+            if(
+                    TextUtils.isEmpty(customerName)|| TextUtils.isEmpty(customerAdress)
                     || TextUtils.isEmpty(customerZipCode) || TextUtils.isEmpty(orderNumber) ||
-                    TextUtils.isEmpty(installationLocation) || TextUtils.isEmpty(installer)){
+                    TextUtils.isEmpty(installationLocation) || TextUtils.isEmpty(installer)
+            ){
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
