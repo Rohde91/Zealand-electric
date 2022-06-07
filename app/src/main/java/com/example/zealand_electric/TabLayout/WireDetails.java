@@ -7,12 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -27,7 +27,6 @@ import java.util.ArrayList;
  */
 public class WireDetails extends Fragment {
     EditText value1,value2,value3;
-    ConstraintLayout list;
     ArrayList<String> text = new ArrayList<>();
     TableRow.LayoutParams boxsize = new TableRow.LayoutParams(300,150);
        @Override
@@ -92,15 +91,7 @@ public class WireDetails extends Fragment {
         super.onViewCreated(v, savedInstanceState);
         //buttons - back to checklist
         //------------------------------------------------------------------------------------------
-
-        Button addButton = v.findViewById(R.id.addRowID);
-        addButton.setOnClickListener((View view) -> new Thread(() -> {
-            addRow();
-
-        }).start());
-
-
-
+        TableLayout list = v.findViewById(R.id.Kredsdetalje_Tabel1_value);
 
 
         Button deleteRow = v.findViewById(R.id.DeleteRowID);
@@ -122,26 +113,31 @@ public class WireDetails extends Fragment {
         }).start());
 
 
-
-
-
          // UpdateChecklist
         Button updateChecklist = v.findViewById(R.id.tabelEndButton);
 
 
 
+        Button addButton = v.findViewById(R.id.addRowID);
+        addButton.setOnClickListener((View view) -> new Thread(() -> {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    addRow(list);
+                }
+            });
 
 
+        }).start());
         //------------------------------------------------------------------------------------------
         //buttons end
-
-
-        //------------------------------------------------------------------------------------------
-
     }
-    private void addRow(){
+
+
+    private void addRow (TableLayout list){
         //final View aa = getLayoutInflater().inflate(fragment_add_row,null,false);
         final View aa = getLayoutInflater().inflate(R.layout.fragment_add_row,null,false);
+
 //        Button cross = aa.findViewById(R.id.cross2);
        /* cross.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +146,7 @@ public class WireDetails extends Fragment {
             }
         });*/
         list.addView(aa);
+
     }
 
      /*Find Tablelayout defined in main.xml

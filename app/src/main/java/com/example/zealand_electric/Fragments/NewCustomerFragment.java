@@ -76,9 +76,9 @@ public class NewCustomerFragment extends Fragment {
             //InsertData into DB
 
             if(
-                    TextUtils.isEmpty(customerName)|| TextUtils.isEmpty(customerAdress)
+                    TextUtils.isEmpty(customerName)/*|| TextUtils.isEmpty(customerAdress)
                     || TextUtils.isEmpty(customerZipCode) || TextUtils.isEmpty(orderNumber) ||
-                    TextUtils.isEmpty(installationLocation) || TextUtils.isEmpty(installer)
+                    TextUtils.isEmpty(installationLocation) || TextUtils.isEmpty(installer)*/
             ){
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -91,14 +91,14 @@ public class NewCustomerFragment extends Fragment {
                 customer = new Customer(customerName, customerAdress, customerZipCode);
 
                 DBController.connectToDatabase();
-                customerId = DBController.insertIntoCustomerTableAndReturnID(customer);
+                /*customerId = DBController.insertIntoCustomerTableAndReturnID(customer);
 
                 checkList = new CheckList(customerId, date, orderNumber,
                         installationLocation, installer, user.getId(), ohm, note,0, 0);
                 customer.setId(customerId);
 
                 checklistId = DBController.insertIntoCheckListAndReturnId(checkList);
-                checkList.setId(checklistId);
+                checkList.setId(checklistId);*/
 
                 DBController.closeConnection();
 
