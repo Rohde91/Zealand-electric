@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.zealand_electric.CreationOfPDF;
+import com.example.zealand_electric.Fragments.NewCustomerFragment;
 import com.example.zealand_electric.R;
 
 import java.util.ArrayList;
@@ -115,10 +117,16 @@ public class WireDetails extends Fragment {
 
          // UpdateChecklist
         Button updateChecklist = v.findViewById(R.id.tabelEndButton);
+        updateChecklist.setOnClickListener((View view) -> new Thread(() -> {
+            CreationOfPDF pdf = new CreationOfPDF();
+            pdf.CreatePDF(NewCustomerFragment.checkList.getCaseNumber());
+
+        }).start());
 
 
 
-        Button addButton = v.findViewById(R.id.addRowID);
+
+            Button addButton = v.findViewById(R.id.addRowID);
         addButton.setOnClickListener((View view) -> new Thread(() -> {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
