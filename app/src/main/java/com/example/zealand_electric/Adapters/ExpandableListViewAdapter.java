@@ -84,6 +84,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
         String chapterTitle = (String) getGroup(groupPosition);
 
         if (convertView==null){
+            //LayoutInflater: Instantiates a layout XML file into its corresponding View objects
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.chapter_list,null);
         }
@@ -95,7 +96,7 @@ public class ExpandableListViewAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         String topicsTitle = (String) getChild(groupPosition,childPosition);
-
+            //LayoutInflater: Instantiates a layout XML file into its corresponding View objects
         if (convertView==null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.topics_list,null);
