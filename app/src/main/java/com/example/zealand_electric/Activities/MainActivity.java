@@ -12,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //run fragment class
 
         /*
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         returm;
         */
     }
+
 
 
 }
