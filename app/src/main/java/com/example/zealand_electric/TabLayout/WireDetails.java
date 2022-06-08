@@ -132,10 +132,9 @@ public class WireDetails extends Fragment {
         //------------------------------------------------------------------------------------------
         //buttons end
     }
-
-
+//      TODO try and use this instead
+//      https://stackoverflow.com/questions/18999601/how-can-i-programmatically-include-layout-in-android
     private void addRow (TableLayout list){
-        //final View aa = getLayoutInflater().inflate(fragment_add_row,null,false);
         final View aa = getLayoutInflater().inflate(R.layout.fragment_add_row,null,false);
 
 //        Button cross = aa.findViewById(R.id.cross2);
