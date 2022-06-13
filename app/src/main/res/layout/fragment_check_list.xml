@@ -63,16 +63,18 @@
 
                <com.google.android.material.button.MaterialButton
                    android:id="@+id/button_Gem_Afslut"
-                   android:width="0dp"
-                   android:textSize= "11dp"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
+                   android:layout_marginEnd="4dp"
+                   android:layout_marginBottom="252dp"
+                   android:width="0dp"
                    android:backgroundTint="@color/zealandBlack"
                    android:text="@string/Gem_afslut"
                    android:textColor="@color/zealandYellow"
+                   android:textSize="11dp"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintWidth_percent="0.3"/>
+                   app:layout_constraintWidth_percent="0.3" />
           </androidx.constraintlayout.widget.ConstraintLayout>
 
      </LinearLayout>
