@@ -1,6 +1,8 @@
-package com.example.zealand_electric.Fragments;
+package com.example.zealand_electric.Controllers;
 
 import android.widget.EditText;
+
+import com.example.zealand_electric.UseCases;
 
 import entities.User;
 
