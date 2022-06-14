@@ -1,4 +1,4 @@
-package com.example.zealand_electric.Fragments;
+package com.example.zealand_electric;
 
 import com.example.zealand_electric.Controllers.DBController;
 

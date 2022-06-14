@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -31,7 +32,16 @@ public class WireDetails extends Fragment {
     EditText value1,value2,value3;
     ArrayList<String> text = new ArrayList<>();
     TableRow.LayoutParams boxsize = new TableRow.LayoutParams(300,150);
-       @Override
+
+    /*@Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+    TableLayout list;*/
+
+
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
        {
@@ -93,13 +103,8 @@ public class WireDetails extends Fragment {
         super.onViewCreated(v, savedInstanceState);
         //buttons - back to checklist
         //------------------------------------------------------------------------------------------
-        TableLayout list = v.findViewById(R.id.Kredsdetalje_Tabel1_value);
-
-
-        Button deleteRow = v.findViewById(R.id.DeleteRowID);
-        deleteRow.setOnClickListener((View view) -> new Thread(() -> {
-
-        }).start());
+        TableLayout list1 = v.findViewById(R.id.Kredsdetalje_Tabel1_value);
+        TableLayout list2 = v.findViewById(R.id.Kredsdetalje_Tabel2_value);
 
 
 
@@ -131,10 +136,10 @@ public class WireDetails extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    addRow(list);
+                    addRow(list1);
+                    addRow(list2);
                 }
             });
-
 
         }).start());
         //------------------------------------------------------------------------------------------
@@ -143,18 +148,26 @@ public class WireDetails extends Fragment {
 //      TODO try and use this instead
 //      https://stackoverflow.com/questions/18999601/how-can-i-programmatically-include-layout-in-android
     private void addRow (TableLayout list){
-        final View aa = getLayoutInflater().inflate(R.layout.fragment_add_row,null,false);
+           final View aa = getLayoutInflater().inflate(R.layout.fragment_add_row,null,false);
+        /*ViewStub stub  = aa.findViewById(R.id.stub_row);
+               stub.setLayoutResource(R.layout.fragment_add_row);
+        View inflated = stub.inflate();*/
 
-//        Button cross = aa.findViewById(R.id.cross2);
-       /* cross.setOnClickListener(new View.OnClickListener() {
+
+        ImageButton cross = aa.findViewById(R.id.cross2);
+        cross.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                parent
+            public void onClick(View view) {
+                removeView(aa,list);
             }
-        });*/
+        });
         list.addView(aa);
-
     }
+
+    private void removeView(View aa,TableLayout list) {
+        list.removeView(aa);
+    }
+
 
      /*Find Tablelayout defined in main.xml
     TableLayout tl = (TableLayout) findViewById(R.id.SaleOrderLines);
@@ -173,6 +186,7 @@ public class WireDetails extends Fragment {
     //Add row to TableLayout.
     tr.setBackgroundResource(R.drawable.sf_gradient_03);
     tl.addView(tr, new TableLayout.LayoutParams(TableLayout.LayoutParams.FILL_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));*/
+
 
 }
 
