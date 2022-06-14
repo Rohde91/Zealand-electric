@@ -96,11 +96,6 @@ public class WireDetails extends Fragment {
         TableLayout list = v.findViewById(R.id.Kredsdetalje_Tabel1_value);
 
 
-        Button deleteRow = v.findViewById(R.id.DeleteRowID);
-        deleteRow.setOnClickListener((View view) -> new Thread(() -> {
-
-        }).start());
-
 
 
         Button backButton = v.findViewById(R.id.tabelBackButton);
@@ -143,8 +138,12 @@ public class WireDetails extends Fragment {
 //      TODO try and use this instead
 //      https://stackoverflow.com/questions/18999601/how-can-i-programmatically-include-layout-in-android
     private void addRow (TableLayout list){
-        final View aa = getLayoutInflater().inflate(R.layout.fragment_add_row,null,false);
 
+
+           final View aa = getLayoutInflater().inflate(R.layout.fragment_add_row,null,false);
+        /*ViewStub stub  = aa.findViewById(R.id.stub_row);
+               stub.setLayoutResource(R.layout.fragment_add_row);
+        View inflated = stub.inflate();*/
 //        Button cross = aa.findViewById(R.id.cross2);
        /* cross.setOnClickListener(new View.OnClickListener() {
             @Override

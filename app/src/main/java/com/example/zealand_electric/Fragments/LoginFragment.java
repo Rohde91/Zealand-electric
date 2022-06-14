@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.zealand_electric.Controllers.UIcontroller;
 import com.example.zealand_electric.R;
 
 import entities.User;
