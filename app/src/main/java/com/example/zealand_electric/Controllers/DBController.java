@@ -387,5 +387,24 @@ public class DBController {
         }
 
     }
+    public static String sqlCallInfo(String tableName, String columnName, String id, String customerInput) {
+        connection = DBController.connectToDatabase();
+        String result;
+        PreparedStatement customerInfo;
+        result = "SELECT * FROM " + tableName + " WHERE "+ id +" = '" + customerInput + "'";
 
+        try {
+            customerInfo = connection.prepareStatement(result);
+            ResultSet rs = customerInfo.executeQuery();
+            while (rs.next()) {
+                result = rs.getString(columnName);
+            }
+            closeConnection();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return null;
+    }
 }

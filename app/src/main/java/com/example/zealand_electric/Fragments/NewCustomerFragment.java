@@ -70,8 +70,7 @@ public class NewCustomerFragment extends Fragment {
             installer = getInstaller.getText().toString();
             //CreationOfPDF.CreatePDF(orderNumber);
 
-            Customer customer = new Customer(customerName,customerAdress,customerZipCode);
-            Customer customer1 = new Customer("TestMarcus","TestAdress","555");
+            customer = new Customer(customerName,customerAdress,customerZipCode);
 
             //InsertData into DB
 
