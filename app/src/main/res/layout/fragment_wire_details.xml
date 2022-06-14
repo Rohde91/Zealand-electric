@@ -31,7 +31,7 @@
                         android:layout_marginStart="24dp"
                         android:layout_marginTop="16dp"
                         android:text="Kredsdetaljer"
-                        android:textSize="32sp"
+                        android:textSize="30sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,10 +39,10 @@
                         android:id="@+id/addRowID"
                         android:layout_width="90dp"
                         android:layout_height="50dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="8dp"
                         android:text="add"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.752"
+                        app:layout_constraintHorizontal_bias="0.865"
                         app:layout_constraintStart_toEndOf="@+id/textView6"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -53,96 +53,73 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+
                 <TableLayout
-                    android:id="@+id/Kredsdetalje_Tabel1"
-                    android:layout_width="412dp"
+                    android:id="@+id/Kredsdetalje_Tabel1_value"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginTop="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tableRow"
-                    app:layout_constraintVertical_bias="0.0">
+                    app:layout_constraintWidth_percent="1.0">
 
                 </TableLayout>
-
-                <TableLayout
-                    android:id="@+id/Kredsdetalje_Tabel1_value"
-                    android:layout_width="411dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:padding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.497"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Kredsdetalje_Tabel1"
-
-
-                    >
-
-                    <ViewStub
-                        android:id="@+id/stub_row"
-                        android:inflatedId="@+id/testRow"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.75"
-                        ></ViewStub>
-                </TableLayout>
-
-
-
-
-
 
                 <TableLayout
                     android:id="@+id/Kredsdetalje_Tabel2"
-                    android:layout_width="412dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:padding="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="27dp"
+                    app:layout_constraintBottom_toTopOf="@+id/tabelEndButton"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Kredsdetalje_Tabel1_value">
+                    app:layout_constraintTop_toBottomOf="@+id/Kredsdetalje_Tabel1_value"
+                    app:layout_constraintVertical_bias="0.212"
+                    app:layout_constraintWidth_percent="1.0">
 
                     <TableRow
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        app:layout_constraintWidth_percent="1.0">
 
                         <TextView
                             android:id="@+id/Crosscut_Value"
-                            android:layout_width="115dp"
+                            android:layout_width="100dp"
                             android:layout_height="match_parent"
                             android:text="mm2"
-                            android:textSize="27sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/MaxOB_Value"
                             android:layout_width="175dp"
                             android:layout_height="match_parent"
                             android:text="Maks.OB (Ln)"
-                            android:textSize="27sp" />
+                            android:textSize="20sp" />
 
                         <TextView
                             android:id="@+id/Isolation_Value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Isolation"
-                            android:textSize="27sp" />
+                            android:textSize="20sp" />
 
                     </TableRow>
-
                 </TableLayout>
 
                 <TableLayout
                     android:id="@+id/Kredsdetalje_Tabel2_value"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintHorizontal_weight="1.0"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Kredsdetalje_Tabel2" />
+                    app:layout_constraintTop_toBottomOf="@+id/Kredsdetalje_Tabel2" >
+
+                </TableLayout>
 
                 <Button
                     android:id="@+id/tabelEndButton"
@@ -170,6 +147,8 @@
                     android:id="@+id/tableRow"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
 
@@ -178,21 +157,21 @@
                         android:layout_width="110dp"
                         android:layout_height="match_parent"
                         android:text="Gruppe"
-                        android:textSize="27sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/OB_Value"
                         android:layout_width="110dp"
                         android:layout_height="match_parent"
                         android:text="OB (Ln)"
-                        android:textSize="27sp" />
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/Karakter_Value"
                         android:layout_width="172dp"
                         android:layout_height="match_parent"
                         android:text="Karakterastik"
-                        android:textSize="27sp" />
+                        android:textSize="20sp" />
 
                 </TableRow>
 

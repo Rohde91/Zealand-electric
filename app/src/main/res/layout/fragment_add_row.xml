@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-
-
     >
-
 
         <TableRow
             android:id="@+id/testRow"
@@ -16,37 +11,32 @@
 
             <EditText
                 android:id="@+id/Crosscut_Value1"
-                android:layout_width="115dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:ems="10"
                 android:hint="value"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 />
 
             <EditText
                 android:id="@+id/MaxOB_Value1"
-                android:layout_width="128dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:ems="10"
                 android:hint="value"
-                android:inputType="textPersonName"
-
+                android:inputType="number"
                 />
 
             <EditText
                 android:id="@+id/Isolation_Value1"
-                android:layout_width="101dp"
+                android:layout_width="100dp"
                 android:layout_height="50dp"
-                android:ems="10"
                 android:hint="value"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <ImageButton
                 android:id="@+id/cross2"
-                android:layout_width="58dp"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_delete" />
-
+                android:src="@android:drawable/ic_delete"
+                android:backgroundTint="@color/zealandYellow"/>
 
         </TableRow>
 
