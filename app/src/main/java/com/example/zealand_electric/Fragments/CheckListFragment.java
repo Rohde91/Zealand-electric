@@ -285,7 +285,6 @@ public class CheckListFragment extends Fragment {
                             null,checked_box_list.get(i).getNote(),
                             LoginFragment.user.getId(),
                             checked_box_list.get(i).getCategory_position());
-
                 }
                 DBController.closeConnection();
 
