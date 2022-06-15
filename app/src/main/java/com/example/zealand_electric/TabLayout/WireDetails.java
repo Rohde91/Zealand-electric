@@ -141,7 +141,7 @@ public class WireDetails extends Fragment {
 
         Button test = v.findViewById(R.id.send);
         test.setOnClickListener((View view)-> new Thread(() -> {
-            outputvalue(list1,v);
+            outputvalue(list1);
 
         }).start());
 
@@ -178,25 +178,23 @@ public class WireDetails extends Fragment {
 
 
 
-    private void outputvalue (TableLayout table,View view) {
+    private void outputvalue (TableLayout table) {
 
         for (int i = 0; i < table.getChildCount(); i++) {
             if (table.getChildAt(i) instanceof LinearLayoutCompat) {
                 LinearLayoutCompat ll = (LinearLayoutCompat) table.getChildAt(i);
 
-
                 for (int j = 0; j  < ll.getChildCount(); j++) {
                     if (ll.getChildAt(j)instanceof TableRow){
                         TableRow tr = (TableRow) ll.getChildAt(j);
-
                         /*for (int k = 0; k < ; k++) {
 
-                        }*/
-                        //crashes 191 ll children are tablerow but gets cast to edittext
-                        //made a new for loop that loops through the row and then use the ifstatement (i think)
-                        // https://stackoverflow.com/questions/10005564/android-get-the-value-of-edittext-in-the-tablerow 
+                        }
+                        crashes 191 ll children are tablerow but gets cast to edittext
+                        made a new for loop that loops through the row and then use the ifstatement (i think)
+                         https://stackoverflow.com/questions/10005564/android-get-the-value-of-edittext-in-the-tablerow
+                         */
                         EditText et = (EditText) tr.getChildAt(j);
-
 
                         if (et.getId() == R.id.Crosscut_Value1){
                             System.out.println(et.getText().toString());
