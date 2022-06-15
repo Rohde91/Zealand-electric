@@ -310,7 +310,6 @@ public class CheckListFragment extends Fragment {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
                 setExpandableListViewHeight(parent, groupPosition);
-                System.out.println(groupPosition);
                 return false;
             }
         });

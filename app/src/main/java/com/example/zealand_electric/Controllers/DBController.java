@@ -112,22 +112,17 @@ public class DBController {
 
     public static ArrayList<CheckList> openChecklist(){
 
-        System.out.println("open checklist conn to db");
         connectToDatabase();
 
         ArrayList<CheckList> openCases = new ArrayList<CheckList>();
-        System.out.println("new arraylist");
         try {
             String sql = "Select * From checklist " +
                     "WHERE fk_userId = '" + LoginFragment.user.getId() + "' " +
                     "AND checklistComplete = '0'";
-            System.out.println(sql);
 
             Statement statement =  connection.createStatement();
-            System.out.println("test 1.5");
 
             ResultSet rs = statement.executeQuery(sql);
-            System.out.println("test 2");
 
             while (rs.next()){
 
@@ -140,9 +135,9 @@ public class DBController {
 
                 openCases.add(openCaseList);
 
-                for (int i = 0; i < openCases.size(); i++) {
+                /*for (int i = 0; i < openCases.size(); i++) {
                     System.out.println(i);
-                }
+                }*/
             }
             closeConnection();
             return openCases;
@@ -157,10 +152,7 @@ public class DBController {
 
     public User tryUserLogin(String username, String password) {
         String sql;
-        //String userRole = userRole(username);
-        System.out.println("tryuserlogin conn to DB");
         connectToDatabase();
-
         User user = null;
 
         try {

@@ -9,7 +9,7 @@
 
      <LinearLayout
          android:layout_width="match_parent"
-         android:layout_height="wrap_content"
+         android:layout_height="match_parent"
          android:layout_gravity="start"
          android:orientation="vertical"
          android:padding="8sp">
@@ -18,14 +18,14 @@
           <ExpandableListView
               android:id="@+id/eListView"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
               android:layoutDirection="rtl"
 
               />
 
           <androidx.constraintlayout.widget.ConstraintLayout
               android:layout_width="match_parent"
-              android:layout_height="302dp">
+              android:layout_height="match_parent">
 
 
                <com.google.android.material.button.MaterialButton

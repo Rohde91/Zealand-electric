@@ -46,17 +46,13 @@ public class MainMenuFragment extends Fragment{
 
         String UserRole = user.getUserRole();
 
-        System.out.println("new thread");
+
 
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 try  {
-
-                    System.out.println("main menu conn to db");
                     DBController.openChecklist();
-                    System.out.println("main menu conn to db over");
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -64,11 +60,6 @@ public class MainMenuFragment extends Fragment{
         });
 
         thread.start();
-
-
-
-
-        System.out.println("open checklist was run");
 
 
 
@@ -95,14 +86,13 @@ public class MainMenuFragment extends Fragment{
             public void onClick(View view) {
                 NavHostFragment.findNavController(MainMenuFragment.this)
                         .navigate(R.id.action_mainMenu_to_confirm_Checklist);
-                System.out.println(user.getFullName());
             }
         });
 
         createChecklist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("going to new Customer");
+
                 NavHostFragment.findNavController(MainMenuFragment.this)
                         .navigate(R.id.action_mainMenu_to_newCustomerFragment);
                 //newCustomerFragment leads to checklist creation
