@@ -17,27 +17,6 @@
                 android:inputType="number"
                 />
 
-            <EditText
-                android:id="@+id/MaxOB_Value1"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:hint="value"
-                android:inputType="number"
-                />
-
-            <EditText
-                android:id="@+id/Isolation_Value1"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:hint="value"
-                android:inputType="number" />
-
-            <ImageButton
-                android:id="@+id/cross2"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_delete"
-                android:backgroundTint="@color/zealandYellow"/>
-
         </TableRow>
 
 
