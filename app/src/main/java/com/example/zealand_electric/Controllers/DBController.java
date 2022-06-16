@@ -292,8 +292,8 @@ public class DBController {
                 "','" + fk_questionId +
                 "','"  + fk_valueId +
                 "','" + documentationImage +
-                "','"+ notes +
-                "','"  + fk_userid +"','"+ category_position + "')" ;
+                "','" + notes +
+                "','"  + fk_userid +"','" + category_position + "')" ;
 
         try{
 
@@ -307,13 +307,21 @@ public class DBController {
         }
 
     }
-
+                                                //is it suppose to be checklistID
     public static void insertIntoCircuitDetails(int fk_checklist, String groupName, String ob,
-                                                String characteristics, String crossSection, String maxOb, String zS, String rA, String ohm, String isolation){
+                                                String characteristics, String crossSection, String maxOb,
+                                                String zS, String rA, String ohm, String isolation){
         String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, ob, characteristics, crossSection, maxOb, zS, rA, ohm, isolation) " +
-                "VALUES ('" + fk_checklist + "','" + groupName +
-                "','"  + ob + "','" + characteristics + "','"+
-                crossSection + "','"  + maxOb + "','" + zS + "','" + rA + "','" + ohm + "','" + isolation + "')" ;
+                "VALUES ('" + fk_checklist +
+                "','" + groupName +
+                "','" + ob +
+                "','" + characteristics +
+                "','" + crossSection +
+                "','" + maxOb +
+                "','" + zS +
+                "','" + rA +
+                "','" + ohm +
+                "','" + isolation + "')" ;
 
         try{
 

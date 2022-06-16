@@ -30,18 +30,11 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class WireDetails extends Fragment {
-    EditText value1,value2,value3;
-    ArrayList<String> text = new ArrayList<>();
-    TableRow.LayoutParams boxsize = new TableRow.LayoutParams(300,150);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -142,8 +135,17 @@ public class WireDetails extends Fragment {
 
         Button test = v.findViewById(R.id.send);
         test.setOnClickListener((View view)-> new Thread(() -> {
-            outputvalue(list1,v);
 
+            ArrayList allValues = new ArrayList();
+
+            allValues.add(outputvalue(list1) );
+            allValues.add(outputvalue(list2) );
+            System.out.println("collected all values in allValues");
+            for (int i = 0; i < allValues.size(); i++) {
+                System.out.println(allValues.get(i));
+
+
+            }
         }).start());
 
 
@@ -179,28 +181,48 @@ public class WireDetails extends Fragment {
 
 
 
-    private void outputvalue (TableLayout table, View v) {
+    private ArrayList outputvalue (TableLayout table ) {
         //pass View v as well and call the specific layout
         //LinearLayoutCompat ll = v.findViewById(R.id.linearLayout_ID);
-        LinearLayoutCompat ll = (LinearLayoutCompat) table.getChildAt(0);
-//        for (int i = 0; i < table.getChildCount(); i++) {
+        ArrayList arrayList = new ArrayList();
+        try {
 
+            for (int i = 0; i < table.getChildCount(); i++) {
+            LinearLayoutCompat ll = (LinearLayoutCompat) table.getChildAt(i);
             //if (table.getChildAt(i) instanceof LinearLayoutCompat) {
 
                 for (int j = 0; j  < ll.getChildCount(); j++) {
                     if (ll.getChildAt(j)instanceof TableRow){
                         TableRow tr = (TableRow) ll.getChildAt(j);
+                        //
+                        int get_tr_edittext = tr.getChildCount() -1;
 
-                        for (int k = 0; k < tr.getChildCount() -1 ; k++) {
+                        for (int k = 0; k < get_tr_edittext ; k++) {
                             EditText et = (EditText) tr.getChildAt(k);
 
                             //code to change sout into arraylist that sends data into DB
+
+                            //TODO: send into an arraylist
+                            arrayList.add(et.getText().toString());
                             System.out.println(et.getText().toString());
                         }
 
                     }
+                    else{
+                        System.out.println("there are no tablerows");
+                    }
                 }
+            }
+
+        }
+
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 //        } conncted to the 1st for loop
+
+        return arrayList;
     }
+
 }
 
