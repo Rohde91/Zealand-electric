@@ -35,7 +35,7 @@ public class CreationOfPDF {
     static BaseColor greyFilling = new BaseColor(191, 191, 191);
     static Chunk glue = new Chunk(new VerticalPositionMark());
     static PdfPCell cell;
-    static Chunk p;
+    static Chunk chunk;
     static Phrase answer;
     static Chunk spacing = new Chunk("\n" + "\n" + "\n");
     static Connection connection = DBController.connectToDatabase();
@@ -71,8 +71,8 @@ public class CreationOfPDF {
             cell.setRowspan(4);
             table1.addCell(cell);
 
-            p = new Chunk("Tjekliste", FontFactory.getFont(FontFactory.TIMES_ROMAN, titleSize, Orange));
-            cell = new PdfPCell(new Phrase(p));
+            chunk = new Chunk("Tjekliste", FontFactory.getFont(FontFactory.TIMES_ROMAN, titleSize, Orange));
+            cell = new PdfPCell(new Phrase(chunk));
             cell.setRowspan(4);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -128,8 +128,8 @@ public class CreationOfPDF {
             cell.setRowspan(4);
             table3.addCell(cell);
 
-            p = new Chunk("Tjekliste", FontFactory.getFont(FontFactory.TIMES_ROMAN, titleSize, Orange));
-            cell = new PdfPCell(new Phrase(p));
+            chunk = new Chunk("Tjekliste", FontFactory.getFont(FontFactory.TIMES_ROMAN, titleSize, Orange));
+            cell = new PdfPCell(new Phrase(chunk));
             cell.setRowspan(4);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);

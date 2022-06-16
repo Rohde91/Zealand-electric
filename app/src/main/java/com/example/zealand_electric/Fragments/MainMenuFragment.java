@@ -110,10 +110,8 @@ public class MainMenuFragment extends Fragment{
                         .navigate(R.id.);*/
                 //DBController.openChecklist();
                 System.out.println("Knap klikkes");
-
             }
         });
-
     }
 
     @Override
