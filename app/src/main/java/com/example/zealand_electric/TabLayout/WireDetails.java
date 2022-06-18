@@ -18,11 +18,14 @@ import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.zealand_electric.Controllers.DBController;
 import com.example.zealand_electric.CreationOfPDF;
 import com.example.zealand_electric.Fragments.NewCustomerFragment;
 import com.example.zealand_electric.R;
 
 import java.util.ArrayList;
+
+import entities.CheckList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,7 +33,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class WireDetails extends Fragment {
-
+    public static CheckList checkList;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,8 +102,7 @@ public class WireDetails extends Fragment {
         TableLayout list1 = v.findViewById(R.id.Kredsdetalje_Tabel1_value);
         TableLayout list2 = v.findViewById(R.id.Kredsdetalje_Tabel2_value);
 
-        //buttons - back to checklist
-        //------------------------------------------------------------------------------------------
+        //buttons
         Button backButton = v.findViewById(R.id.tabelBackButton);
         backButton.setOnClickListener(view -> new Thread(() -> {
             getActivity().runOnUiThread(new Runnable() {
@@ -120,6 +122,7 @@ public class WireDetails extends Fragment {
 
         }).start());
 
+        //------------------------------------------------------------------------------------------
 
         Button addButton = v.findViewById(R.id.addRowID);
         addButton.setOnClickListener((View view) -> new Thread(() -> {
@@ -133,31 +136,43 @@ public class WireDetails extends Fragment {
 
         }).start());
 
-        Button test = v.findViewById(R.id.send);
-        test.setOnClickListener((View view)-> new Thread(() -> {
+        //------------------------------------------------------------------------------------------
 
-            ArrayList allValues = new ArrayList();
+        Button send = v.findViewById(R.id.send);
+        send.setOnClickListener((View view)-> new Thread(() -> {
 
-            allValues.add(outputvalue(list1) );
-            allValues.add(outputvalue(list2) );
-            System.out.println("collected all values in allValues");
-            for (int i = 0; i < allValues.size(); i++) {
-                System.out.println(allValues.get(i));
+            ArrayList outputList1 = outputvalue(list1);
+            ArrayList outputList2 = outputvalue(list2);
 
+            ArrayList listOfAllValues = setValuesInOrder(outputList1,outputList2);
 
+            DBController.connectToDatabase();
+            int numberOfRows = listOfAllValues.size()/6;
+            for (int i = 0; i < numberOfRows; i++) {
+                DBController.insertIntoCircuitDetails_P1(NewCustomerFragment.checkList.getId(),listOfAllValues);
+                for (int j = 0; j < 6; j++) {
+                    listOfAllValues.remove(0);
+                }
             }
+            DBController.closeConnection();
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    NavHostFragment.findNavController(WireDetails.this)
+                            .navigate(R.id.action_restultTabs2_to_mainMenu);
+                }
+            });
+
         }).start());
 
-
-        //------------------------------------------------------------------------------------------
-        //clear row button is part of addrow
-        //buttons end
     }
+    //------------------------------------------------------------------------------------------
 
-
-
+    //part of add button
     //      TODO try and use this instead
-//      https://stackoverflow.com/questions/18999601/how-can-i-programmatically-include-layout-in-android
+    //      https://stackoverflow.com/questions/18999601/how-can-i-programmatically-include-layout-in-android
     private void addRow (TableLayout list){
         final View aa = getLayoutInflater().inflate(R.layout.fragment_add_row,null,false);
 
@@ -179,8 +194,9 @@ public class WireDetails extends Fragment {
         list.removeView(aa);
     }
 
+    //------------------------------------------------------------------------------------------
 
-
+    //part of send button
     private ArrayList outputvalue (TableLayout table ) {
         //pass View v as well and call the specific layout
         //LinearLayoutCompat ll = v.findViewById(R.id.linearLayout_ID);
@@ -205,6 +221,7 @@ public class WireDetails extends Fragment {
                             //TODO: send into an arraylist
                             arrayList.add(et.getText().toString());
                             System.out.println(et.getText().toString());
+
                         }
 
                     }
@@ -222,6 +239,23 @@ public class WireDetails extends Fragment {
 //        } conncted to the 1st for loop
 
         return arrayList;
+    }
+    //------------------------------------------------------------------------------------------
+    public ArrayList setValuesInOrder(ArrayList outputList1, ArrayList outputList2){
+        ArrayList allValues = new ArrayList();
+        int xx = outputList1.size()/3;
+        for (int x = 0; x < outputList1.size(); x++) {
+
+            for (int i = 0; i < xx; i++) {
+                allValues.add(outputList1.get(0));
+                outputList1.remove(0);
+            }
+            for (int i = 0; i < xx; i++) {
+                allValues.add(outputList2.get(0));
+                outputList2.remove(0);
+            }
+        }
+        return allValues;
     }
 
 }

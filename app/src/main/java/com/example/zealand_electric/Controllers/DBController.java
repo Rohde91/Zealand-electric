@@ -306,12 +306,28 @@ public class DBController {
             e.printStackTrace();
         }
 
-    }
-                                                //is it suppose to be checklistID
-    public static void insertIntoCircuitDetails(int fk_checklist, String groupName, String ob,
-                                                String characteristics, String crossSection, String maxOb,
-                                                String zS, String rA, String ohm, String isolation){
-        String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, ob, characteristics, crossSection, maxOb, zS, rA, ohm, isolation) " +
+    }                                            // String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, ob, characteristics, crossSection, maxOb, zS, rA, ohm, isolation) " +
+                                                // , String crossSection, String maxOb,String isolation, String zS, String rA, String ohm
+                                                    //is it suppose to be checklistID
+
+                                                /*
+                                                String groupName, String ob,
+                                                   String characteristics, String crossSection, String maxOb,
+                                                   String zS, String rA, String ohm,String isolation,
+                                                */
+    public static void insertIntoCircuitDetails_P1(int fk_checklist, ArrayList allValues){
+        String groupName = allValues.get(0).toString();
+        String ob = allValues.get(1).toString();;
+        String characteristics = allValues.get(2).toString();
+        String crossSection = allValues.get(3).toString();
+        String maxOb = allValues.get(4).toString();
+        String isolation = allValues.get(5).toString();
+
+        String zS = "zS test";
+        String rA = "rA test";
+        String ohm = "ohm test";
+
+        String mySQL = "INSERT INTO curcuitdetails (fk_checklistId, groupName, ob, characteristics, crossSection, maxOb, zS, rA, ohm, isolation) " +
                 "VALUES ('" + fk_checklist +
                 "','" + groupName +
                 "','" + ob +
@@ -322,36 +338,42 @@ public class DBController {
                 "','" + rA +
                 "','" + ohm +
                 "','" + isolation + "')" ;
-
         try{
 
             Statement statement = connection.createStatement();
-
             statement.execute(mySQL);
-
-
         } catch (SQLException e){
             e.printStackTrace();
         }
-
-
     }
+
+    /*public static void insertIntoCircuitDetails_P2(int fk_checklist, ArrayList allValues){
+        String gname = (String) allValues.get(0);
+        String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, ob, characteristics) " +
+                "VALUES ('" + fk_checklist +
+                "','" + groupName +
+                "','" + ob +
+                "','" + characteristics + "')" ;
+        try{
+            Statement statement = connection.createStatement();
+            statement.execute(mySQL);
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }*/
+
+
+
 
     public static void insertIntoPowerDrop(int fk_checklistId, String groupName, String uPercent, String readPoint){
         String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, uPercent, readPoint) " +
                 "VALUES ('" + fk_checklistId + "','" + groupName + "','" + uPercent + "','" + readPoint + "')" ;
-
         try{
-
             Statement statement = connection.createStatement();
-
             statement.execute(mySQL);
-
-
         } catch (SQLException e){
             e.printStackTrace();
         }
-
     }
 
     public static void insertIntoRCDTest(int fk_checklistId, String rcdRead, String sinusAoneEightZero, String sinusAcZeroFive, String pulseZero, String pulseOneEightZero, String testButton){
