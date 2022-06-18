@@ -286,7 +286,6 @@ public class DBController {
     }
 
     public static void insertIntoCheckListRow (int checklistId, int fk_questionId, int fk_valueId,String documentationImage, String notes, int fk_userid,int category_position){
-
         String mySQL = "INSERT INTO checklistrow (fk_checklistId, fk_questionId, fk_valueId, documentationImage, notes, fk_userId, category_position) " +
                 "VALUES ('" + checklistId +
                 "','" + fk_questionId +
@@ -322,10 +321,9 @@ public class DBController {
         String crossSection = allValues.get(3).toString();
         String maxOb = allValues.get(4).toString();
         String isolation = allValues.get(5).toString();
-
-        String zS = "zS test";
-        String rA = "rA test";
-        String ohm = "ohm test";
+        String zS = allValues.get(6).toString();
+        String rA = allValues.get(7).toString();
+        String ohm = allValues.get(8).toString();
 
         String mySQL = "INSERT INTO curcuitdetails (fk_checklistId, groupName, ob, characteristics, crossSection, maxOb, zS, rA, ohm, isolation) " +
                 "VALUES ('" + fk_checklist +

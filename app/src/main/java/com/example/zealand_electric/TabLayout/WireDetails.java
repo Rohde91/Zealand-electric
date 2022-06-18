@@ -101,7 +101,7 @@ public class WireDetails extends Fragment {
         super.onViewCreated(v, savedInstanceState);
         TableLayout list1 = v.findViewById(R.id.Kredsdetalje_Tabel1_value);
         TableLayout list2 = v.findViewById(R.id.Kredsdetalje_Tabel2_value);
-
+        TableLayout list3 = v.findViewById(R.id.Kredsdetalje_Tabel3_value);
         //buttons
         Button backButton = v.findViewById(R.id.tabelBackButton);
         backButton.setOnClickListener(view -> new Thread(() -> {
@@ -131,6 +131,7 @@ public class WireDetails extends Fragment {
                 public void run() {
                     addRow(list1);
                     addRow(list2);
+                    addRow(list3);
                 }
             });
 
@@ -143,27 +144,37 @@ public class WireDetails extends Fragment {
 
             ArrayList outputList1 = outputvalue(list1);
             ArrayList outputList2 = outputvalue(list2);
+            ArrayList outputList3 = outputvalue(list3);
 
-            ArrayList listOfAllValues = setValuesInOrder(outputList1,outputList2);
+
+            ArrayList listOfAllValues = setValuesInOrder(outputList1,outputList2,outputList3);
+            System.out.println(" ");
+            System.out.println("new arraylist created");
+            System.out.println(listOfAllValues);
+            System.out.println("it is " + listOfAllValues.size()+ " long");
+
 
             DBController.connectToDatabase();
-            int numberOfRows = listOfAllValues.size()/6;
+            int numberOfRows = listOfAllValues.size()/9;
+            System.out.println("amount of values in listofallvalues = " +listOfAllValues.size() );
+            System.out.println("number of rows = " + numberOfRows );
             for (int i = 0; i < numberOfRows; i++) {
+
                 DBController.insertIntoCircuitDetails_P1(NewCustomerFragment.checkList.getId(),listOfAllValues);
-                for (int j = 0; j < 6; j++) {
+                for (int j = 0; j < 9; j++) {
                     listOfAllValues.remove(0);
                 }
             }
             DBController.closeConnection();
 
-            getActivity().runOnUiThread(new Runnable() {
+            /*getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
 
                     NavHostFragment.findNavController(WireDetails.this)
                             .navigate(R.id.action_restultTabs2_to_mainMenu);
                 }
-            });
+            });*/
 
         }).start());
 
@@ -210,49 +221,61 @@ public class WireDetails extends Fragment {
                 for (int j = 0; j  < ll.getChildCount(); j++) {
                     if (ll.getChildAt(j)instanceof TableRow){
                         TableRow tr = (TableRow) ll.getChildAt(j);
-                        //
+                        //the -1 is because there are 4 children in each row, and ew only need the first 3 (the button is the 4th)
                         int get_tr_edittext = tr.getChildCount() -1;
 
                         for (int k = 0; k < get_tr_edittext ; k++) {
                             EditText et = (EditText) tr.getChildAt(k);
 
-                            //code to change sout into arraylist that sends data into DB
-
-                            //TODO: send into an arraylist
                             arrayList.add(et.getText().toString());
                             System.out.println(et.getText().toString());
-
                         }
-
                     }
                     else{
                         System.out.println("there are no tablerows");
                     }
                 }
             }
-
         }
 
         catch (Exception e) {
             e.printStackTrace();
         }
 //        } conncted to the 1st for loop
-
+        System.out.println("finished collectng all values in layout");
         return arrayList;
     }
     //------------------------------------------------------------------------------------------
-    public ArrayList setValuesInOrder(ArrayList outputList1, ArrayList outputList2){
+    public ArrayList setValuesInOrder(ArrayList outputList1, ArrayList outputList2,ArrayList outputList3){
         ArrayList allValues = new ArrayList();
-        int xx = outputList1.size()/3;
-        for (int x = 0; x < outputList1.size(); x++) {
 
-            for (int i = 0; i < xx; i++) {
+        System.out.println(" ");
+        System.out.println("outputlist1 size = " + outputList1.size());
+
+
+        final int numberOfRowsInEachTable = outputList1.size()/3;
+        System.out.println("number of rows in each table "+numberOfRowsInEachTable);
+
+
+        // This loops takes all the values from list 1,2,3 and adds the first 3 values from each list to the arraylist allValues
+        //and does this as many times as there there are rows
+        //giving us an arraylist that we easily can insert into our Database
+        for (int k = 0; k < numberOfRowsInEachTable; k++) {
+            System.out.println("number of times first loop was called =" + (k+1));
+
+            for (int i = 0; i < 3; i++) {
                 allValues.add(outputList1.get(0));
                 outputList1.remove(0);
             }
-            for (int i = 0; i < xx; i++) {
+
+            for (int i = 0; i < 3; i++) {
                 allValues.add(outputList2.get(0));
                 outputList2.remove(0);
+            }
+
+            for (int i = 0; i < 3; i++) {
+                allValues.add(outputList3.get(0));
+                outputList3.remove(0);
             }
         }
         return allValues;
