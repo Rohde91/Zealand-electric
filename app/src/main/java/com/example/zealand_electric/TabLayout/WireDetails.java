@@ -146,36 +146,35 @@ public class WireDetails extends Fragment {
             ArrayList outputList2 = outputvalue(list2);
             ArrayList outputList3 = outputvalue(list3);
 
+            if (outputList1.size() == outputList2.size() && outputList3.size() == outputList1.size() ){
 
-            ArrayList listOfAllValues = setValuesInOrder(outputList1,outputList2,outputList3);
-            System.out.println(" ");
-            System.out.println("new arraylist created");
-            System.out.println(listOfAllValues);
-            System.out.println("it is " + listOfAllValues.size()+ " long");
+                ArrayList listOfAllValues = setValuesInOrder(outputList1,outputList2,outputList3);
 
+                DBController.connectToDatabase();
+                int x = 9;
+                int numberOfRows = listOfAllValues.size()/9;
 
-            DBController.connectToDatabase();
-            int numberOfRows = listOfAllValues.size()/9;
-            System.out.println("amount of values in listofallvalues = " +listOfAllValues.size() );
-            System.out.println("number of rows = " + numberOfRows );
-            for (int i = 0; i < numberOfRows; i++) {
+                for (int i = 0; i < numberOfRows; i++) {
 
-                DBController.insertIntoCircuitDetails_P1(NewCustomerFragment.checkList.getId(),listOfAllValues);
-                for (int j = 0; j < 9; j++) {
-                    listOfAllValues.remove(0);
+                    DBController.insertIntoCircuitDetails_P1(NewCustomerFragment.checkList.getId(),listOfAllValues);
+                    for (int j = 0; j < 9; j++) {
+                        listOfAllValues.remove(0);
+                    }
                 }
+                DBController.closeConnection();
+
+                /*getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        NavHostFragment.findNavController(WireDetails.this)
+                                .navigate(R.id.action_restultTabs2_to_mainMenu);
+                    }
+                });*/
             }
-            DBController.closeConnection();
-
-            /*getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-
-                    NavHostFragment.findNavController(WireDetails.this)
-                            .navigate(R.id.action_restultTabs2_to_mainMenu);
-                }
-            });*/
-
+            else{
+                System.out.println("please make sure there are the same amount of rows in each table");
+            }
         }).start());
 
     }
