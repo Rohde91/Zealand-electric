@@ -9,6 +9,7 @@ import com.example.zealand_electric.Fragments.NewCustomerFragment;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
@@ -19,9 +20,11 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import entities.Customer;
 import entities.User;
@@ -39,9 +42,14 @@ public class CreationOfPDF {
     static Phrase answer;
     static Chunk spacing = new Chunk("\n" + "\n" + "\n");
     static Connection connection = DBController.connectToDatabase();
+    static float titleSize, secondTitleSize;
 
+    static String textAlignTable = "              ";
+
+    //Creates the Pdf
     public static void CreatePDF(String orderNumber) {
-
+        titleSize = 30f;
+        secondTitleSize = 16f;
 
         try {
 
@@ -49,11 +57,17 @@ public class CreationOfPDF {
             File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
             //Document instance
             Document document = new Document(PageSize.A4, 5f, 5f, 5f, 5f);
-            float titleSize, secondTitleSize;
-            titleSize = 30f;
-            secondTitleSize = 16f;
-            String textAlignTable = "              ";
+            System.out.println("File created.\nSaved at " + path.getAbsolutePath());
+            CreatePdfLayout(document, path, orderNumber);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    //Creates the needed layout for the pdf.
+    public static void CreatePdfLayout(Document document, File path, String orderNumber) {
+
+        try {
             //OutputStream instance //TODO change path to sql database.
             OutputStream outputStream = new FileOutputStream(new File(path, "/" + orderNumber + ".pdf"));
 
@@ -101,11 +115,18 @@ public class CreationOfPDF {
             cell.setColspan(3);
             table2.addCell(cell);
 
-            cell = splitText("Adresse: ", DBController.sqlCallInfo("customer","customerAdress", "customerName", customer.getCustomerName()));
+            cell = splitText("Adresse: ", DBController.sqlCallInfo("customer", "customerAdress", "customerName", customer.getCustomerName()));
             cell.setColspan(3);
             table2.addCell(cell);
 
-            cell = splitText("Post nr: ", DBController.sqlCallInfo("customer", "fk_zipCode","customerName", customer.getCustomerName()));
+            try {
+                cell = splitText("Post nr: ", DBController.sqlCallInfo("customer", "fk_zipCode", "customerName", customer.getCustomerName()));
+                ;
+            } catch (Exception e) {
+                cell = splitText("Post nr: ", "Postnumme eksisterer ikke.");
+                ;
+                System.out.println(e);
+            }
             table2.addCell(cell);
 
             cell = splitText("By: ", DBController.sqlCallInfo("zipcodetable", "city", "zipCode", customer.getFk_zipCode()));
@@ -142,21 +163,52 @@ public class CreationOfPDF {
             table3.addCell("Elinstallation");
             table3.addCell(cell);
 
-            document.add(new Chunk( textAlignTable+ "Måleresultater" + secondTitleSize).setBackground(Orange));
-
             document.add(table3);
-            document.close();
+            Phrase phrase = new Phrase();
+            phrase.add(new Chunk(textAlignTable, FontFactory.getFont(FontFactory.TIMES_ROMAN, secondTitleSize)));
+            phrase.add(new Chunk(textAlignTable + "Måleresultater\n", FontFactory.getFont(FontFactory.TIMES_ROMAN, secondTitleSize)).setBackground(Orange));
 
-            System.out.println("File created");
+            document.add(new Chunk("\n"));
+            document.add(phrase);
+
+            PdfPTable table4 = new PdfPTable(7);
+            cell = new PdfPCell(new Phrase("Kredsdetaljer"));
+            cell.setColspan(7);
+            cell.setBackgroundColor(greyFilling);
+            table4.addCell(cell);
+
+            table4.addCell("Gruppe");
+            table4.addCell(("OB (I<sub>n/<sub>)"));
+            table4.addCell("Karakteristik");
+            table4.addCell("Tværsnit");
+            table4.addCell("Maks. OB");
+
+
+
+            /*for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 7; j++){
+
+                }
+            }
+
+             */
+
+            document.close();
+            System.out.println("Layout created.");
             System.out.println("Number of Pages: " + writer.getPageNumber());
             connection.close();
-        } catch (Exception e) {
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
 
-    public static PdfPCell splitText(String text1, String text2) {
+        //Splits text in a cell.
+        public static PdfPCell splitText(String text1, String text2) {
         answer = new Phrase();
         answer.add(text1);
         answer.add(glue);
@@ -164,6 +216,18 @@ public class CreationOfPDF {
         cell = new PdfPCell(answer);
         return cell;
     }
+
+    /*public static String ZsOrRa (){
+
+        DBController.connectToDatabase();
+        PreparedStatement ZsOrRa;
+        result = "SELECT "
+
+
+        return result;
+    }
+    */
+
 }
 
 
