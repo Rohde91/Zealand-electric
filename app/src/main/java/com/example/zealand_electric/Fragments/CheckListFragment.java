@@ -92,11 +92,12 @@ public class CheckListFragment extends Fragment {
             //forLoop get the Hashset's and send it to array  in objekt
             // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_yes()) {
+                boolean has_Made_A_Objek = false;
                 for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
                     // make a Ojekt and add it to arraylist with note
-                    if (it.first.intValue() == listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                    if (!has_Made_A_Objek&&it.first.intValue() == listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                         it.second.intValue() == listViewAdapter.getNote_List_Object().get(i).getQuestion_position() ){
-
+                        has_Made_A_Objek=true;
                         checked_box_list.add(new Check_box_Object(
                                 it.first.hashCode(),
                                 it.second.hashCode(),
@@ -104,66 +105,81 @@ public class CheckListFragment extends Fragment {
                                 listViewAdapter.getNote_List_Object().get(i).getNote())
                         );
 
-                    }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                    }else if(!has_Made_A_Objek&&i<listViewAdapter.getNote_List_Object().size()&&
                             it.first.intValue()!=listViewAdapter.getNote_List_Object().get(i).getCategory_position() &&
                             it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position() ){
-
+                            has_Made_A_Objek=true;
                         //make a Ojekt and add it to arraylist without note
                         checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1,null));
                     }else{
 
                     }
                 }
+                if (!has_Made_A_Objek){
+                    checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1,null));
+                }
 
 
             }//forLoop get the Hashset's and send it to array  in objekt
             // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_No()) {
+                boolean has_Made_A_Objek = false;
                 for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
                     // make a Ojekt and add it to arraylist with note
-                    if (
+                    if (!has_Made_A_Objek&&
                             it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                             it.second.intValue()==listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
-
+                        has_Made_A_Objek=true;
                         checked_box_list.add(new Check_box_Object(
                                 it.first.hashCode(),
                                 it.second.hashCode(),
                                 2,
                                 listViewAdapter.getNote_List_Object().get(i).getNote()));
 
-                    }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                    }else if(!has_Made_A_Objek&&i<listViewAdapter.getNote_List_Object().size()&&
                             it.first.intValue()!=listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                             it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+                        has_Made_A_Objek=true;
                         //make a Ojekt and add it to arraylist without note
                         checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2,null));
                     }else{
 
                     }
                 }
+                if (!has_Made_A_Objek){
+                    checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1,null));
+                }
 
             }//forLoop get the Hashset's and send it to array  in objekt
             // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
             for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_Not_relevant()) {
+                boolean has_Made_A_Objek = false;
                 for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
                     // make a Ojekt and add it to arraylist with note
-                    if (    it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                    if (   !has_Made_A_Objek&&
+                            it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                             it.second.intValue()==listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
-
+                        has_Made_A_Objek = true;
                         checked_box_list.add(new Check_box_Object(
                                 it.first.hashCode(),
                                 it.second.hashCode(),
                                 3,
                                 listViewAdapter.getNote_List_Object().get(i).getNote()));
 
-                    }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                    }else if(!has_Made_A_Objek&&i<listViewAdapter.getNote_List_Object().size()&&
                             it.first.intValue()!=listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                             it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
                         //make a Ojekt and add it to arraylist without note
                         checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,null));
+                        has_Made_A_Objek = true;
                     }else{
 
                     }
                 }
+                if (!has_Made_A_Objek){
+                    checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,null));
+                }
+
             }
             DBController.connectToDatabase();
             System.out.println("liste "+ checked_box_list.toString());
@@ -202,75 +218,88 @@ public class CheckListFragment extends Fragment {
                 //forLoop get the Hashset's and send it to array  in objekt
                 // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
                 for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_yes()) {
+                    boolean has_Made_A_Objek = false;
                     for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
                         // make a Ojekt and add it to arraylist with note
-                        if (it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                        if (!has_Made_A_Objek&&it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                                 it.second.intValue()==listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
-
+                            has_Made_A_Objek = true;
                             checked_box_list.add(new Check_box_Object(
                                     it.first.hashCode(),
                                     it.second.hashCode(),
                                     1,
                                     listViewAdapter.getNote_List_Object().get(i).getNote()));
 
-                        }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                        }else if(!has_Made_A_Objek&&i<listViewAdapter.getNote_List_Object().size()&&
                                 it.first.intValue()!=listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                                 it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
-
+                            has_Made_A_Objek = true;
                             //make a Ojekt and add it to arraylist without note
                             checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 1,null));
                         }else{
 
                         }
                     }
+                    if (!has_Made_A_Objek){
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,null));
+                    }
 
 
                 }//forLoop get the Hashset's and send it to array  in objekt
                 // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
                 for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_No()) {
+                    boolean has_Made_A_Objek = false;
                     for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
                         // make a Ojekt and add it to arraylist with note
-                        if (it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                        if (!has_Made_A_Objek&&it.first.intValue()==listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                                 it.second.intValue()==listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
-
+                            has_Made_A_Objek =true;
                             checked_box_list.add(new Check_box_Object(it.first.hashCode(),
                                     it.second.hashCode(),
                                     2,
                                     listViewAdapter.getNote_List_Object().get(i).getNote()));
 
-                        }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                        }else if(!has_Made_A_Objek&&i<listViewAdapter.getNote_List_Object().size()&&
                                 it.first.intValue() != listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                                 it.second.intValue() != listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
-
+                            has_Made_A_Objek = true;
                             //make a Ojekt and add it to arraylist without note
                             checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 2,null));
                         }else{
 
                         }
                     }
+                    if (!has_Made_A_Objek){
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,null));
+                    }
 
                 }//forLoop get the Hashset's and send it to array  in objekt
                 // enhanced forLoop = Iterator<Pair<Long, Long>> it = listViewAdapter.getCheckedItems_yes().iterator(); it.hasNext();
                 for (Pair<Long, Long> it : listViewAdapter.getCheckedItems_Not_relevant()) {
+                    boolean has_Made_A_Objek = false;
                     for (int i = 0; i <listViewAdapter.getNote_List_Object().size() ; i++) {
                         // make a Ojekt and add it to arraylist with note
-                        if (it.first.intValue() == listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
+                        if (!has_Made_A_Objek&&it.first.intValue() == listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                             it.second.intValue() == listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
-
+                            has_Made_A_Objek = true;
                             checked_box_list.add(new Check_box_Object(
                                     it.first.hashCode(),
                                     it.second.hashCode(),
                                     3,
                                     listViewAdapter.getNote_List_Object().get(i).getNote()));
 
-                        }else if(i<listViewAdapter.getNote_List_Object().size()&&
+                        }else if(!has_Made_A_Objek&&i<listViewAdapter.getNote_List_Object().size()&&
                                 it.first.intValue() != listViewAdapter.getNote_List_Object().get(i).getCategory_position()&&
                                 it.second.intValue()!=listViewAdapter.getNote_List_Object().get(i).getQuestion_position()){
+                            has_Made_A_Objek =true;
                             //make a Ojekt and add it to arraylist without note
                             checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,null));
                         }else{
 
                         }
+                    }
+                    if (!has_Made_A_Objek){
+                        checked_box_list.add(new Check_box_Object(it.first.hashCode(), it.second.hashCode(), 3,null));
                     }
                 }
                 DBController.connectToDatabase();
