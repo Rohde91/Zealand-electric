@@ -14,6 +14,7 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfFormField;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -183,6 +184,13 @@ public class CreationOfPDF {
             table4.addCell("Tværsnit");
             table4.addCell("Maks. OB");
 
+            PdfFormField checkBox = PdfFormField.createCheckBox(writer);
+            //cell.setCellEvent(new CellField(writer, checkBox, false));
+
+            PdfPTable innerTable = new PdfPTable(2);
+
+            innerTable.addCell("");
+
 
 
             /*for (int i = 0; i < 3; i++) {
@@ -193,6 +201,7 @@ public class CreationOfPDF {
 
              */
 
+            document.add(table4);
             document.close();
             System.out.println("Layout created.");
             System.out.println("Number of Pages: " + writer.getPageNumber());
