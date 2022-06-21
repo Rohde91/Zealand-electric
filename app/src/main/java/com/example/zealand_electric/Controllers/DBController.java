@@ -1,6 +1,7 @@
 package com.example.zealand_electric.Controllers;
 
 import com.example.zealand_electric.Fragments.LoginFragment;
+import com.example.zealand_electric.Fragments.NewCustomerFragment;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -300,9 +301,11 @@ public class DBController {
 
             statement.execute(mySQL);
 
-
+            statement.close();
+            closeConnection();
         } catch (SQLException e){
             e.printStackTrace();
+            closeConnection();
         }
 
     }                                            // String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, ob, characteristics, crossSection, maxOb, zS, rA, ohm, isolation) " +
@@ -418,6 +421,47 @@ public class DBController {
             ResultSet rs = customerInfo.executeQuery();
             while (rs.next()) {
                 result = rs.getString(columnName);
+            }
+            closeConnection();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return null;
+    }
+
+    public static ArrayList <String> getColumnString(String tableName, String wishedColumn) throws ClassNotFoundException, SQLException{
+        connection = DBController.connectToDatabase();
+        int a = 0;
+        ArrayList<String> result = new ArrayList<String>();
+        PreparedStatement questions;
+        String sql = "SELECT " + wishedColumn + " FROM " + tableName;
+        try {
+            questions = connection.prepareStatement(sql);
+            ResultSet rs = questions.executeQuery();
+            while (rs.next()) {
+                result.add(rs.getString(wishedColumn));
+            }
+            closeConnection();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        closeConnection();
+        return null;
+    }
+    public static ArrayList <Integer> getColumnInt(String wishedColumn) throws ClassNotFoundException, SQLException{
+        connection = DBController.connectToDatabase();
+        int a = 0;
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        PreparedStatement questions;
+        String sql = "SELECT " + wishedColumn + " FROM checklistrow WHERE fk_checklistId = " + NewCustomerFragment.checkList.getFk_customerId();
+        try {
+            questions = connection.prepareStatement(sql);
+            ResultSet rs = questions.executeQuery();
+            while (rs.next()) {
+                result.add(rs.getInt(wishedColumn));
             }
             closeConnection();
             return result;

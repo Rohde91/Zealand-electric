@@ -26,6 +26,8 @@ import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 import entities.Customer;
 import entities.User;
@@ -44,8 +46,9 @@ public class CreationOfPDF {
     static Chunk spacing = new Chunk("\n" + "\n" + "\n");
     static Connection connection = DBController.connectToDatabase();
     static float titleSize, secondTitleSize;
+    static LocalDate date = LocalDate.now();
 
-    static String textAlignTable = "              ";
+    static String textAlignTable = "               ";
 
     //Creates the Pdf
     public static void CreatePDF(String orderNumber) {
@@ -67,7 +70,6 @@ public class CreationOfPDF {
 
     //Creates the needed layout for the pdf.
     public static void CreatePdfLayout(Document document, File path, String orderNumber) {
-
         try {
             //OutputStream instance //TODO change path to sql database.
             OutputStream outputStream = new FileOutputStream(new File(path, "/" + orderNumber + ".pdf"));
@@ -122,10 +124,8 @@ public class CreationOfPDF {
 
             try {
                 cell = splitText("Post nr: ", DBController.sqlCallInfo("customer", "fk_zipCode", "customerName", customer.getCustomerName()));
-                ;
             } catch (Exception e) {
                 cell = splitText("Post nr: ", "Postnumme eksisterer ikke.");
-                ;
                 System.out.println(e);
             }
             table2.addCell(cell);
@@ -136,11 +136,84 @@ public class CreationOfPDF {
             cell = splitText("Ordrenummer: ", NewCustomerFragment.checkList.getCaseNumber());
             table2.addCell(cell);
 
-            cell = splitText("Identifikation af installation: ", user.getUsername());
+            cell = splitText("Identifikation af installation: ", NewCustomerFragment.checkList.getInstaller());
             cell.setColspan(3);
             table2.addCell(cell);
 
+            cell = splitText("Installation er udført af: ", NewCustomerFragment.checkList.getInstaller());
+            cell.setColspan(3);
+            table2.addCell(cell);
+
+            cell = splitText("Verifikation af installation er udført af: ", user.getUsername());
+            cell.setColspan(2);
+            table2.addCell(cell);
+
+            cell = splitText("Dato: ", date.toString());
+            table2.addCell(cell);
+
             document.add(table2);
+            document.add(new Chunk("\n"));
+
+            try {
+                int[] questionCount = new int[]{13, 6, 7, 2, 6, 3};
+                ArrayList<String> questions = DBController.getColumnString("question", "questionText");
+                ArrayList<Integer> answers = DBController.getColumnInt( "fk_valueId");
+                String question;
+                System.out.println(answers);
+                int i = 0;
+                int questionAnswer = 0;
+                int questionNumber = 0;
+                String markedAnswer = "";
+                while (i < questionCount.length) {
+                    int a = 0;
+                    switch (i) {
+                        case 0:
+                            document.add(new Phrase(textAlignTable + "1. Generelt: \n", FontFactory.getFont(FontFactory.TIMES_BOLD)));
+                            break;
+                        case 1:
+                            document.add(new Phrase(textAlignTable + "2. Tavlen: \n", FontFactory.getFont(FontFactory.TIMES_BOLD)));
+                            break;
+                        case 2:
+                            document.add(new Phrase(textAlignTable + "3. Installation: \n", FontFactory.getFont(FontFactory.TIMES_BOLD)));
+                            break;
+                        case 3:
+                            document.add(new Phrase(textAlignTable + "4. Indbygningsarmaturer: \n", FontFactory.getFont(FontFactory.TIMES_BOLD)));
+                            break;
+                        case 4:
+                            document.add(new Phrase(textAlignTable + "5. Beskyttelsesledere og udligningsforbindelser: \n", FontFactory.getFont(FontFactory.TIMES_BOLD)));
+                            break;
+                        case 5:
+                            document.add(new Phrase(textAlignTable + "6. Fejlbeskyttelse/supplerende beskyttelse: \n", FontFactory.getFont(FontFactory.TIMES_BOLD)));
+                            break;
+                    }
+                    while (a < questionCount[i]) {
+                        question = questions.get(questionNumber);
+
+                        switch(0){
+                            case 1:
+                                markedAnswer = "Ja          ";
+                                break;
+                            case 2:
+                                markedAnswer = "Nej          ";
+                                break;
+                            default:
+                                markedAnswer = "Ikke relevant           ";
+                        }
+                        answer = new Phrase();
+                        answer.add(new Chunk(textAlignTable + "  " + question, FontFactory.getFont(FontFactory.TIMES_ROMAN, 8f)));
+                        answer.add(glue);
+                        answer.add(new Chunk(markedAnswer + "\n", FontFactory.getFont(FontFactory.TIMES_ROMAN)));
+                        document.add(answer);
+                        a++;
+                        questionNumber++;
+                    }
+                    i++;
+                    document.add(new Chunk("\n"));
+                }
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+
             document.newPage();
 
             //Third Table
@@ -216,8 +289,8 @@ public class CreationOfPDF {
         }
     }
 
-        //Splits text in a cell.
-        public static PdfPCell splitText(String text1, String text2) {
+    //Splits text in a cell.
+    public static PdfPCell splitText(String text1, String text2) {
         answer = new Phrase();
         answer.add(text1);
         answer.add(glue);
