@@ -47,10 +47,10 @@ public class WireDetails extends Fragment {
         Crosscut_Value.setText(Html.fromHtml("mm<sub>2</sub>"));
 
         TextView OB_Value = v.findViewById(R.id.OB_Value);
-        OB_Value.setText(Html.fromHtml("OB (L<sub>n</sub>)"));
+        OB_Value.setText(Html.fromHtml("OB (I<sub>n</sub>)"));
 
         TextView MaxOB_Value = v.findViewById(R.id.MaxOB_Value);
-        MaxOB_Value.setText(Html.fromHtml("Maks.OB (L<sub>n</sub>)"));
+        MaxOB_Value.setText(Html.fromHtml("Maks.OB (I<sub>n</sub>)"));
 
         return v;
     }
