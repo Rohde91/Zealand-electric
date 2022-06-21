@@ -4,15 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollViewDrawer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:scrollbarSize="15sp">
 
      <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="match_parent"
          android:layout_gravity="start"
-         android:orientation="vertical"
-         android:padding="8sp">
+         android:orientation="vertical">
 
 
           <ExpandableListView
@@ -20,61 +19,58 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:layoutDirection="rtl"
-
               />
 
           <androidx.constraintlayout.widget.ConstraintLayout
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="wrap_content">
 
 
                <com.google.android.material.button.MaterialButton
                    android:id="@+id/button_Annuller"
-                   android:textSize= "11dp"
-                   android:width="0dp"
-                   android:layout_width="wrap_content"
+                   android:layout_width="0dp"
                    android:layout_height="wrap_content"
                    android:backgroundTint="@color/zealandBlack"
                    android:text="@string/Anuller_text"
                    android:textColor="@color/zealandYellow"
+                   android:textSize="11sp"
                    app:layout_constraintBottom_toBottomOf="parent"
+                   app:layout_constraintEnd_toStartOf="@+id/button_Gem"
+                   app:layout_constraintHorizontal_bias="0.313"
                    app:layout_constraintStart_toStartOf="parent"
                    app:layout_constraintTop_toTopOf="parent"
                    app:layout_constraintVertical_bias="0.0"
-                   app:layout_constraintWidth_percent="0.3"/>
+                   app:layout_constraintWidth_percent="0.25" />
 
                <com.google.android.material.button.MaterialButton
                    android:id="@+id/button_Gem"
-                   android:textSize= "11dp"
-                   android:width="0dp"
-                   android:layout_width="wrap_content"
+                   android:layout_width="0dp"
                    android:layout_height="wrap_content"
-                   android:paddingStart="10dp"
-                   android:paddingEnd="10dp"
+                   android:layout_marginEnd="36dp"
                    android:backgroundTint="@color/zealandBlack"
                    android:text="@string/Gem_text"
                    android:textColor="@color/zealandYellow"
+                   android:textSize="11sp"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toStartOf="@+id/button_Gem_Afslut"
-                   app:layout_constraintStart_toEndOf="@+id/button_Annuller"
                    app:layout_constraintTop_toTopOf="parent"
                    app:layout_constraintVertical_bias="0.0"
-                   app:layout_constraintWidth_percent="0.3"/>
+                   app:layout_constraintWidth_percent="0.25" />
 
                <com.google.android.material.button.MaterialButton
                    android:id="@+id/button_Gem_Afslut"
-                   android:layout_width="wrap_content"
+                   android:layout_width="0dp"
                    android:layout_height="wrap_content"
-                   android:layout_marginEnd="4dp"
-                   android:layout_marginBottom="252dp"
-                   android:width="0dp"
+                   android:layout_marginEnd="16dp"
                    android:backgroundTint="@color/zealandBlack"
                    android:text="@string/Gem_afslut"
                    android:textColor="@color/zealandYellow"
-                   android:textSize="11dp"
+                   android:textSize="11sp"
                    app:layout_constraintBottom_toBottomOf="parent"
                    app:layout_constraintEnd_toEndOf="parent"
-                   app:layout_constraintWidth_percent="0.3" />
+                   app:layout_constraintTop_toTopOf="parent"
+                   app:layout_constraintVertical_bias="0.0"
+                   app:layout_constraintWidth_percent="0.25" />
           </androidx.constraintlayout.widget.ConstraintLayout>
 
      </LinearLayout>

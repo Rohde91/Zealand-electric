@@ -31,9 +31,6 @@ public class CheckListFragment extends Fragment {
     List<String> chapterList;
     HashMap<String,List<String>> topicList;
 
-
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

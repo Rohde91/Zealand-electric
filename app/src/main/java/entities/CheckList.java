@@ -3,6 +3,7 @@ package entities;
 import java.time.LocalDate;
 
 public class CheckList {
+    String customerAdress;
     int id;
     int fk_customerId;
     LocalDate date;
@@ -29,11 +30,12 @@ public class CheckList {
         this.checklistConfirmed = checklistConfirmed;
     }
 
-    public CheckList(int id, int fk_customerId, int fk_userId, Integer checklistComplete){
+    public CheckList(int id, int fk_customerId, int fk_userId, Integer checklistComplete, String customerAdress){
         this.id = id;
         this.fk_customerId = fk_customerId;
         this.fk_userId = fk_userId;
         this.checklistComplete = checklistComplete;
+        this.customerAdress = customerAdress;
     }
 
     public CheckList(int fk_customerId, LocalDate date, String caseNumber, String installationLocation, String installer, int fk_userId, String crossOhm, String installationNote, Integer checklistComplete, Integer checklistConfirmed) {
@@ -51,6 +53,14 @@ public class CheckList {
 
     public CheckList() {
 
+    }
+
+    public String getCustomerAdress() {
+        return customerAdress;
+    }
+
+    public void setCustomerAdress(String customerAdress) {
+        this.customerAdress = customerAdress;
     }
 
     public int getFk_customerId() {

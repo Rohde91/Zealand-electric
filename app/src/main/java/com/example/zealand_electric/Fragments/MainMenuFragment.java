@@ -5,15 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.zealand_electric.Controllers.DBController;
+import com.example.zealand_electric.Controllers.MainMenuController;
 import com.example.zealand_electric.R;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import entities.CheckList;
@@ -42,25 +45,27 @@ public class MainMenuFragment extends Fragment{
         Button createChecklist = view.findViewById(R.id.CreateChecklistButton);
         Button ConfirmChecklistButton = view.findViewById(R.id.ConfirmChecklistButton);
         Button addWorkerButton = view.findViewById(R.id.AddWorkerButton);
-        Button openChecklist = view.findViewById(R.id.openCaseButton);
+
+        LinearLayout openCaseButtonField = view.findViewById(R.id.openCaseButtonField);
 
         String UserRole = user.getUserRole();
 
 
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try  {
-                    DBController.openChecklist();
-                } catch (Exception e) {
-                    e.printStackTrace();
+            System.out.println("mmf Try run");
+
+
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try  {
+                        MainMenuController.getChecklist(openCaseButtonField);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
-
-        thread.start();
-
+            });
+            thread.start();
 
 
         if (Objects.equals(UserRole, "Lærer")) {
@@ -99,19 +104,7 @@ public class MainMenuFragment extends Fragment{
                  }
        });
 
-        openChecklist.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-
-
-                //TODO sæt navigation
-                /*NavHostFragment.findNavController(MainMenuFragment.this)
-                        .navigate(R.id.);*/
-                //DBController.openChecklist();
-                System.out.println("Knap klikkes");
-            }
-        });
     }
 
     @Override
@@ -120,10 +113,32 @@ public class MainMenuFragment extends Fragment{
         //  binding = null;
     }
 
-    CheckList checkList = new CheckList(1, 1, 1,0);
-    // int id, int fk_customerId, int fk_userId, Integer checklistComplete
+    CheckList checkList = new CheckList(1, 1, 1,0,"bob");
+    // int id, int fk_customerId, int fk_userId, Integer checklistComplete, String customerAdress
 
-    public static void getOpenCaseList() throws ClassNotFoundException, SQLException{
 
+
+
+    public void createOpenChecklistButton (LinearLayout openCaseButtonField){
+        final View openCaseButton = getLayoutInflater().inflate(R.layout.main_menu_button,null,false);
+        System.out.println("button creation called");
+        Button openChecklist = openCaseButton.findViewById(R.id.openCaseButton);
+
+
+        openChecklist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //TODO sæt navigation
+                /*NavHostFragment.findNavController(MainMenuFragment.this)
+                        .navigate(R.id.);*/
+
+                System.out.println("Knap klikkes");
+            }
+        });
+
+
+        openCaseButtonField.addView(openCaseButton);
     }
+
 }

@@ -1,6 +1,10 @@
 package com.example.zealand_electric.Controllers;
 
+import android.view.View;
+import android.widget.LinearLayout;
+
 import com.example.zealand_electric.Fragments.LoginFragment;
+import com.example.zealand_electric.Fragments.MainMenuFragment;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,8 +33,6 @@ public class DBController {
 
     //method
     public static Connection connectToDatabase() {
-        System.out.println("i was = " + i + " i is now " + i + "+1");
-        i++;
            try {
             url = "jdbc:mysql://10.0.2.2:3306/zealandelectric";
 
@@ -63,9 +65,6 @@ public class DBController {
 
     public static void closeConnection() {
         try {
-
-            System.out.println( "i was = " + i + " i is now " + i + "-1");
-            i--;
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,17 +109,22 @@ public class DBController {
         return CheckList;
     }
 
-    public static ArrayList<CheckList> openChecklist(){
+    public static ArrayList<CheckList> getOpenChecklists(){
+
+
+        MainMenuFragment mainMenuFragment = new MainMenuFragment();
+
 
         connectToDatabase();
 
         ArrayList<CheckList> openCases = new ArrayList<CheckList>();
         try {
             String sql = "Select * From checklist " +
+                    "INNER JOIN customer ON checklist.fk_customerId = customer.id " +
                     "WHERE fk_userId = '" + LoginFragment.user.getId() + "' " +
                     "AND checklistComplete = '0'";
 
-            Statement statement =  connection.createStatement();
+            Statement statement = connection.createStatement();
 
             ResultSet rs = statement.executeQuery(sql);
 
@@ -132,13 +136,11 @@ public class DBController {
                         openCaseList.setFk_customerId(rs.getInt("fk_customerId"));
                         openCaseList.setFk_userId(rs.getInt("fk_userId"));
                         openCaseList.setChecklistComplete(rs.getInt("checklistComplete"));
+                        openCaseList.setCustomerAdress(rs.getString("customerAdress"));
 
                 openCases.add(openCaseList);
-
-                /*for (int i = 0; i < openCases.size(); i++) {
-                    System.out.println(i);
-                }*/
             }
+
             closeConnection();
             return openCases;
 
