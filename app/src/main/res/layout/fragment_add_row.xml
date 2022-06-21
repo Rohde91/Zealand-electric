@@ -14,7 +14,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:hint="value"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             />
 
         <EditText
@@ -22,7 +22,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:hint="value"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             />
 
         <EditText
@@ -30,7 +30,7 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:hint="value"
-            android:inputType="number" />
+            android:inputType="numberDecimal" />
 
         <ImageButton
             android:id="@+id/cross2"

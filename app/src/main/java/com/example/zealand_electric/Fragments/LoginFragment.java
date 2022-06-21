@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.zealand_electric.Controllers.UIcontroller;
+import com.example.zealand_electric.Controllers.LoginController;
 import com.example.zealand_electric.R;
 
 import entities.User;
@@ -43,7 +43,7 @@ public class LoginFragment extends Fragment {
             EditText username = view.findViewById(R.id.username);
             EditText password = view.findViewById(R.id.password);
 
-            UIcontroller obj = new UIcontroller();
+            LoginController obj = new LoginController();
             user = obj.tryLogin(username,password);
 
 

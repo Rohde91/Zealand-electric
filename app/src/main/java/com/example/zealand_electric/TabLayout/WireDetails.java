@@ -6,19 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.zealand_electric.Controllers.DBController;
+import com.example.zealand_electric.Controllers.WireDetails_Controller;
 import com.example.zealand_electric.CreationOfPDF;
 import com.example.zealand_electric.Fragments.NewCustomerFragment;
 import com.example.zealand_electric.R;
@@ -43,11 +41,8 @@ public class WireDetails extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-// Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_wire_details, container,false);
 
-        //creating subtext
-        //can't make it 1 line. dk how
         TextView Crosscut_Value = v.findViewById(R.id.Crosscut_Value);
         Crosscut_Value.setText(Html.fromHtml("mm<sub>2</sub>"));
 
@@ -56,42 +51,6 @@ public class WireDetails extends Fragment {
 
         TextView MaxOB_Value = v.findViewById(R.id.MaxOB_Value);
         MaxOB_Value.setText(Html.fromHtml("Maks.OB (L<sub>n</sub>)"));
-
-          /* //Test
-           //------------------------------------------------------------------------------------------
-
-           //need to study up on this cuz im not sure what this is or which is better, susanne :D
-           //TODO
-           //makes a table row and adds edit texts to it
-           TableRow valueRow0 = new TableRow(getContext());
-           // might not be needed
-           //valueRow0.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-
-
-
-           EditText txtv0 = new EditText(getContext());
-           txtv0.setTextSize(20);
-           txtv0.setHint("NO");
-           txtv0.setLayoutParams(boxsize);
-           valueRow0.addView(txtv0);
-
-
-           EditText txtv1 = new EditText(getActivity());
-           txtv1.setLayoutParams(boxsize);
-           valueRow0.addView(txtv1);
-           txtv1.setHint("nice!");
-
-           EditText txtv2 = new EditText((getContext()));
-           txtv2.setLayoutParams(boxsize);
-           valueRow0.addView(txtv2);
-           txtv2.setHint("yuuubie");
-
-
-           TableLayout tabel1 = v.findViewById(R.id.Kredsdetalje_Tabel1_value);
-           System.out.println("tabelayout 1");
-           tabel1.addView(valueRow0);
-           //------------------------------------------------------------------------------------------
-*/
 
         return v;
     }
@@ -141,14 +100,15 @@ public class WireDetails extends Fragment {
 
         Button send = v.findViewById(R.id.send);
         send.setOnClickListener((View view)-> new Thread(() -> {
+            WireDetails_Controller UI = new WireDetails_Controller();
 
-            ArrayList outputList1 = outputvalue(list1);
-            ArrayList outputList2 = outputvalue(list2);
-            ArrayList outputList3 = outputvalue(list3);
+            ArrayList outputList1 = UI.outputvalue(list1);
+            ArrayList outputList2 = UI.outputvalue(list2);
+            ArrayList outputList3 = UI.outputvalue(list3);
 
             if (outputList1.size() == outputList2.size() && outputList3.size() == outputList1.size() ){
 
-                ArrayList listOfAllValues = setValuesInOrder(outputList1,outputList2,outputList3);
+                ArrayList listOfAllValues = UI.setValuesInOrder(outputList1,outputList2,outputList3);
 
                 DBController.connectToDatabase();
                 int x = 9;
@@ -162,6 +122,8 @@ public class WireDetails extends Fragment {
                     }
                 }
                 DBController.closeConnection();
+
+//              Change scene
 
                 /*getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -198,15 +160,13 @@ public class WireDetails extends Fragment {
         list.addView(aa);
     }
 
-
-
     private void removeView(View aa,TableLayout list) {
         list.removeView(aa);
     }
 
     //------------------------------------------------------------------------------------------
 
-    //part of send button
+   /* //part of send button
     private ArrayList outputvalue (TableLayout table ) {
         //pass View v as well and call the specific layout
         //LinearLayoutCompat ll = v.findViewById(R.id.linearLayout_ID);
@@ -243,9 +203,9 @@ public class WireDetails extends Fragment {
 //        } conncted to the 1st for loop
         System.out.println("finished collectng all values in layout");
         return arrayList;
-    }
+    }*/
     //------------------------------------------------------------------------------------------
-    public ArrayList setValuesInOrder(ArrayList outputList1, ArrayList outputList2,ArrayList outputList3){
+    /*public ArrayList setValuesInOrder(ArrayList outputList1, ArrayList outputList2,ArrayList outputList3){
         ArrayList allValues = new ArrayList();
 
         System.out.println(" ");
@@ -278,7 +238,7 @@ public class WireDetails extends Fragment {
             }
         }
         return allValues;
-    }
+    }*/
 
 }
 
