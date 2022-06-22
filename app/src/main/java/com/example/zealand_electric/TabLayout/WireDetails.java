@@ -79,6 +79,8 @@ public class WireDetails extends Fragment {
 
         Button updateChecklist = v.findViewById(R.id.tabelEndButton);
         updateChecklist.setOnClickListener((View view) -> new Thread(() -> {
+            System.out.println("just clicked on dans button");
+            System.out.println("  ");
             CreationOfPDF pdf = new CreationOfPDF();
             pdf.CreatePDF(NewCustomerFragment.checkList.getCaseNumber());
         }).start());
@@ -105,16 +107,16 @@ public class WireDetails extends Fragment {
 
             WireDetails_Controller UI_Controller = new WireDetails_Controller();
 
-            ArrayList outputList1 = UI_Controller.outputvalue(table1);
-            ArrayList outputList2 = UI_Controller.outputvalue(table2);
-            ArrayList outputList3 = UI_Controller.outputvalue(table3);
+            ArrayList outputList1 = UI_Controller.collectData(table1);
+            ArrayList outputList2 = UI_Controller.collectData(table2);
+            ArrayList outputList3 = UI_Controller.collectData(table3);
 
 
             if (outputList1.size() == outputList2.size() && outputList3.size() == outputList1.size() ){
 
-                ArrayList listOfAllValuesInOrder = UI_Controller.setValuesInOrder(outputList1,outputList2,outputList3);
+                UI_Controller.setValuesInOrder(outputList1,outputList2,outputList3);
 
-                UI_Controller.insertTableData(listOfAllValuesInOrder);
+                //UI_Controller.insertTableData(listOfAllValuesInOrder);
 
 //              Change scene
 

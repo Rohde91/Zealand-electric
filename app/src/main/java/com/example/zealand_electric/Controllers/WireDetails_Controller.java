@@ -21,7 +21,7 @@ public class WireDetails_Controller {
     WIREDETAILS
     */
 
-    public ArrayList outputvalue (TableLayout table ) {
+    public ArrayList collectData(TableLayout table ) {
         ArrayList arrayList = new ArrayList();
         try {
             for (int i = 0; i < table.getChildCount(); i++) {
@@ -57,33 +57,36 @@ public class WireDetails_Controller {
 
     //------------------------------------------------------------------------------------------
 
-    public ArrayList setValuesInOrder(ArrayList outputList1, ArrayList outputList2, ArrayList outputList3){
-        ArrayList allValues = new ArrayList();
+    public void setValuesInOrder(ArrayList outputList1, ArrayList outputList2, ArrayList outputList3){
+        ArrayList allValuesInOrder = new ArrayList();
 
         final int numberOfRowsInEachTable = outputList1.size()/3;
          /*
-         This loops takes all the values from list 1,2,3 and adds the first 3 values from each list to the arraylist allValues
+         This loops takes all the values from list 1,2,3 and adds the first 3 values from each list to the arraylist allValuesInOrder
          and does this as many times as there there are rows
          giving us an arraylist that we easily can insert into our Database
          */
         for (int k = 0; k < numberOfRowsInEachTable; k++) {
 
             for (int i = 0; i < 3; i++) {
-                allValues.add(outputList1.get(0));
+                allValuesInOrder.add(outputList1.get(0));
                 outputList1.remove(0);
             }
 
             for (int i = 0; i < 3; i++) {
-                allValues.add(outputList2.get(0));
+                allValuesInOrder.add(outputList2.get(0));
                 outputList2.remove(0);
             }
 
             for (int i = 0; i < 3; i++) {
-                allValues.add(outputList3.get(0));
+                allValuesInOrder.add(outputList3.get(0));
                 outputList3.remove(0);
             }
         }
-        return allValues;
+
+        UseCases ui = new UseCases();
+        ui.insertTableData(allValuesInOrder);
+
     }
 
 
