@@ -160,19 +160,22 @@
                         android:id="@+id/textView"
                         android:layout_width="100dp"
                         android:layout_height="match_parent"
-                        android:text="Zs" />
+                        android:text="Zs"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView2"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Ra" />
+                        android:text="Ra"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:id="@+id/textView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Jordmodstand R earth" />
+                        android:text="Jordmodstand R earth"
+                        android:textSize="20sp"/>
                 </TableRow>
 
 
