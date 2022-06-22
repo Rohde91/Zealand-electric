@@ -62,7 +62,6 @@ public class CreationOfPDF {
             File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
             //Document instance
             Document document = new Document(PageSize.A4, 5f, 5f, 5f, 5f);
-            System.out.println("File created.\nSaved at " + path.getAbsolutePath());
             CreatePdfLayout(document, path, orderNumber);
         } catch (Exception e) {
             e.printStackTrace();
@@ -163,7 +162,6 @@ public class CreationOfPDF {
                 ArrayList<String> questions = DBController.getColumnString("question", "questionText");
                 ArrayList<Integer> answers = DBController.getColumnInt( "fk_valueId");
                 String question;
-                System.out.println(answers);
                 int category = 0;
                 int questionAnswer = 0;
                 int questionNumber = 0;
@@ -268,7 +266,6 @@ public class CreationOfPDF {
 
             int index = 0;
             ArrayList<Integer> table4Data = DBController.exclude3ColumnsData("id", "isolation" , "fk_checklistId");
-            System.out.println(table4Data);
             while(index < table4Data.size()){
                 if(table4Data.get(index) == 0){
                     table4.addCell(" ");
@@ -282,8 +279,6 @@ public class CreationOfPDF {
 
             document.add(table4);
             document.close();
-            System.out.println("Layout created.");
-            System.out.println("Number of Pages: " + writer.getPageNumber());
 
         } catch (SQLException | DocumentException | FileNotFoundException throwables) {
             throwables.printStackTrace();

@@ -30,18 +30,18 @@ public class DBController {
 
     //method
     public static Connection connectToDatabase() {
-        System.out.println("i was = " + i + " i is now " + i + "+1");
+        //System.out.println("i was = " + i + " i is now " + i + "+1");
         i++;
            try {
             url = "jdbc:mysql://10.0.2.2:3306/zealandelectric";
 
             connection = DriverManager.getConnection(url, username, password );
-            System.out.println("connection linked");
+            //System.out.println("connection linked");
             return connection;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("connection failed");
+            //System.out.println("connection failed");
             return null;
             }
     }
@@ -65,7 +65,7 @@ public class DBController {
     public static void closeConnection() {
         try {
 
-            System.out.println( "i was = " + i + " i is now " + i + "-1");
+            //System.out.println( "i was = " + i + " i is now " + i + "-1");
             i--;
             connection.close();
         } catch (SQLException e) {
