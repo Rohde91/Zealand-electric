@@ -14,7 +14,6 @@ import com.itextpdf.text.Element;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfFormField;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -44,9 +43,11 @@ public class CreationOfPDF {
     static Chunk chunk;
     static Phrase answer;
     static Chunk spacing = new Chunk("\n" + "\n" + "\n");
-    static Connection connection = DBController.connectToDatabase();
+    static Connection connection;
     static float titleSize, secondTitleSize;
     static LocalDate date = LocalDate.now();
+    static int columnCount;
+    static int rowCount;
 
     static String textAlignTable = "               ";
 
@@ -82,15 +83,17 @@ public class CreationOfPDF {
 
 
             //First Table
-            PdfPTable table1 = new PdfPTable(3);
+            columnCount = 3;
+            PdfPTable table1 = new PdfPTable(columnCount);
             cell = new PdfPCell(new Phrase("Virksomhedens navn eller logo."));
             cell.setVerticalAlignment(Element.ALIGN_BOTTOM);
-            cell.setRowspan(4);
+            rowCount = 4;
+            cell.setRowspan(rowCount);
             table1.addCell(cell);
 
             chunk = new Chunk("Tjekliste", FontFactory.getFont(FontFactory.TIMES_ROMAN, titleSize, Orange));
             cell = new PdfPCell(new Phrase(chunk));
-            cell.setRowspan(4);
+            cell.setRowspan(rowCount);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             table1.addCell(cell);
@@ -110,16 +113,16 @@ public class CreationOfPDF {
             //Second Table
             PdfPTable table2 = new PdfPTable(3);
             cell = new PdfPCell(new Phrase("Installationsoplysninger"));
-            cell.setColspan(3);
+            cell.setColspan(columnCount);
             cell.setBackgroundColor(Orange);
             table2.addCell(cell);
 
             cell = splitText("Kundenavn:", customer.getCustomerName());
-            cell.setColspan(3);
+            cell.setColspan(columnCount);
             table2.addCell(cell);
 
             cell = splitText("Adresse: ", DBController.sqlCallInfo("customer", "customerAdress", "customerName", customer.getCustomerName()));
-            cell.setColspan(3);
+            cell.setColspan(columnCount);
             table2.addCell(cell);
 
             try {
@@ -137,15 +140,16 @@ public class CreationOfPDF {
             table2.addCell(cell);
 
             cell = splitText("Identifikation af installation: ", NewCustomerFragment.checkList.getInstaller());
-            cell.setColspan(3);
+            cell.setColspan(columnCount);
             table2.addCell(cell);
 
             cell = splitText("Installation er udført af: ", NewCustomerFragment.checkList.getInstaller());
-            cell.setColspan(3);
+            cell.setColspan(columnCount);
             table2.addCell(cell);
 
             cell = splitText("Verifikation af installation er udført af: ", user.getUsername());
-            cell.setColspan(2);
+            columnCount = 2;
+            cell.setColspan(columnCount);
             table2.addCell(cell);
 
             cell = splitText("Dato: ", date.toString());
@@ -155,18 +159,18 @@ public class CreationOfPDF {
             document.add(new Chunk("\n"));
 
             try {
-                int[] questionCount = new int[]{13, 6, 7, 2, 6, 3};
+                int[] questionCount = new int[]{13, 6, 7, 2, 6, 3}; //Amount of questions for each question category
                 ArrayList<String> questions = DBController.getColumnString("question", "questionText");
                 ArrayList<Integer> answers = DBController.getColumnInt( "fk_valueId");
                 String question;
                 System.out.println(answers);
-                int i = 0;
+                int category = 0;
                 int questionAnswer = 0;
                 int questionNumber = 0;
                 String markedAnswer = "";
-                while (i < questionCount.length) {
-                    int a = 0;
-                    switch (i) {
+                while (category < questionCount.length) {
+                    int categoryQuestion = 0;
+                    switch (category) {
                         case 0:
                             document.add(new Phrase(textAlignTable + "1. Generelt: \n", FontFactory.getFont(FontFactory.TIMES_BOLD)));
                             break;
@@ -186,10 +190,10 @@ public class CreationOfPDF {
                             document.add(new Phrase(textAlignTable + "6. Fejlbeskyttelse/supplerende beskyttelse: \n", FontFactory.getFont(FontFactory.TIMES_BOLD)));
                             break;
                     }
-                    while (a < questionCount[i]) {
+                    while (categoryQuestion < questionCount[category]) {
                         question = questions.get(questionNumber);
 
-                        switch(0){
+                        switch(0){ //Placeholder number
                             case 1:
                                 markedAnswer = "Ja          ";
                                 break;
@@ -204,10 +208,10 @@ public class CreationOfPDF {
                         answer.add(glue);
                         answer.add(new Chunk(markedAnswer + "\n", FontFactory.getFont(FontFactory.TIMES_ROMAN)));
                         document.add(answer);
-                        a++;
+                        categoryQuestion++;
                         questionNumber++;
                     }
-                    i++;
+                    category++;
                     document.add(new Chunk("\n"));
                 }
             } catch (ClassNotFoundException e) {
@@ -217,7 +221,8 @@ public class CreationOfPDF {
             document.newPage();
 
             //Third Table
-            PdfPTable table3 = new PdfPTable(3);
+            columnCount = 3;
+            PdfPTable table3 = new PdfPTable(columnCount);
             cell = new PdfPCell(new Phrase("Virksomhedens navn eller logo."));
             cell.setVerticalAlignment(Element.ALIGN_BOTTOM);
             cell.setRowspan(4);
@@ -225,7 +230,7 @@ public class CreationOfPDF {
 
             chunk = new Chunk("Tjekliste", FontFactory.getFont(FontFactory.TIMES_ROMAN, titleSize, Orange));
             cell = new PdfPCell(new Phrase(chunk));
-            cell.setRowspan(4);
+            cell.setRowspan(rowCount);
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
             table3.addCell(cell);
@@ -245,47 +250,43 @@ public class CreationOfPDF {
             document.add(new Chunk("\n"));
             document.add(phrase);
 
-            PdfPTable table4 = new PdfPTable(7);
+            columnCount = 8;
+            PdfPTable table4 = new PdfPTable(columnCount);
             cell = new PdfPCell(new Phrase("Kredsdetaljer"));
-            cell.setColspan(7);
+            cell.setColspan(columnCount);
             cell.setBackgroundColor(greyFilling);
             table4.addCell(cell);
 
-            table4.addCell("Gruppe");
-            table4.addCell(("OB (I<sub>n/<sub>)"));
-            table4.addCell("Karakteristik");
-            table4.addCell("Tværsnit");
-            table4.addCell("Maks. OB");
+            table4.addCell(new Phrase("Gruppe", FontFactory.getFont(FontFactory.TIMES_ROMAN, 8)));
+            table4.addCell(new Phrase("OB (In)", FontFactory.getFont(FontFactory.TIMES_ROMAN, 8)));
+            table4.addCell(new Phrase("Karakteristik", FontFactory.getFont(FontFactory.TIMES_ROMAN, 8)));
+            table4.addCell(new Phrase("Tværsnit", FontFactory.getFont(FontFactory.TIMES_ROMAN, 8)));
+            table4.addCell(new Phrase("Maks. OB", FontFactory.getFont(FontFactory.TIMES_ROMAN, 8)));
+            table4.addCell(new Phrase("Zs", FontFactory.getFont(FontFactory.TIMES_ROMAN, 8)));
+            table4.addCell(new Phrase("Ra", FontFactory.getFont(FontFactory.TIMES_ROMAN, 8)));
+            table4.addCell(new Phrase("Isolation", FontFactory.getFont(FontFactory.TIMES_ROMAN, 8)));
 
-            PdfFormField checkBox = PdfFormField.createCheckBox(writer);
-            //cell.setCellEvent(new CellField(writer, checkBox, false));
-
-            PdfPTable innerTable = new PdfPTable(2);
-
-            innerTable.addCell("");
-
-
-
-            /*for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 7; j++){
-
+            int index = 0;
+            ArrayList<Integer> table4Data = DBController.exclude2ColumnsData("id", "isolation");
+            System.out.println(table4Data);
+            while(index < table4Data.size()){
+                if(table4Data.get(index) == 0){
+                    table4.addCell(" ");
                 }
+                else{
+                    cell = new PdfPCell(new Phrase(table4Data.get(index).toString()));
+                    table4.addCell(cell);
+                }
+                index++;
             }
-
-             */
 
             document.add(table4);
             document.close();
             System.out.println("Layout created.");
             System.out.println("Number of Pages: " + writer.getPageNumber());
-            connection.close();
 
-        } catch (SQLException throwables) {
+        } catch (SQLException | DocumentException | FileNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (DocumentException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
@@ -298,18 +299,6 @@ public class CreationOfPDF {
         cell = new PdfPCell(answer);
         return cell;
     }
-
-    /*public static String ZsOrRa (){
-
-        DBController.connectToDatabase();
-        PreparedStatement ZsOrRa;
-        result = "SELECT "
-
-
-        return result;
-    }
-    */
-
 }
 
 

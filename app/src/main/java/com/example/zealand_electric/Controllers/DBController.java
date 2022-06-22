@@ -415,7 +415,6 @@ public class DBController {
         String result;
         PreparedStatement customerInfo;
         result = "SELECT * FROM " + tableName + " WHERE "+ id +" = '" + customerInput + "'";
-
         try {
             customerInfo = connection.prepareStatement(result);
             ResultSet rs = customerInfo.executeQuery();
@@ -470,5 +469,37 @@ public class DBController {
         }
         closeConnection();
         return null;
+    }
+
+    public static ArrayList<Integer> exclude2ColumnsData(String column1, String column2){
+        connection = DBController.connectToDatabase();
+        ArrayList <Integer> result2 = new ArrayList();
+        String sql1 = "CREATE TEMPORARY TABLE TempTable AS SELECT * FROM curcuitdetails WHERE fk_checklistId = " + NewCustomerFragment.checkList.getFk_customerId() + ";";
+        String sql2 = "ALTER TABLE TempTable DROP COLUMN "+column1+", DROP COLUMN "+column2+";";
+        String sql3 = "SELECT * FROM TempTable;";
+        try (Statement stmt = connection.createStatement()){
+            stmt.executeUpdate(sql1);
+            stmt.executeUpdate(sql2);
+            ResultSet rs = stmt.executeQuery(sql3);
+
+            int index = 0;
+            while (rs.next()) {
+                result2.add(rs.getInt("groupName"));
+                result2.add(rs.getInt("ob"));
+                result2.add(rs.getInt("characteristics"));
+                result2.add(rs.getInt("crossSection"));
+                result2.add(rs.getInt("maxOb"));
+                result2.add(rs.getInt("zS"));
+                result2.add(rs.getInt("rA"));
+                result2.add(rs.getInt("ohm"));
+                index++;
+            }
+            closeConnection();
+            return result2;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            closeConnection();
+            return null;
+        }
     }
 }
