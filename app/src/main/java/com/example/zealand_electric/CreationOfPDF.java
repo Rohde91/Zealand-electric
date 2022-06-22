@@ -73,6 +73,7 @@ public class CreationOfPDF {
         try {
             //OutputStream instance //TODO change path to sql database.
             OutputStream outputStream = new FileOutputStream(new File(path, "/" + orderNumber + ".pdf"));
+            //System.out.println("File created.\nSaved at " + path.getAbsolutePath());
 
             //PDFWriter instance
             PdfWriter writer = PdfWriter.getInstance(document, outputStream);
