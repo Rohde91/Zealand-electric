@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.zealand_electric.Controllers.DBController;
 import com.example.zealand_electric.Controllers.WireDetails_Controller;
 import com.example.zealand_electric.CreationOfPDF;
 import com.example.zealand_electric.Fragments.NewCustomerFragment;
@@ -58,10 +57,12 @@ public class WireDetails extends Fragment {
     @Override
     public void onViewCreated(@NonNull View v, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(v, savedInstanceState);
-        TableLayout list1 = v.findViewById(R.id.Kredsdetalje_Tabel1_value);
-        TableLayout list2 = v.findViewById(R.id.Kredsdetalje_Tabel2_value);
-        TableLayout list3 = v.findViewById(R.id.Kredsdetalje_Tabel3_value);
+        TableLayout table1 = v.findViewById(R.id.Kredsdetalje_Tabel1_value);
+        TableLayout table2 = v.findViewById(R.id.Kredsdetalje_Tabel2_value);
+        TableLayout table3 = v.findViewById(R.id.Kredsdetalje_Tabel3_value);
+
         //buttons
+        //------------------------------------------------------------------------------------------
         Button backButton = v.findViewById(R.id.tabelBackButton);
         backButton.setOnClickListener(view -> new Thread(() -> {
             getActivity().runOnUiThread(new Runnable() {
@@ -70,15 +71,16 @@ public class WireDetails extends Fragment {
                     NavHostFragment.findNavController(WireDetails.this)
                             .navigate(R.id.action_restultTabs2_to_checkList);
                 }
+
             });
         }).start());
 
+        //------------------------------------------------------------------------------------------
 
         Button updateChecklist = v.findViewById(R.id.tabelEndButton);
         updateChecklist.setOnClickListener((View view) -> new Thread(() -> {
             CreationOfPDF pdf = new CreationOfPDF();
             pdf.CreatePDF(NewCustomerFragment.checkList.getCaseNumber());
-
         }).start());
 
         //------------------------------------------------------------------------------------------
@@ -88,9 +90,9 @@ public class WireDetails extends Fragment {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    addRow(list1);
-                    addRow(list2);
-                    addRow(list3);
+                    addRow(table1);
+                    addRow(table2);
+                    addRow(table3);
                 }
             });
 
@@ -100,28 +102,19 @@ public class WireDetails extends Fragment {
 
         Button send = v.findViewById(R.id.send);
         send.setOnClickListener((View view)-> new Thread(() -> {
-            WireDetails_Controller UI = new WireDetails_Controller();
 
-            ArrayList outputList1 = UI.outputvalue(list1);
-            ArrayList outputList2 = UI.outputvalue(list2);
-            ArrayList outputList3 = UI.outputvalue(list3);
+            WireDetails_Controller UI_Controller = new WireDetails_Controller();
+
+            ArrayList outputList1 = UI_Controller.outputvalue(table1);
+            ArrayList outputList2 = UI_Controller.outputvalue(table2);
+            ArrayList outputList3 = UI_Controller.outputvalue(table3);
+
 
             if (outputList1.size() == outputList2.size() && outputList3.size() == outputList1.size() ){
 
-                ArrayList listOfAllValues = UI.setValuesInOrder(outputList1,outputList2,outputList3);
+                ArrayList listOfAllValuesInOrder = UI_Controller.setValuesInOrder(outputList1,outputList2,outputList3);
 
-                DBController.connectToDatabase();
-                int x = 9;
-                int numberOfRows = listOfAllValues.size()/9;
-
-                for (int i = 0; i < numberOfRows; i++) {
-
-                    DBController.insertIntoCircuitDetails_P1(NewCustomerFragment.checkList.getId(),listOfAllValues);
-                    for (int j = 0; j < 9; j++) {
-                        listOfAllValues.remove(0);
-                    }
-                }
-                DBController.closeConnection();
+                UI_Controller.insertTableData(listOfAllValuesInOrder);
 
 //              Change scene
 
@@ -156,7 +149,6 @@ public class WireDetails extends Fragment {
                 removeView(aa,list);
             }
         });
-
         list.addView(aa);
     }
 
