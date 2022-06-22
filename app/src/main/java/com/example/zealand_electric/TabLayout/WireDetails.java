@@ -79,8 +79,17 @@ public class WireDetails extends Fragment {
 
         Button updateChecklist = v.findViewById(R.id.tabelEndButton);
         updateChecklist.setOnClickListener((View view) -> new Thread(() -> {
+
             CreationOfPDF pdf = new CreationOfPDF();
             pdf.CreatePDF(NewCustomerFragment.checkList.getCaseNumber());
+
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    NavHostFragment.findNavController(WireDetails.this)
+                            .navigate(R.id.action_restultTabs2_to_mainMenu);
+                }
+            });
         }).start());
 
         //------------------------------------------------------------------------------------------
@@ -114,15 +123,6 @@ public class WireDetails extends Fragment {
 
                 UI_Controller.setValuesInOrder(outputList1,outputList2,outputList3);
 
-
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        NavHostFragment.findNavController(WireDetails.this)
-                                .navigate(R.id.action_restultTabs2_to_mainMenu);
-                    }
-                });
             }
             else{
                 System.out.println("please make sure there are the same amount of rows in each table");

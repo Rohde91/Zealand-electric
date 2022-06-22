@@ -267,7 +267,7 @@ public class CreationOfPDF {
             table4.addCell(new Phrase("Isolation", FontFactory.getFont(FontFactory.TIMES_ROMAN, 8)));
 
             int index = 0;
-            ArrayList<Integer> table4Data = DBController.exclude2ColumnsData("id", "isolation");
+            ArrayList<Integer> table4Data = DBController.exclude3ColumnsData("id", "isolation" , "fk_checklistId");
             System.out.println(table4Data);
             while(index < table4Data.size()){
                 if(table4Data.get(index) == 0){

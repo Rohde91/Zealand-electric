@@ -317,7 +317,7 @@ public class DBController {
                                                    String characteristics, String crossSection, String maxOb,
                                                    String zS, String rA, String ohm,String isolation,
                                                 */
-    public static void insertIntoCircuitDetails_P1(int fk_checklist, ArrayList allValues){
+    public static void insertIntoCircuitDetails(int fk_checklist, ArrayList allValues){
         String groupName = allValues.get(0).toString();
         String ob = allValues.get(1).toString();;
         String characteristics = allValues.get(2).toString();
@@ -471,11 +471,12 @@ public class DBController {
         return null;
     }
 
-    public static ArrayList<Integer> exclude2ColumnsData(String column1, String column2){
+    public static ArrayList<Integer> exclude3ColumnsData(String column1, String column2, String column3){
         connection = DBController.connectToDatabase();
         ArrayList <Integer> result2 = new ArrayList();
-        String sql1 = "CREATE TEMPORARY TABLE TempTable AS SELECT * FROM curcuitdetails WHERE fk_checklistId = " + NewCustomerFragment.checkList.getFk_customerId() + ";";
-        String sql2 = "ALTER TABLE TempTable DROP COLUMN "+column1+", DROP COLUMN "+column2+";";
+
+        String sql1 = "CREATE TEMPORARY TABLE TempTable AS SELECT * FROM curcuitdetails WHERE fk_checklistId = " + NewCustomerFragment.checkList.getId() + ";";
+        String sql2 = "ALTER TABLE TempTable DROP COLUMN "+column1+", DROP COLUMN "+column2+", DROP COLUMN "+column3+";";
         String sql3 = "SELECT * FROM TempTable;";
         try (Statement stmt = connection.createStatement()){
             stmt.executeUpdate(sql1);
