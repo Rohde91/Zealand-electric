@@ -38,11 +38,11 @@ public class WireDetails_Controller {
                             EditText et = (EditText) tr.getChildAt(k);
 
                             arrayList.add(et.getText().toString());
-                            System.out.println(et.getText().toString());
+                            //System.out.println(et.getText().toString());
                         }
                     }
                     else{
-                        System.out.println("there are no tablerows");
+                        //System.out.println("there are no tablerows");
                     }
                 }
             }
@@ -51,7 +51,7 @@ public class WireDetails_Controller {
         catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("finished collectng all values in layout");
+        //System.out.println("finished collectng all values in layout");
         return arrayList;
     }
 

@@ -182,7 +182,7 @@ public class CheckListFragment extends Fragment {
 
             }
             DBController.connectToDatabase();
-            System.out.println("liste "+ checked_box_list.toString());
+            //System.out.println("liste "+ checked_box_list.toString());
             // Insert to DatabaseController
             for (int i = 0; i <checked_box_list.size() ; i++) {
 
@@ -303,7 +303,7 @@ public class CheckListFragment extends Fragment {
                     }
                 }
                 DBController.connectToDatabase();
-                System.out.println("liste "+ checked_box_list.toString());
+                //System.out.println("liste "+ checked_box_list.toString());
                 // Insert to DatabaseController
                 for (int i = 0; i <checked_box_list.size() ; i++) {
 
