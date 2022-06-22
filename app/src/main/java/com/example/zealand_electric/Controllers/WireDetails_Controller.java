@@ -89,13 +89,4 @@ public class WireDetails_Controller {
 
     }
 
-
-    //------------------------------------------------------------------------------------------
-
-    public void insertTableData(ArrayList listOfAllValues){
-        UseCases useCases = new UseCases();
-        useCases.insertTableData(listOfAllValues);
-    }
-
-
 }

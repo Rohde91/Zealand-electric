@@ -34,7 +34,7 @@ public class UseCases {
 
         for (int i = 0; i < numberOfRows; i++) {
 
-            DBController.insertIntoCircuitDetails_P1(NewCustomerFragment.checkList.getId(),listOfAllValues);
+            DBController.insertIntoCircuitDetails(NewCustomerFragment.checkList.getId(),listOfAllValues);
             for (int j = 0; j < 9; j++) {
                 listOfAllValues.remove(0);
             }
