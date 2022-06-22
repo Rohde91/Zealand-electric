@@ -29,7 +29,8 @@ public class NewCustomerFragment extends Fragment {
 
     public String customerName, customerAdress, customerZipCode, orderNumber, installationLocation, installer;
     public static Customer customer= null;
-    public int customerId, checklistId;
+    public int customerId;
+    public int checklistId;
     public User user = LoginFragment.user;
     public String ohm = "";
     public String note = "";
