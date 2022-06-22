@@ -302,10 +302,10 @@ public class DBController {
             statement.execute(mySQL);
 
             statement.close();
-            closeConnection();
+
         } catch (SQLException e){
             e.printStackTrace();
-            closeConnection();
+
         }
 
     }                                            // String mySQL = "INSERT INTO checklistrow (fk_checklistId, groupName, ob, characteristics, crossSection, maxOb, zS, rA, ohm, isolation) " +
